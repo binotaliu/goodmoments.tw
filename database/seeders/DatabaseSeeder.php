@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 final class DatabaseSeeder extends Seeder
@@ -21,5 +23,11 @@ final class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        Category
+            ::factory()
+            ->count(3)
+            ->create()
+            ->each(static fn (Category $category) => Product::factory()->for($category)->count(7)->create());
     }
 }
