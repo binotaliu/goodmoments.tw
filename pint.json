@@ -1,0 +1,15 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "strict_param": true,
+        "array_syntax": { "syntax": "short" },
+        "mb_str_functions": true,
+        "random_api_migration": true,
+        "use_arrow_functions": true,
+        "void_return": true,
+        "concat_space": { "spacing": "one" },
+        "class_attributes_separation": false,
+        "no_spaces_after_function_name": false,
+        "no_space_around_double_colon": false
+    }
+}

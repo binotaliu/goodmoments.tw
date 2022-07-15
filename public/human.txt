@@ -1,0 +1,9 @@
+/* TEAM */
+    Developer: BinotaLIU
+    Site: blog.binota.org
+    Twitter: @binotaliu
+    From: Tainan, Taiwan
+
+/* SITE */
+    Components: Laravel, Tailwind CSS, Inertia.js
+    Software: PhpStorm
