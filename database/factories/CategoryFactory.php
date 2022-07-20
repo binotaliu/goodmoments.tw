@@ -16,7 +16,11 @@ final class CategoryFactory extends Factory
     {
         return [
             'slug' => $this->faker->unique()->slug,
-            'name' => $this->faker->words(asText: true),
+            'name' => [
+                'zh_Hant_TW' => $this->faker->words(asText: true),
+                'zh_Oan' => $this->faker->words(asText: true),
+                'en' => $this->faker->words(asText: true),
+            ],
         ];
     }
 }

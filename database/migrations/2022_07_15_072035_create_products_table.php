@@ -10,20 +10,20 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table): void {
+        Schema::create('products', static function (Blueprint $table): void {
             $table->id();
             $table->bigInteger('category_id')->unsigned();
 
             $table->string('slug')->unique();
-            $table->string('name');
+            $table->json('name');
 
             $table->string('cover_image');
             $table->json('images');
 
             $table->decimal('price', 10, 2);
-            $table->string('unit');
+            $table->json('unit');
 
-            $table->text('description');
+            $table->json('description');
 
             $table->timestamps();
             $table->softDeletes();
