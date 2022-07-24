@@ -7,13 +7,38 @@
       {{ name }}
     </label>
     <slot class="peer" />
+    <transition>
+      <ul class="list-disc pl-6 text-red-600 text-sm" v-if="hasErrors">
+        <li v-for="error in errors" :key="error">{{ error }}</li>
+      </ul>
+    </transition>
   </div>
 </template>
 
 <script setup>
-defineProps({
+import { usePage } from '@inertiajs/inertia-vue3'
+import { computed } from 'vue'
+
+const props = defineProps({
   id: { type: String, required: true },
   name: { type: String, required: true },
-  errors: { type: [Array, String, Object, null], default: () => null },
+  errorBag: { type: [String, null], default: null }
 })
+
+const errors = computed(() => {
+  const pageErrors = usePage().props.value.errors
+
+  const errors = props.errorBag === null ? pageErrors[props.id] : pageErrors[props.errorBag][props.id]
+  if ((errors || null) === null) {
+    return []
+  }
+
+  if (typeof errors === 'string') {
+    return [errors]
+  }
+
+  return errors
+})
+
+const hasErrors = computed(() => errors.value.length > 0)
 </script>

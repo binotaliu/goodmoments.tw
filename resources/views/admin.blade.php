@@ -12,5 +12,7 @@
 </head>
 <body class="bg-pearl-100 antialiased">
 @inertia
+
+@routes
 </body>
 </html>

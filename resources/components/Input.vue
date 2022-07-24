@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex w-full flex-wrap items-stretch mb-3">
+  <div class="relative flex w-full flex-wrap items-stretch">
     <span
       :class="[
         'w-8 h-full pl-3 py-3',

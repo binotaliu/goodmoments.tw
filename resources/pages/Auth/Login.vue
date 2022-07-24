@@ -1,8 +1,11 @@
 <template>
   <div class="w-full flex flex-col center-center gap-2">
     <h1 class="text-2xl font-semibold">登入</h1>
-    <GMCard class="w-full md:w-auto">
-      <div class="flex flex-col items-stretch justify-center gap-2">
+    <GMCard class="w-full md:w-64 lg:w-80">
+      <form
+        class="flex flex-col items-stretch justify-center gap-4"
+        @submit.prevent="login"
+      >
         <GMFormField id="username" name="帳號">
           <template #icon>
             <UserIcon class="w-4 h-4" />
@@ -30,13 +33,15 @@
         </GMFormField>
 
         <GMButton type="submit">
-          登入
+          <GMLoadingText :loading="form.processing">
+            登入
+          </GMLoadingText>
         </GMButton>
 
         <div class="flex justify-end">
           <GMLink class="text-sm">忘記密碼？</GMLink>
         </div>
-      </div>
+      </form>
     </GMCard>
   </div>
 </template>
@@ -54,4 +59,8 @@ const form = useForm({
   username: '',
   password: ''
 })
+
+const login = async () => {
+  await form.post(route('login'))
+}
 </script>
