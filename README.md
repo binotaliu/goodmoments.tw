@@ -31,6 +31,20 @@ $ php artisan install
 $ php artisan db:seed
 ```
 
+Compile frontend assets:
+
+```
+$ npm run dev
+```
+
+If you want to run the vite server with https enabled, please set `VITE_HTTPS_CERT` and `VITE_HTTPS_KEY` in .env with your https certification, and configure a proper `ASSET_URL`. For example:
+```
+ASSET_URL=https://goodmoment.tw.test:5173
+
+VITE_HTTPS_KEY=/Users/user/.config/valet/Certificates/goodmoment.tw.test.key
+VITE_HTTPS_CERT=/Users/user/.config/valet/Certificates/goodmoment.tw.test.crt
+```
+
 ## Deployment
 
 The deployment process is done through GitHub Actions. See [the deploy workflow file](.github/workflows/deploy.yml) for details.

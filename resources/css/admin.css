@@ -1,0 +1,17 @@
+@tailwind base;
+
+@tailwind utilities;
+
+@tailwind components;
+
+@layer base {
+    html {
+        @apply text-gray-700;
+    }
+}
+
+@layer utilities {
+    .center-center {
+        @apply justify-center items-center;
+    }
+}
