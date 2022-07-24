@@ -18,7 +18,7 @@ final class UpdateUserProfileInformation implements UpdatesUserProfileInformatio
      * @param  array  $input
      * @return void
      */
-    public function update($user, array $input)
+    public function update($user, array $input): void
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
@@ -50,7 +50,7 @@ final class UpdateUserProfileInformation implements UpdatesUserProfileInformatio
      * @param  array  $input
      * @return void
      */
-    protected function updateVerifiedUser($user, array $input)
+    protected function updateVerifiedUser($user, array $input): void
     {
         $user->forceFill([
             'name' => $input['name'],

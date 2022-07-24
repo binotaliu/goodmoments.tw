@@ -7,9 +7,6 @@ namespace Database\Factories;
 use App\Models\Product;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use UnexpectedValueException;
 
 /**
  * @extends Factory<Product>
@@ -20,6 +17,7 @@ final class ProductFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     *
      * @throws Exception
      */
     public function definition(): array
@@ -50,5 +48,4 @@ final class ProductFactory extends Factory
             ],
         ];
     }
-
 }
