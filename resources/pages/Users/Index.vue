@@ -32,7 +32,7 @@
           <td v-else></td>
           <td>
             <div class="flex justify-center gap-2">
-              <GMButton size="sm" class="flex items-center gap-2"><EyeIcon class="w-4 h-4" /> 檢視</GMButton>
+              <GMLinkButton :href="$route('admin.users.show', [user.id])" size="sm" class="flex items-center gap-2"><EyeIcon class="w-4 h-4" /> 檢視</GMLinkButton>
               <GMButton size="sm" class="flex items-center gap-2"><TrashIcon class="w-4 h-4" /> 刪除</GMButton>
             </div>
           </td>
