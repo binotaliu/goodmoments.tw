@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreationRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -34,6 +35,17 @@ final class UserController extends Controller
         $user->username = $request->input('username');
         $user->email = $request->input('email');
         $user->password = null;
+        $user->is_active = $request->boolean('is_active');
+        $user->save();
+
+        return Redirect::route('admin.users.show', ['user' => $user]);
+    }
+
+    public function update(User $user, UserUpdateRequest $request): RedirectResponse
+    {
+        $user->name = $request->input('name');
+        $user->username = $request->input('username');
+        $user->email = $request->input('email');
         $user->is_active = $request->boolean('is_active');
         $user->save();
 

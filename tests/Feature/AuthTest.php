@@ -8,6 +8,7 @@ use function Pest\Laravel\assertAuthenticatedAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
+use function Pest\Laravel\put;
 
 it('can log in', function (): void {
     $user = User::factory()
@@ -53,6 +54,28 @@ it('can create a new user', function (): void {
     ])->assertRedirect();
 
     assertDatabaseHas('users', [
+        'name' => $name,
+        'username' => $username,
+        'email' => $email,
+        'is_active' => true,
+    ]);
+});
+
+it('can update a user', function (): void {
+    $admin = User::factory()->create();
+    actingAs($admin);
+
+    $user = User::factory()->create();
+
+    put(route('admin.users.update', ['user' => $user]), [
+        'name' => $name = Str::random(8),
+        'username' => $username = Str::random(8),
+        'email' => $email = Str::random() . '@example.com',
+        'is_active' => true,
+    ])->assertValid()->assertRedirect();
+
+    assertDatabaseHas('users', [
+        'id' => $user->id,
         'name' => $name,
         'username' => $username,
         'email' => $email,

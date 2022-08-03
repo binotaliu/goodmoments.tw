@@ -2,7 +2,12 @@
   <div class="w-full flex items-center justify-between mb-4">
     <h1 class="text-2xl font-semibold text-wood-600">使用者列表</h1>
 
-    <GMButton class="flex items-center justify-between gap-2"><PlusIcon class="w-4 h-4" /> 建立使用者</GMButton>
+    <GMLinkButton
+      :href="$route('admin.users.create')"
+      class="flex items-center justify-between gap-2"
+    >
+      <PlusIcon class="w-4 h-4" /> 建立使用者
+    </GMLinkButton>
   </div>
 
   <GMCard class="w-full">
@@ -42,6 +47,6 @@
 import { CheckIcon, PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
 
 defineProps({
-  users: { type: Array, required: true }
+  users: { type: Object, required: true }
 })
 </script>

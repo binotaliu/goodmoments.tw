@@ -4,6 +4,7 @@ import Checkbox from './Checkbox.vue'
 import FormField from './FormField.vue'
 import Input from './Input.vue'
 import Link from './Link.vue'
+import LinkButton from './LinkButton.vue'
 import LoadingText from './LoadingText.vue'
 import Logo from './Logo.vue'
 import NavItem from './NavItem.vue'
@@ -18,6 +19,7 @@ export default {
     Vue.component('GMFormField', FormField)
     Vue.component('GMInput', Input)
     Vue.component('GMLink', Link)
+    Vue.component('GMLinkButton', LinkButton)
     Vue.component('GMLoadingText', LoadingText)
     Vue.component('GMLogo', Logo)
     Vue.component('GMNavItem', NavItem)

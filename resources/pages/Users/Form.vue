@@ -59,8 +59,12 @@ const form = useForm({
   is_active: true
 })
 
-watch(() => props.user, (user) => {
+watch(() => props.user, (user, old) => {
   if (user === null) {
+    return
+  }
+
+  if (user?.id === old?.id) {
     return
   }
 
@@ -68,6 +72,10 @@ watch(() => props.user, (user) => {
 }, { immediate: true })
 
 const submit = () => {
-  form.post(isCreating ? route('admin.users.store') : route('admin.users.update'))
+  if (isCreating.value) {
+    form.post(route('admin.users.store'))
+  } else {
+    form.put(route('admin.users.update', [props.user.id]))
+  }
 }
 </script>
