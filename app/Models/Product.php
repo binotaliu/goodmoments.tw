@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @mixin IdeHelperProduct
+ */
 final class Product extends Model
 {
     use HasFactory;

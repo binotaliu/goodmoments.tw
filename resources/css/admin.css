@@ -8,10 +8,30 @@
     html {
         @apply text-gray-700;
     }
+    th {
+        @apply font-normal text-left;
+    }
 }
 
 @layer utilities {
     .center-center {
         @apply justify-center items-center;
+    }
+}
+
+@layer components {
+    .gm-table {
+        td, th {
+            @apply px-2 py-1;
+        }
+
+        thead td,
+        thead th {
+            @apply border-b-2 border-gray-200;
+        }
+
+        tbody tr:not(:last-child) td {
+            @apply border-b border-gray-200;
+        }
     }
 }

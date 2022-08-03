@@ -27,6 +27,11 @@ final class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
+        User
+            ::factory()
+            ->count(25)
+            ->create();
+
         Category
             ::factory()
             ->count(3)

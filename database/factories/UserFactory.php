@@ -23,7 +23,7 @@ final class UserFactory extends Factory
         return [
             'username' => fake()->unique()->userName(),
             'name' => fake()->name(),
-            'email' => fake()->safeEmail(),
+            'email' => fake()->unique()->email(),
             'email_verified_at' => now(),
             'is_active' => fake()->boolean(80),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
