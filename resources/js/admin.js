@@ -1,6 +1,8 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 
+import { InertiaProgress } from '@inertiajs/progress'
+
 import components from '../components'
 import AdminLayout from '../layouts/Admin.vue'
 
@@ -22,4 +24,8 @@ createInertiaApp({
 
     app.mount(el)
   }
+})
+
+InertiaProgress.init({
+  color: '#9b8b6e',
 })

@@ -15,7 +15,7 @@
               使用者
             </div>
             <template #contents>
-              <GMNavItem :to="$route('admin.users.index')">
+              <GMNavItem :href="$route('admin.users.index')">
                 <div class="inline-flex items-center gap-2">
                   <ViewListIcon class="w-4 h-4" />
                   使用者列表
