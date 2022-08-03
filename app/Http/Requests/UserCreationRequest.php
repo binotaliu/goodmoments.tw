@@ -17,8 +17,8 @@ final class UserCreationRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:2', 'max:32'],
-            'username' => ['required', 'min:3', 'max:16', Rule::unique('user', 'username')],
-            'email' => ['required', 'email:strict', Rule::unique('user', 'email')],
+            'username' => ['required', 'min:3', 'max:16', Rule::unique('users', 'username')],
+            'email' => ['required', 'email:strict', Rule::unique('users', 'email')],
         ];
     }
 }

@@ -1,5 +1,6 @@
 import Button from './Button.vue'
 import Card from './Card.vue'
+import Checkbox from './Checkbox.vue'
 import FormField from './FormField.vue'
 import Input from './Input.vue'
 import Link from './Link.vue'
@@ -13,6 +14,7 @@ export default {
   install (Vue) {
     Vue.component('GMButton', Button);
     Vue.component('GMCard', Card)
+    Vue.component('GMCheckbox', Checkbox)
     Vue.component('GMFormField', FormField)
     Vue.component('GMInput', Input)
     Vue.component('GMLink', Link)
