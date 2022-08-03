@@ -24,6 +24,22 @@
             </template>
           </GMNavItem>
         </ul>
+        <ul class="w-full flex flex-col items-stretch gap-2">
+          <GMNavItem>
+            <div class="inline-flex items-center gap-2">
+              <ShoppingBagIcon class="w-4 h-4" />
+              商品
+            </div>
+            <template #contents>
+              <GMNavItem :href="$route('admin.categories.index')">
+                <div class="inline-flex items-center gap-2">
+                  <TagIcon class="w-4 h-4" />
+                  分類列表
+                </div>
+              </GMNavItem>
+            </template>
+          </GMNavItem>
+        </ul>
       </nav>
     </header>
 
@@ -38,6 +54,6 @@
 </template>
 
 <script setup>
-import { UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
+import { ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
 const year = (new Date()).getFullYear()
 </script>

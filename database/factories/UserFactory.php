@@ -45,6 +45,11 @@ final class UserFactory extends Factory
         });
     }
 
+    public function active(bool $isActive = true): self
+    {
+        return $this->state(fn () => ['is_active' => $isActive]);
+    }
+
     public function password(string $password): self
     {
         return $this->state(fn (array $attributes) => [

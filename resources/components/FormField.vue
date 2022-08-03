@@ -21,6 +21,7 @@ import { computed } from 'vue'
 
 const props = defineProps({
   id: { type: String, required: true },
+  errorKey: { type: [String, null], default: null },
   name: { type: String, required: true },
   errorBag: { type: [String, null], default: null }
 })
@@ -28,7 +29,9 @@ const props = defineProps({
 const errors = computed(() => {
   const pageErrors = usePage().props.value.errors
 
-  const errors = props.errorBag === null ? pageErrors[props.id] : pageErrors[props.errorBag][props.id]
+  const errorBag = props.errorBag === null ? pageErrors : pageErrors[props.errorBag]
+  const errors = errorBag[props.errorKey || props.id]
+
   if ((errors || null) === null) {
     return []
   }
