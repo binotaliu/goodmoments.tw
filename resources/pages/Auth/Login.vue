@@ -39,7 +39,7 @@
         </GMButton>
 
         <div class="flex justify-end">
-          <GMLink class="text-sm">忘記密碼？</GMLink>
+          <GMLink :href="$route('password.request')" class="text-sm">忘記密碼？</GMLink>
         </div>
       </form>
     </GMCard>

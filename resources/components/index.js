@@ -1,3 +1,4 @@
+import Alert from './Alert.vue'
 import Button from './Button.vue'
 import Card from './Card.vue'
 import Checkbox from './Checkbox.vue'
@@ -13,6 +14,7 @@ import TextLogo from './TextLogo.vue'
 
 export default {
   install (Vue) {
+    Vue.component('GMAlert', Alert)
     Vue.component('GMButton', Button);
     Vue.component('GMCard', Card)
     Vue.component('GMCheckbox', Checkbox)

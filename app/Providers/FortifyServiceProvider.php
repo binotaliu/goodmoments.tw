@@ -38,5 +38,17 @@ final class FortifyServiceProvider extends ServiceProvider
     private function registerViews(): void
     {
         Fortify::loginView(static fn () => Inertia::render('Auth/Login'));
+        Fortify::requestPasswordResetLinkView(
+            static fn () =>
+                Inertia::render('Auth/ForgotPassword', ['status' => session('status')])
+        );
+        Fortify::resetPasswordView(
+            static fn (Request $request) =>
+                Inertia::render('Auth/ResetPassword', [
+                    'email' => $request->input('email'),
+                    'token' => $request->route('token'),
+                    'status' => $request->input('status')
+                ])
+        );
     }
 }
