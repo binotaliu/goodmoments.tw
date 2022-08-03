@@ -82,7 +82,7 @@
             </span>
 
             <span
-              class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-white dark:text-white bg-sun-500 dark:bg-gray-600 border border-gray-300 dark:border-gray-600 cursor-default leading-5"
+              class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-white dark:text-white bg-wood-500 dark:bg-gray-600 border border-gray-300 dark:border-gray-600 cursor-default leading-5"
               aria-current="page"
               v-else-if="element.active"
               v-text="element.label"
