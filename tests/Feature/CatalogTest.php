@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Attachment;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 
 use Inertia\Testing\AssertableInertia;
@@ -9,6 +11,7 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
+use function Pest\Laravel\withHeader;
 
 it('lists categories', function () {
     actingAs(User::factory()->create());
@@ -40,4 +43,81 @@ it('can create category', function () {
     assertDatabaseHas('categories', [
         'slug' => $slug,
     ]);
+});
+
+it('lists products inside a category', function () {
+    $user = User::factory()->active()->create();
+    actingAs($user);
+
+    $category = Category::factory()->create();
+    Product::factory()->for($category)->count(random_int(5, 25))->create();
+    Product::factory()->for(Category::factory())->count(random_int(1, 3))->create();
+    $categoryProductsCount = $category->products()->count();
+    $allProductsCount = Product::count();
+
+    expect($allProductsCount)->toBeGreaterThan($categoryProductsCount);
+
+    get(route('admin.categories.products.index', $category))
+        ->assertInertia(
+            fn (AssertableInertia $assert) => $assert
+                ->component('Products/Index')
+                ->where('products.total', $categoryProductsCount)
+        );
+});
+
+it('creates a product inside a category', function () {
+    $user = User::factory()->active()->create();
+    $category = Category::factory()->create();
+    actingAs($user);
+
+    /** @var Attachment $coverImageAttachment */
+    $coverImageAttachment = Attachment::factory()->withFile()->create();
+    /** @var \Illuminate\Support\Collection|Attachment[] $imageAttachments */
+    $imageAttachments = Attachment::factory()->count(random_int(4, 6))->withFile()->create();
+
+    $attachmentIds = $imageAttachments->pluck('id')->prepend($coverImageAttachment->id);
+    $attachmentUuids = $imageAttachments->pluck('uuid')->prepend($coverImageAttachment->uuid);
+
+    withHeader('X-Attachment-UUID', $attachmentUuids->toJson())
+        ->post(route('admin.categories.products.store', $category), [
+            'slug' => $slug = 'product-slug-' . time(),
+            'name' => [
+                'en' => 'Product name',
+                'zh_Hant_TW' => '產品名稱',
+                'zh_Oan' => '產品名'
+            ],
+            'cover_image' => 'https://placehold.it/720x640',
+            'images' => [
+                'https://placehold.it/720x640',
+                'https://placehold.it/720x640',
+                'https://placehold.it/720x640',
+            ],
+            'price' => random_int(100, 1000),
+            'unit' => [
+                'en' => 'unit',
+                'zh_Hant_TW' => '單位',
+                'zh_Oan' => '單位'
+            ],
+            'description' => [
+                'en' => 'description',
+                'zh_Hant_TW' => '描述',
+                'zh_Oan' => '描述'
+            ],
+        ])
+        ->assertValid()
+        ->assertRedirect();
+
+    assertDatabaseHas('products', [
+        'slug' => $slug,
+        'category_id' => $category->id,
+    ]);
+
+    $createdProduct = Product::where('slug', $slug)->where('category_id', $category->id)->firstOrFail();
+    foreach ($attachmentIds as $attachmentId) {
+        assertDatabaseHas('attachmentables', [
+            'attachment_id' => $attachmentId,
+            'attachmentable_id' => $createdProduct->id,
+            'attachmentable_type' => Product::class,
+        ]);
+    }
 });

@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex items-center justify-between mb-4">
-    <h1 class="text-2xl font-semibold text-wood-600">分類列表</h1>
+    <h1 class="text-2xl font-semibold text-wood-600">產品列表</h1>
 
     <GMLinkButton
       :href="$route('admin.categories.create')"
@@ -15,7 +15,7 @@
       <thead><tr>
         <th class="w-40">Slug</th>
         <th>名稱</th>
-        <th class="w-60">動作</th>
+        <th class="w-80">動作</th>
       </tr></thead>
       <tbody>
         <tr v-for="category in categories.data">
@@ -23,6 +23,7 @@
           <td>{{ category.name.zh_Hant_TW}}</td>
           <td>
             <div class="flex justify-center gap-2">
+              <GMLinkButton :href="$route('admin.categories.products.index', [category.id])" size="sm" class="flex items-center gap-2"><ShoppingBagIcon class="w-4 h-4" /> 產品列表</GMLinkButton>
               <GMLinkButton :href="$route('admin.categories.show', [category.id])" size="sm" class="flex items-center gap-2"><EyeIcon class="w-4 h-4" /> 檢視</GMLinkButton>
               <GMButton size="sm" class="flex items-center gap-2"><TrashIcon class="w-4 h-4" /> 刪除</GMButton>
             </div>
@@ -35,7 +36,7 @@
   </GMCard>
 </template>
 <script setup>
-import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
+import { PlusIcon, ShoppingBagIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
 
 defineProps({
   categories: { type: Object, required: true }

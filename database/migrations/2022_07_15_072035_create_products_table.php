@@ -14,7 +14,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('category_id')->unsigned();
 
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->json('name');
 
             $table->string('cover_image');
@@ -28,6 +28,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->unique(['category_id', 'slug']);
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }
