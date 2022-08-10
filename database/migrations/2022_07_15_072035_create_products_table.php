@@ -22,6 +22,9 @@ return new class extends Migration
 
             $table->json('description');
 
+            $table->string('store_url', 4096);
+            $table->json('store_url_text');
+
             $table->timestamps();
             $table->softDeletes();
 

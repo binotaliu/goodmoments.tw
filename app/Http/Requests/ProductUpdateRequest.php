@@ -86,6 +86,22 @@ final class ProductUpdateRequest extends FormRequest
                 'max:255',
                 'string',
             ],
+            'store_url' => ['nullable', 'url'],
+            'store_url_text.zh_Hant_TW' => [
+                'required',
+                'max:255',
+                'string',
+            ],
+            'store_url_text.en' => [
+                'nullable',
+                'max:255',
+                'string',
+            ],
+            'store_url_text.zh_Oan' => [
+                'nullable',
+                'max:255',
+                'string',
+            ],
             'description' => [
                 'required',
                 'array',

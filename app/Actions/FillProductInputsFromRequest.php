@@ -29,6 +29,12 @@ final class FillProductInputsFromRequest
             'zh_Hant_TW' => $request->input('unit.zh_Hant_TW'),
             'zh_Oan' => $request->input('unit.zh_Oan'),
         ];
+        $product->store_url = $request->input('store_url', '');
+        $product->store_url_text = [
+            'en' => $request->input('store_url_text.en'),
+            'zh_Hant_TW' => $request->input('store_url_text.zh_Hant_TW'),
+            'zh_Oan' => $request->input('store_url_text.zh_Oan'),
+        ];
         $product->description = [
             'en' => $request->input('description.en'),
             'zh_Hant_TW' => $request->input('description.zh_Hant_TW'),

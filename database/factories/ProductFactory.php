@@ -38,6 +38,12 @@ final class ProductFactory extends Factory
                 'zh_Oan' => 'zh_Oan:' . $this->faker->randomElement(['ê', '箱', '盒', '條', '份', '100g', '斤']),
                 'en' => $this->faker->randomElement(['Unit', 'Box', 'Pc', '100g']),
             ],
+            'store_url' => $this->faker->url,
+            'store_url_text' => [
+                'zh_Hant_TW' => '前往購買',
+                'zh_Oan' => '去購買',
+                'en' => 'Buy Now',
+            ],
             'description' => [
                 'zh_Hant_TW' => $this->faker->paragraphs(random_int(1, 3), asText: true),
                 'zh_Oan' => 'zh_Oan:' . $this->faker->paragraphs(random_int(1, 3), asText: true),

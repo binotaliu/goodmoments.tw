@@ -28,7 +28,7 @@ final class Product extends Model
     public const ATTACHMENT_TYPE_COVER = 'productCoverImage';
     public const ATTACHMENT_TYPE_IMAGE = 'productImages';
 
-    public array $translatable = ['name', 'unit', 'description'];
+    public array $translatable = ['name', 'unit', 'store_url_text', 'description'];
 
     protected $with = ['attachments'];
 

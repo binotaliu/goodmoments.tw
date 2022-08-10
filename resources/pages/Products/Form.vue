@@ -24,7 +24,7 @@
       <GMFormField id="cover_image" name="封面圖片">
         <GMAttachment
           class="w-full"
-          id="cover_image"
+          id="cover_image_uuid"
           v-model="form.cover_image_uuid"
           v-model:processing="imageProcessStatus.coverImage"
           v-model:attachments="coverImageAttachments"
@@ -34,7 +34,7 @@
       <GMFormField id="images" name="其他圖片">
         <GMAttachment
           class="w-full"
-          id="images"
+          id="image_uuids"
           v-model="form.image_uuids"
           v-model:processing="imageProcessStatus.images"
           v-model:attachments="form.images"
@@ -47,6 +47,12 @@
       </GMFormField>
       <GMFormField id="unit" error-key="unit.zh_Hant_TW" name="單位">
         <GMInput id="unit" v-model="form.unit.zh_Hant_TW" />
+      </GMFormField>
+      <GMFormField id="store_url" name="賣場網址">
+        <GMInput id="store_url" type="url" v-model="form.store_url" />
+      </GMFormField>
+      <GMFormField id="store_url_text" error-key="store_url_text.zh_Hant_TW" name="賣場網址連結文字">
+        <GMInput id="store_url_text" v-model="form.store_url_text.zh_Hant_TW" />
       </GMFormField>
       <GMFormField id="description" error-key="description.zh_Hant_TW" name="說明">
         <GMTextarea id="description" v-model="form.description.zh_Hant_TW" rows="10" />
@@ -104,6 +110,12 @@ const form = useForm({
   image_uuids: [],
   price: null,
   unit: {
+    en: null,
+    zh_Hant_TW: null,
+    zh_Oan: null
+  },
+  store_url: null,
+  store_url_text: {
     en: null,
     zh_Hant_TW: null,
     zh_Oan: null
