@@ -20,11 +20,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => view('welcome'));
 
-Route::middleware(['signed'])->get('password-setup', [SetupPasswordController::class, 'show'])->name('setup-password');
-Route::middleware(['signed'])->post('password-setup', [SetupPasswordController::class, 'store']);
+Route::middleware(['signed'])
+    ->resource('password-setup', SetupPasswordController::class)
+    ->only(['index', 'store']);
 
-Route::resource('attachments', AttachmentController::class);
+Route::resource('attachments', AttachmentController::class)
+    ->only(['store']);
 
-Route::resource('users', UserController::class);
-Route::resource('categories', CategoryController::class);
-Route::resource('categories.products', ProductController::class);
+Route::resource('users', UserController::class)
+    ->only(['index', 'show', 'store', 'update', 'create']);
+
+Route::resource('categories', CategoryController::class)
+    ->only(['index', 'show', 'create', 'store', 'destroy']);
+
+Route::resource('categories.products', ProductController::class)
+    ->only(['index', 'create', 'store', 'update', 'show', 'destroy'])
+    ->scoped();

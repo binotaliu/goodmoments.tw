@@ -17,14 +17,14 @@ use Inertia\Response as InertiaResponse;
 
 final class SetupPasswordController
 {
-    public function show(Request $request): InertiaResponse
+    public function index(Request $request): InertiaResponse
     {
         $expires = $request->input('expires');
 
         return Inertia::render('Auth/SetupPassword', [
             'email' => $request->input('email'),
             'url' => URL::temporarySignedRoute(
-                'admin.setup-password',
+                'admin.password-setup.index',
                 $expires,
                 [
                     'email' => $request->input('email'),

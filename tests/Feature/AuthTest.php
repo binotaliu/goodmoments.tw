@@ -77,7 +77,7 @@ it('able to set up password after been created', function (): void {
     $user = User::factory()->state(['is_active' => true, 'password' => null])->create();
 
     post(URL::temporarySignedRoute(
-        'admin.setup-password',
+        'admin.password-setup.index',
         now()->addHours(12),
         ['email' => $user->email]
     ), [
