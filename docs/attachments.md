@@ -37,6 +37,14 @@ $product = Product::find(1);
 $product->attachments->first()->meta;
 ```
 
+## 前端
+
+後台的前端提供了一個 [`GMAttachment`](../resources/components/Attachment.vue) Vue Component，可用來上傳圖片。  
+該 Component 有三個 `v-model` 屬性：`modelValue`、`attachments`、`processing`，分別為圖片的 UUID、Attachment 實體、以及是否仍在上傳。  
+  
+若將 `multiple` 屬性設為 `true`，則 `modelValue` 為字串。否則將為 UUID 的陣列。  
+`attachments` 永遠為陣列。  
+
 ## API
 
 ### **`POST`** `/api/attachments`
@@ -62,7 +70,10 @@ $product->attachments->first()->meta;
     "meta": {
       "type": "cover_image"
     },
+    "md5": "d41d8cd98f00b204e9800998ecf8427e:ca0bc6549b37ea6fdfb7e19bfe31435d",
     "url": "http://localhost:8000/storage/b8/b0fd03/8d24445db4cbd72d25810852.jpg"
 }
 ```
+
+- `md5` 欄位是由檔案的 MD5 Hash 與將 `meta` 做 Json Serialization 後進行 MD5 Hash 的結果。
 

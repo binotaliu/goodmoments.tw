@@ -17,11 +17,14 @@ return new class extends Migration
             $table->string('name');
             $table->string('mime');
             $table->string('size');
-            $table->string('md5');
 
             $table->json('meta')->default(DB::raw('(JSON_OBJECT())'));
 
-            $table->index('md5');
+            $table->string('file_md5');
+            $table->string('meta_md5');
+
+            $table->index('file_md5');
+            $table->index('meta_md5');
 
             $table->timestamps();
             $table->softDeletes();

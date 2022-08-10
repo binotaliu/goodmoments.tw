@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-final class ProductCreationRequest extends FormRequest
+final class ProductUpdateRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -24,7 +24,10 @@ final class ProductCreationRequest extends FormRequest
             'slug' => [
                 'required',
                 'alpha_dash',
-                Rule::unique('products', 'slug')->where('category_id', $categoryId),
+                Rule
+                    ::unique('products', 'slug')
+                    ->where('category_id', $categoryId)
+                    ->ignore($this->route('product')?->id),
             ],
             'name' => [
                 'required',

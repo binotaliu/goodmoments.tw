@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex items-center justify-between mb-4">
-    <h1 class="text-2xl font-semibold text-wood-600">產品列表</h1>
+    <h1 class="text-2xl font-semibold text-wood-600">分類列表</h1>
 
     <GMLinkButton
       :href="$route('admin.categories.create')"

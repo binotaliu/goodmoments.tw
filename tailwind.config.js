@@ -96,6 +96,9 @@ module.exports = {
     require('@tailwindcss/forms'),
     plugin(function ({ addVariant }) {
       addVariant('touch', '@media (pointer: coarse)')
+    }),
+    plugin(function ({ addVariant }) {
+      addVariant('form-field-focus', '.form-field:focus-within &')
     })
   ],
 }

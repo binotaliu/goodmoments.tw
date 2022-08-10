@@ -19,19 +19,7 @@
       :type="type"
       :placeholder="placeholder"
       :class="[
-        'relative',
-        hasIcon ? 'pl-10' : 'pl-2',
-        'w-full pl-10 pr-2 py-1',
-        'border border-gray-100 focus:border-wood-300',
-        'outline-none focus:outline-none',
-        'focus:ring focus:ring-wood-500',
-        'rounded',
-        'bg-white',
-        'text-sm',
-        'placeholder-gray-300 text-gray-600',
-        'shadow',
-        'motion-safe:focus:md:scale-[1.02]',
-        'transition-all'
+        ...styles.base(hasIcon)
       ]"
       v-model="inputValue"
       v-bind="$attrs"
@@ -41,11 +29,12 @@
 
 <script setup>
 import { computed, useSlots } from 'vue'
+import * as styles from './styles/input'
 
 const props = defineProps({
   type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },
-  modelValue: { type: [String, Number], required: true }
+  modelValue: { type: [String, Number, null], required: true }
 })
 
 const slots = useSlots()

@@ -14,6 +14,9 @@ return new class extends Migration
             $table->string('attachmentable_type');
 
             $table->unique(['attachment_id', 'attachmentable_id', 'attachmentable_type'], 'attachmentables_unique');
+            $table->index('attachment_id');
+            $table->index('attachmentable_id');
+            $table->index('attachmentable_type');
         });
     }
 

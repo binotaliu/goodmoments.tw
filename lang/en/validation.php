@@ -137,6 +137,9 @@ return [
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+    'all_exists' => 'The :attribute contains an invalid value.',
+    'depth' => 'The :attribute must have a depth less than or equal to :max.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

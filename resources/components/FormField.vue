@@ -1,12 +1,12 @@
 <template>
-  <div class="group flex flex-col items-start justify-center gap-1">
-    <label :for="id" class="flex justify-start items-center gap-1 text-gray-400 group-focus-within:text-gray-800 text-sm transition-colors">
+  <div class="form-field flex flex-col items-start justify-center gap-1">
+    <label :for="id" class="flex justify-start items-center gap-1 text-gray-400 form-field-focus:text-gray-800 text-sm transition-colors">
       <span class="inline-flex center-center" v-if="$slots.icon">
         <slot name="icon" />
       </span>
       {{ name }}
     </label>
-    <slot class="peer" />
+    <slot />
     <transition>
       <ul class="list-disc pl-6 text-red-600 text-sm" v-if="hasErrors">
         <li v-for="error in errors" :key="error">{{ error }}</li>

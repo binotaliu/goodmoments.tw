@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Attachment;
 use App\Models\Product;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 /**
  * @extends Factory<Product>
@@ -29,11 +31,6 @@ final class ProductFactory extends Factory
                 'zh_Oan' => 'oan:' . $this->faker->words(asText: true),
                 'en' => 'en:' . $this->faker->words(asText: true),
             ],
-            'cover_image' => $this->faker->imageUrl(720, 640),
-            'images' => array_map(
-                fn () => $this->faker->imageUrl(720, 640),
-                range(1, random_int(2, 5)),
-            ),
 
             'price' => random_int(15, 70) * 10,
             'unit' => [
@@ -47,5 +44,15 @@ final class ProductFactory extends Factory
                 'en' => 'en:' . $this->faker->paragraphs(random_int(1, 3), asText: true),
             ],
         ];
+    }
+
+    public function withImages(): self
+    {
+        return $this->has(
+            Attachment
+                ::factory()
+                ->count(random_int(4, 6))
+                ->sequence(fn (Sequence $sequence) => ['meta' => ['type' => $sequence->index === 0 ? Product::ATTACHMENT_TYPE_COVER : Product::ATTACHMENT_TYPE_IMAGE]])
+        );
     }
 }

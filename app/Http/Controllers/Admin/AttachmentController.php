@@ -25,9 +25,16 @@ final class AttachmentController
         $file = $request->file('file');
         throw_if(empty($file), ValidationException::withMessages(['file' => __('validation.file', ['attribute' => 'file'])]));
 
+        $meta = $request->input('meta', []);
+        ray($meta);
+
+        if ($existing = Attachment::withFile($file)->withMeta($meta)->first()) {
+            return tap($existing)->touch();
+        }
+
         $uuidHex = $uuid->getHex()->toString();
         $path = '/' . substr($uuidHex, 0, 2) . '/';
-        $filename = base64_url_encode($uuid->getBytes()) . '.' . $file->getExtension();
+        $filename = base64_url_encode($uuid->getBytes()) . '.' . $file->guessExtension();
         $disk = $request->input('disk', 'public');
 
         Storage
@@ -38,17 +45,12 @@ final class AttachmentController
                 $filename,
             );
 
-        $attachment = new Attachment();
+        $attachment = Attachment::fromFile($file);
 
         $attachment->uuid = $uuidHex;
         $attachment->disk = $disk;
         $attachment->path = $path . $filename;
-        $attachment->name = $file->getClientOriginalName();
-        $attachment->mime = $file->getMimeType();
-        $attachment->size = $file->getSize();
-        $attachment->md5 = md5_file($file->getRealPath());
-
-        $attachment->meta = $request->input('meta', []);
+        $attachment->meta = $meta;
 
         return tap($attachment)->save();
     }

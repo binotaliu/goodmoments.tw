@@ -36,6 +36,6 @@ final class DatabaseSeeder extends Seeder
             ::factory()
             ->count(3)
             ->create()
-            ->each(static fn (Category $category) => Product::factory()->for($category)->count(7)->create());
+            ->each(static fn (Category $category) => Product::factory()->withImages()->for($category)->count(7)->create());
     }
 }

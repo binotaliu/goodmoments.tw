@@ -27,7 +27,9 @@ class AttachmentFactory extends Factory
             'mime' => 'image/jpeg',
             'name' => $this->faker->slug . '.jpg',
             'size' => $this->faker->numberBetween(1000, 1_000_000_000),
-            'md5' => md5(random_bytes(36)),
+            'meta' => [],
+            'file_md5' => md5(random_bytes(36)),
+            'meta_md5' => md5('{}'),
         ];
     }
 
@@ -40,8 +42,27 @@ class AttachmentFactory extends Factory
 
             return [
                 'size' => $file->getSize(),
-                'md5' => md5_file($file->getRealPath()),
+                'file_md5' => md5_file($file->getRealPath()),
             ];
         });
+    }
+
+    public function withMeta(array $meta): self
+    {
+        ksort($meta);
+        return $this->state(fn () => ['meta' => $meta, 'meta_md5' => md5(json_encode($meta, JSON_THROW_ON_ERROR))]);
+    }
+
+    public function appendMeta(array $meta): self
+    {
+        $meta = [
+            ...($attributes['meta'] ?? []),
+            ...$meta,
+        ];
+        ksort($meta);
+        return $this->state(fn (array $attributes) => [
+            'meta' => $meta,
+            'meta_md5' => md5(json_encode($meta, JSON_THROW_ON_ERROR)),
+        ]);
     }
 }

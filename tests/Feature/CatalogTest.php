@@ -11,7 +11,6 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
-use function Pest\Laravel\withHeader;
 
 it('lists categories', function () {
     actingAs(User::factory()->create());
@@ -50,8 +49,8 @@ it('lists products inside a category', function () {
     actingAs($user);
 
     $category = Category::factory()->create();
-    Product::factory()->for($category)->count(random_int(5, 25))->create();
-    Product::factory()->for(Category::factory())->count(random_int(1, 3))->create();
+    Product::factory()->withImages()->for($category)->count(random_int(5, 25))->create();
+    Product::factory()->withImages()->for(Category::factory())->count(random_int(1, 3))->create();
     $categoryProductsCount = $category->products()->count();
     $allProductsCount = Product::count();
 
@@ -71,39 +70,42 @@ it('creates a product inside a category', function () {
     actingAs($user);
 
     /** @var Attachment $coverImageAttachment */
-    $coverImageAttachment = Attachment::factory()->withFile()->create();
+    $coverImageAttachment = Attachment
+        ::factory()
+        ->withFile()
+        ->withMeta(['type' => Product::ATTACHMENT_TYPE_COVER])
+        ->create();
     /** @var \Illuminate\Support\Collection|Attachment[] $imageAttachments */
-    $imageAttachments = Attachment::factory()->count(random_int(4, 6))->withFile()->create();
+    $imageAttachments = Attachment
+        ::factory()
+        ->count(random_int(4, 6))
+        ->withFile()
+        ->withMeta(['type' => Product::ATTACHMENT_TYPE_IMAGE])
+        ->create();
 
-    $attachmentIds = $imageAttachments->pluck('id')->prepend($coverImageAttachment->id);
-    $attachmentUuids = $imageAttachments->pluck('uuid')->prepend($coverImageAttachment->uuid);
+    ray($imageAttachments->pluck('uuid'));
 
-    withHeader('X-Attachment-UUID', $attachmentUuids->toJson())
-        ->post(route('admin.categories.products.store', $category), [
-            'slug' => $slug = 'product-slug-' . time(),
-            'name' => [
-                'en' => 'Product name',
-                'zh_Hant_TW' => '產品名稱',
-                'zh_Oan' => '產品名'
-            ],
-            'cover_image' => 'https://placehold.it/720x640',
-            'images' => [
-                'https://placehold.it/720x640',
-                'https://placehold.it/720x640',
-                'https://placehold.it/720x640',
-            ],
-            'price' => random_int(100, 1000),
-            'unit' => [
-                'en' => 'unit',
-                'zh_Hant_TW' => '單位',
-                'zh_Oan' => '單位'
-            ],
-            'description' => [
-                'en' => 'description',
-                'zh_Hant_TW' => '描述',
-                'zh_Oan' => '描述'
-            ],
-        ])
+    post(route('admin.categories.products.store', $category), [
+        'slug' => $slug = 'product-slug-' . time(),
+        'name' => [
+            'en' => 'Product name',
+            'zh_Hant_TW' => '產品名稱',
+            'zh_Oan' => '產品名'
+        ],
+        'cover_image_uuid' => $coverImageAttachment->uuid,
+        'image_uuids' => $imageAttachments->pluck('uuid')->toArray(),
+        'price' => random_int(100, 1000),
+        'unit' => [
+            'en' => 'unit',
+            'zh_Hant_TW' => '單位',
+            'zh_Oan' => '單位'
+        ],
+        'description' => [
+            'en' => 'description',
+            'zh_Hant_TW' => '描述',
+            'zh_Oan' => '描述'
+        ],
+    ])
         ->assertValid()
         ->assertRedirect();
 
@@ -113,6 +115,7 @@ it('creates a product inside a category', function () {
     ]);
 
     $createdProduct = Product::where('slug', $slug)->where('category_id', $category->id)->firstOrFail();
+    $attachmentIds = [$coverImageAttachment->id, ...$imageAttachments->pluck('id')];
     foreach ($attachmentIds as $attachmentId) {
         assertDatabaseHas('attachmentables', [
             'attachment_id' => $attachmentId,

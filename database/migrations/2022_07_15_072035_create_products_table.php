@@ -17,9 +17,6 @@ return new class extends Migration
             $table->string('slug');
             $table->json('name');
 
-            $table->string('cover_image');
-            $table->json('images');
-
             $table->decimal('price', 10, 2);
             $table->json('unit');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Depth;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -18,7 +19,7 @@ final class AttachmentUploadRequest extends FormRequest
         return [
             'file' => ['required', 'file', 'mimetypes:image/*,video/*,audio/*,application/pdf', 'max:20480'],
             'disk' => ['nullable', Rule::in('public')],
-            'meta' => ['nullable', 'array', 'max:16'],
+            'meta' => ['nullable', 'array', 'max:16', new Depth(2)],
         ];
     }
 }

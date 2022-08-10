@@ -7,6 +7,7 @@
     ]"
     :type="type"
     tabindex="0"
+    :disabled="disabled"
   >
     <slot />
   </button>
@@ -18,6 +19,7 @@ import * as classes from './styles/button'
 defineProps({
   type: { type: String, default: 'button' },
   size: { type: String, default: 'DEFAULT' },
-  theme: { type: String, default: 'DEFAULT' }
+  theme: { type: String, default: 'DEFAULT' },
+  disabled: { type: Boolean, default: false }
 })
 </script>
