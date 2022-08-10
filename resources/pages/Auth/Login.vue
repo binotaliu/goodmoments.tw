@@ -6,6 +6,10 @@
         class="flex flex-col items-stretch justify-center gap-4"
         @submit.prevent="login"
       >
+        <GMAlert v-if="$page.props.flash.message">
+          {{ $page.props.flash.message }}
+        </GMAlert>
+
         <GMFormField id="username" name="帳號">
           <template #icon>
             <UserIcon class="w-4 h-4" />

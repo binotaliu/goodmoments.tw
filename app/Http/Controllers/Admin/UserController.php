@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserCreationRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use App\Notifications\PasswordSetupNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -37,6 +38,8 @@ final class UserController extends Controller
         $user->password = null;
         $user->is_active = $request->boolean('is_active');
         $user->save();
+
+        $user->notify(new PasswordSetupNotification($user));
 
         return Redirect::route('admin.users.show', ['user' => $user]);
     }

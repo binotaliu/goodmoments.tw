@@ -1,6 +1,10 @@
 <?php
 
 use App\Models\User;
+use App\Notifications\PasswordSetupNotification;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\actingAs;
@@ -46,6 +50,8 @@ it('can create a new user', function (): void {
     $user = User::factory()->state(['is_active' => true])->create();
     actingAs($user);
 
+    Notification::fake();
+
     post(route('admin.users.store'), [
         'name' => $name = Str::random(8),
         'username' => $username = Str::random(8),
@@ -58,7 +64,30 @@ it('can create a new user', function (): void {
         'username' => $username,
         'email' => $email,
         'is_active' => true,
+        'password' => null,
     ]);
+
+    $newlyCreatedUser = User::whereEmail($email)->firstOrFail();
+
+    Notification::assertSentTo($newlyCreatedUser, PasswordSetupNotification::class);
+
+});
+
+it('able to set up password after been created', function (): void {
+    $user = User::factory()->state(['is_active' => true, 'password' => null])->create();
+
+    post(URL::temporarySignedRoute(
+        'admin.setup-password',
+        now()->addHours(12),
+        ['email' => $user->email]
+    ), [
+        'password' => $password = Str::random(32),
+        'password_confirmation' => $password,
+    ])->assertRedirect()->assertSessionHas('flash.message');
+
+    $user->refresh();
+
+    expect(Hash::check($password, $user->password))->toBeTrue();
 });
 
 it('can update a user', function (): void {

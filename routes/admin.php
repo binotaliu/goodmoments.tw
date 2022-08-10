@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AttachmentController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SetupPasswordController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', fn () => view('welcome'));
+
+Route::middleware(['signed'])->get('password-setup', [SetupPasswordController::class, 'show'])->name('setup-password');
+Route::middleware(['signed'])->post('password-setup', [SetupPasswordController::class, 'store']);
 
 Route::resource('attachments', AttachmentController::class);
 
