@@ -5,11 +5,11 @@
     </span>
 
     <div
-      class="absolute top-0 left-0 w-full flex center-center"
+      class="absolute top-0 left-0 w-full h-full flex center-center"
       :class="{ 'opacity-0': !loading }"
     >
       <div class="animate-spin">
-        <GMLoadingIcon width="24" height="24" />
+        <GMLoadingIcon class="w-4 h-4" />
       </div>
     </div>
   </div>

@@ -27,7 +27,16 @@
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              :class="[
+                'w-full max-w-md',
+                'flex flex-col gap-y-8',
+                'p-6 rounded-2xl',
+                'overflow-hidden',
+                'bg-white',
+                'text-left align-middle',
+                'shadow-xl',
+                'transform transition-all',
+              ]"
             >
               <DialogTitle
                 as="h3"
@@ -36,11 +45,12 @@
                 <slot name="title" v-if="title === null"/>
                 <span v-else>{{ title }}</span>
               </DialogTitle>
-              <div class="mt-2">
+
+              <div>
                 <slot />
               </div>
 
-              <div class="mt-4 text-right">
+              <div class="-mx-6 -mb-6 px-6 py-4 bg-pearl-100 text-right">
                 <slot name="footer" />
               </div>
             </DialogPanel>

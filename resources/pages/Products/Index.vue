@@ -26,7 +26,7 @@
           <td>
             <div class="flex justify-center gap-2">
               <GMLinkButton :href="$route('admin.categories.products.show', [product.category_id, product.id])" size="sm" class="flex items-center gap-2"><EyeIcon class="w-4 h-4" /> 檢視</GMLinkButton>
-              <GMButton size="sm" class="flex items-center gap-2"><TrashIcon class="w-4 h-4" /> 刪除</GMButton>
+              <GMButton size="sm" class="flex items-center gap-2" @click="showRemoveModal(product)"><TrashIcon class="w-4 h-4" /> 刪除</GMButton>
             </div>
           </td>
         </tr>
@@ -35,12 +35,54 @@
 
     <GMPaginator :paginator="products" />
   </GMCard>
+
+  <Teleport to="body">
+    <GMModal :open="removeModalOpen" title="確定要刪除？">
+      確定要刪除這個產品嗎？ <br />
+      {{ removingProduct?.name?.zh_Hant_TW }}
+
+      <template #footer>
+        <div class="flex justify-end items-stretch gap-2">
+          <GMButton @click="removeModalOpen = false">取消</GMButton>
+          <GMButton theme="danger" @click="remove(removingProduct)">
+            <GMLoadingText :loading="removeForm.processing">
+              刪除
+            </GMLoadingText>
+          </GMButton>
+        </div>
+      </template>
+    </GMModal>
+  </Teleport>
 </template>
 <script setup>
 import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
+import { useForm } from '@inertiajs/inertia-vue3'
+import { ref } from 'vue'
 
 defineProps({
   category: { type: [Object, null], required: true },
   products: { type: Object, required: true }
 })
+
+const removeModalOpen = ref(false)
+const removingProduct = ref(null)
+
+const removeForm = useForm({})
+
+const showRemoveModal = (product) => {
+  removingProduct.value = product
+  removeModalOpen.value = true
+}
+
+const remove = (product) => {
+  removeForm.delete(
+    route('admin.categories.products.destroy', [product.category_id, product.id]),
+    {
+      onFinish () {
+        removeModalOpen.value = false
+        removingProduct.value = null
+      }
+    }
+  )
+}
 </script>

@@ -72,4 +72,12 @@ final class ProductController
             'product' => $product,
         ]);
     }
+
+    public function destroy(Category $category, Product $product): RedirectResponse
+    {
+        $product->attachments()->delete();
+        $product->deleteOrFail();
+
+        return Redirect::route('admin.categories.products.index', $category);
+    }
 }
