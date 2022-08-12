@@ -12,6 +12,8 @@
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "mallardduck/blade-boxicons": "^2.3",
+        "spatie/laravel-csp": "^2.7",
         "spatie/laravel-translatable": "^6.0",
         "symfony/mime": "^6.1",
         "terpomoj/base64-url-helpers": "^0.1.0",
