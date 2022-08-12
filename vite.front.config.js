@@ -9,7 +9,7 @@ const fs = require('node:fs')
 const path = require('node:path')
 
 const server = (() => {
-  const assetUrl = process.env.ASSET_URL || null
+  const assetUrl = process.env.VITE_FRONT_URL || null
   if (assetUrl === null) {
     return null
   }
@@ -40,9 +40,10 @@ export default defineConfig({
   plugins: [
     laravel({
       input: [
-        'resources/css/admin.css',
-        'resources/js/admin.js'
+        'resources/css/app.css',
+        'resources/js/app.js'
       ],
+      buildDirectory: 'build/front',
       refresh: true
     }),
     vue({

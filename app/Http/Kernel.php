@@ -33,6 +33,8 @@ final class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ApplyCspNonceForVite::class,
+            \Spatie\Csp\AddCspHeaders::class,
         ],
 
         'admin' => [
