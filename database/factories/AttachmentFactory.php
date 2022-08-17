@@ -33,12 +33,15 @@ class AttachmentFactory extends Factory
         ];
     }
 
-    public function withFile(): self
+    public function withImage(int $width = 720, int $height = 640): self
     {
-        return $this->state(function (array $attributes) {
-            $file = UploadedFile::fake()->image($attributes['name']);
+        return $this->state(function (array $attributes) use ($width, $height) {
+            $file = UploadedFile::fake()->image($attributes['name'], $width, $height);
+
             $path = Str::beforeLast($attributes['path'], '/');
-            Storage::disk($attributes['disk'])->putFileAs($path, $file, $attributes['name']);
+            $name = Str::afterLast($attributes['path'], '/');
+
+            Storage::disk($attributes['disk'])->putFileAs($path, $file, $name);
 
             return [
                 'size' => $file->getSize(),

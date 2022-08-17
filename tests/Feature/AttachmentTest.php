@@ -55,8 +55,8 @@ it('uploads an image', function () {
 });
 
 it('removes orphan attachments', function () {
-    $orphanAttachment = Attachment::factory()->withFile()->create();
-    $notOrphanAttachment = Attachment::factory()->withFile()->create();
+    $orphanAttachment = Attachment::factory()->withImage()->create();
+    $notOrphanAttachment = Attachment::factory()->withImage()->create();
 
     $attachmentable = new Attachmentable();
     $attachmentable->attachment_id = $notOrphanAttachment->id;

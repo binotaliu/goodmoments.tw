@@ -57,8 +57,15 @@ final class ProductFactory extends Factory
         return $this->has(
             Attachment
                 ::factory()
-                ->count(random_int(4, 6))
-                ->sequence(fn (Sequence $sequence) => ['meta' => ['type' => $sequence->index === 0 ? Product::ATTACHMENT_TYPE_COVER : Product::ATTACHMENT_TYPE_IMAGE]])
+                ->count($count = random_int(4, 6))
+                ->sequence(fn (Sequence $sequence) => [
+                    'meta' => $meta = [
+                        'type' => $sequence->index % $count === 0 ? Product::ATTACHMENT_TYPE_COVER : Product::ATTACHMENT_TYPE_IMAGE
+                    ],
+                    'meta_md5' => md5(json_encode($meta)),
+                    'disk' => $sequence->index % $count === 0 ? 'cover' : 'image',
+                ])
+                ->withImage(),
         );
     }
 }

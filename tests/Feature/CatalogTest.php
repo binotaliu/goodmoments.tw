@@ -72,14 +72,14 @@ it('creates a product inside a category', function () {
     /** @var Attachment $coverImageAttachment */
     $coverImageAttachment = Attachment
         ::factory()
-        ->withFile()
+        ->withImage()
         ->withMeta(['type' => Product::ATTACHMENT_TYPE_COVER])
         ->create();
     /** @var \Illuminate\Support\Collection|Attachment[] $imageAttachments */
     $imageAttachments = Attachment
         ::factory()
         ->count(random_int(4, 6))
-        ->withFile()
+        ->withImage()
         ->withMeta(['type' => Product::ATTACHMENT_TYPE_IMAGE])
         ->create();
 
