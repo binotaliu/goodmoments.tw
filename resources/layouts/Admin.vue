@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen h-full w-screen max-w-6xl px-6 mx-auto flex items-start justify-between gap-8 md:pt-16 py-8 overflow-x-hidden">
-    <header class="w-1/4 flex flex-col items-stretch gap-8">
+    <header class="w-1/5 flex flex-col items-stretch gap-8">
       <div class="flex flex-col center-center gap-1">
         <GMLogo class="w-16 h-16" />
         <GMTextLogo class="h-8" />
@@ -40,10 +40,26 @@
             </template>
           </GMNavItem>
         </ul>
+        <ul class="w-full flex flex-col items-stretch gap-2">
+          <GMNavItem>
+            <div class="inline-flex items-center gap-2">
+              <PhotographIcon class="w-4 h-4" />
+              宣傳
+            </div>
+            <template #contents>
+              <GMNavItem :href="$route('admin.banners.index')">
+                <div class="inline-flex items-center gap-2">
+                  <CollectionIcon class="w-4 h-4" />
+                  橫幅
+                </div>
+              </GMNavItem>
+            </template>
+          </GMNavItem>
+        </ul>
       </nav>
     </header>
 
-    <section class="w-3/4 flex flex-col items-start justify-center gap-1">
+    <section class="w-4/5 flex flex-col items-start justify-center gap-1">
       <slot />
 
       <footer class="md:mt-16 w-full text-gray-400 text-xs">
@@ -54,6 +70,6 @@
 </template>
 
 <script setup>
-import { ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
+import { CollectionIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
 const year = (new Date()).getFullYear()
 </script>

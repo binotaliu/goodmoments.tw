@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
@@ -37,5 +38,12 @@ final class DatabaseSeeder extends Seeder
             ->count(3)
             ->create()
             ->each(static fn (Category $category) => Product::factory()->withImages()->for($category)->count(7)->create());
+
+        Banner
+            ::factory()
+            ->count(80)
+            ->for(User::factory(), 'creator')
+            ->withImage()
+            ->create();
     }
 }

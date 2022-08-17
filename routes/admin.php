@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AttachmentController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SetupPasswordController;
 use App\Http\Controllers\Admin\ProductController;
@@ -36,3 +37,5 @@ Route::resource('categories', CategoryController::class)
 Route::resource('categories.products', ProductController::class)
     ->only(['index', 'create', 'store', 'update', 'show', 'destroy'])
     ->scoped();
+
+Route::resource('banners', BannerController::class);

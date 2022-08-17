@@ -1,11 +1,12 @@
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
-
 import { InertiaProgress } from '@inertiajs/progress'
 
 import components from '../components'
 import AdminLayout from '../layouts/Admin.vue'
+
+import dayjs from './dayjs'
 
 // noinspection JSIgnoredPromiseFromCall
 createInertiaApp({
@@ -21,6 +22,7 @@ createInertiaApp({
     app.use(plugin)
     app.use(components)
     app.config.globalProperties.$route = route
+    app.config.globalProperties.$dayjs = dayjs
 
     app.mount(el)
   }
