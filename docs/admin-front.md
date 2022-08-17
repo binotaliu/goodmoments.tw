@@ -3,6 +3,7 @@
 `goodmoments.tw` 在後台的部分使用了 `Inertia.js` 搭配 `Vue.js 3` 來開發。  
 開發時，請參考下列資源：
 
+- [Bundling Assets (Vite) – Laravel Documentation](http://laravel.com/docs/9.x/vite)
  - [Inertia.js](https://inertiajs.com/)
  - [Vue.js](https://vuejs.org/)
  - [Vite](https://vitejs.dev/)
