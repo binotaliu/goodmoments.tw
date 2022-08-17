@@ -20,6 +20,6 @@ import * as classes from './styles/button'
 defineProps({
   type: { type: String, default: 'button' },
   size: { type: String, default: 'DEFAULT' },
-  theme: { type: String, default: 'DEFAULT' },
+  theme: { type: String, default: 'DEFAULT' }
 })
 </script>

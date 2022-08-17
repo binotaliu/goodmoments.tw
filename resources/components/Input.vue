@@ -1,6 +1,7 @@
 <template>
   <div class="relative flex w-full flex-wrap items-stretch">
     <span
+      v-if="hasIcon"
       :class="[
         'w-8 h-full pl-3 py-3',
         'z-10',
@@ -11,19 +12,18 @@
         'text-base text-gray-300',
         'rounded',
       ]"
-      v-if="hasIcon"
     >
       <slot name="icon" />
     </span>
     <input
+      v-model="inputValue"
       :type="type"
       :placeholder="placeholder"
       :class="[
         ...styles.base(hasIcon)
       ]"
-      v-model="inputValue"
       v-bind="$attrs"
-    />
+    >
   </div>
 </template>
 
@@ -53,6 +53,6 @@ const inputValue = computed({
   },
   set (value) {
     emits('update:modelValue', value)
-  },
+  }
 })
 </script>

@@ -1,42 +1,85 @@
 <template>
-  <div class="w-full flex items-center justify-between mb-4">
-    <h1 class="text-2xl font-semibold text-wood-600" v-if="isCreating">建立橫幅</h1>
-    <h1 class="text-2xl font-semibold text-wood-600" v-else>編輯橫幅 - {{ banner.title.zh_Hant_TW }}</h1>
+  <div class="mb-4 flex w-full items-center justify-between">
+    <h1
+      v-if="isCreating"
+      class="text-2xl font-semibold text-wood-600"
+    >
+      建立橫幅
+    </h1>
+    <h1
+      v-else
+      class="text-2xl font-semibold text-wood-600"
+    >
+      編輯橫幅 - {{ banner.title.zh_Hant_TW }}
+    </h1>
   </div>
 
   <form
     :action="
       isCreating
-      ? $route('admin.banners.store')
-      : $route('admin.banners.update', [banner.id])
+        ? $route('admin.banners.store')
+        : $route('admin.banners.update', [banner.id])
     "
     method="post"
+    class="flex w-full flex-col gap-4"
     @submit.prevent="submit"
-    class="w-full flex flex-col gap-4"
   >
-    <GMCard class="w-full flex flex-col gap-2">
-      <GMFormField id="title" error-key="title.zh_Hant_TW" name="標題">
-        <GMInput id="title" v-model="form.title.zh_Hant_TW" />
+    <GMCard class="flex w-full flex-col gap-2">
+      <GMFormField
+        id="title"
+        error-key="title.zh_Hant_TW"
+        name="標題"
+      >
+        <GMInput
+          id="title"
+          v-model="form.title.zh_Hant_TW"
+        />
       </GMFormField>
-      <GMFormField id="description" error-key="description.zh_Hant_TW" name="說明">
-        <GMTextarea id="description" v-model="form.description.zh_Hant_TW" />
+      <GMFormField
+        id="description"
+        error-key="description.zh_Hant_TW"
+        name="說明"
+      >
+        <GMTextarea
+          id="description"
+          v-model="form.description.zh_Hant_TW"
+        />
       </GMFormField>
-      <GMFormField id="image" name="圖片">
+      <GMFormField
+        id="image"
+        name="圖片"
+      >
         <GMAttachment
-          class="w-full"
           id="image"
           v-model="form.image_uuid"
           v-model:processing="imageProcessing"
           v-model:attachments="attachments"
+          class="w-full"
         />
       </GMFormField>
-      <GMFormField id="image_description" error-key="image_description.zh_Hant_TW" name="圖片替代文字">
-        <GMInput id="image_description" v-model="form.image_description.zh_Hant_TW" />
+      <GMFormField
+        id="image_description"
+        error-key="image_description.zh_Hant_TW"
+        name="圖片替代文字"
+      >
+        <GMInput
+          id="image_description"
+          v-model="form.image_description.zh_Hant_TW"
+        />
       </GMFormField>
-      <GMFormField id="url" name="連結網址">
-        <GMInput id="url" v-model="form.url" />
+      <GMFormField
+        id="url"
+        name="連結網址"
+      >
+        <GMInput
+          id="url"
+          v-model="form.url"
+        />
       </GMFormField>
-      <GMFormField id="started_at" name="開始時間">
+      <GMFormField
+        id="started_at"
+        name="開始時間"
+      >
         <GMInput
           id="started_at"
           type="datetime-local"
@@ -44,7 +87,10 @@
           @update:model-value="(value) => form.started_at = $dayjs(value, 'YYYY-MM-DDTHH:mm').format()"
         />
       </GMFormField>
-      <GMFormField id="ended_at" name="結束時間">
+      <GMFormField
+        id="ended_at"
+        name="結束時間"
+      >
         <GMCheckbox
           id="unlimited"
           label="無期限"
@@ -62,14 +108,23 @@
       </GMFormField>
     </GMCard>
 
-    <div class="w-full flex justify-end">
-      <GMButton type="submit" :disabled="imageProcessing">
+    <div class="flex w-full justify-end">
+      <GMButton
+        type="submit"
+        :disabled="imageProcessing"
+      >
         <GMLoadingText :loading="form.processing">
-          <div class="flex center-center gap-2" v-if="isCreating">
-            <PlusIcon class="w-4 h-4" /> 新增
+          <div
+            v-if="isCreating"
+            class="center-center flex gap-2"
+          >
+            <PlusIcon class="h-4 w-4" /> 新增
           </div>
-          <div class="flex center-center gap-2" v-else>
-            <SaveIcon class="w-4 h-4" /> 保存
+          <div
+            v-else
+            class="center-center flex gap-2"
+          >
+            <SaveIcon class="h-4 w-4" /> 保存
           </div>
         </GMLoadingText>
       </GMButton>
@@ -112,7 +167,7 @@ const form = useForm({
   },
   url: null,
   started_at: null,
-  ended_at: null,
+  ended_at: null
 })
 
 const attachments = computed({

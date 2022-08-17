@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('attachmentables', static function (Blueprint $table) {
+        Schema::create('attachmentables', static function (Blueprint $table): void {
             $table->bigInteger('attachment_id');
             $table->bigInteger('attachmentable_id');
             $table->string('attachmentable_type');

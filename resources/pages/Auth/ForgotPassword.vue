@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full flex flex-col center-center gap-2">
-    <h1 class="text-2xl font-semibold">忘記密碼</h1>
+  <div class="center-center flex w-full flex-col gap-2">
+    <h1 class="text-2xl font-semibold">
+      忘記密碼
+    </h1>
     <GMCard class="w-full md:w-64 lg:w-80">
       <form
         class="flex flex-col items-stretch justify-center gap-4"
@@ -10,15 +12,18 @@
           {{ status }}
         </GMAlert>
 
-        <GMFormField id="email" name="電子郵件">
+        <GMFormField
+          id="email"
+          name="電子郵件"
+        >
           <template #icon>
-            <MailIcon class="w-4 h-4" />
+            <MailIcon class="h-4 w-4" />
           </template>
           <GMInput
             id="email"
+            v-model="form.email"
             name="email"
             placeholder="電子郵件"
-            v-model="form.email"
             autofocus
           />
         </GMFormField>
@@ -39,7 +44,7 @@ import { useForm } from '@inertiajs/inertia-vue3'
 import { MailIcon } from '@heroicons/vue/solid'
 
 defineProps({
-  status: { type: String, default: '' },
+  status: { type: String, default: '' }
 })
 
 defineOptions({
@@ -47,7 +52,7 @@ defineOptions({
 })
 
 const form = useForm({
-  email: '',
+  email: ''
 })
 
 const send = async () => {

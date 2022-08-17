@@ -10,18 +10,27 @@
       >
         <slot />
 
-        <ChevronUpIcon class="w-4 h-4" v-if="showChildren" />
-        <ChevronDownIcon class="w-4 h-4" v-else />
+        <ChevronUpIcon
+          v-if="showChildren"
+          class="h-4 w-4"
+        />
+        <ChevronDownIcon
+          v-else
+          class="h-4 w-4"
+        />
       </a>
 
-      <ul class="pl-4 flex flex-col items-stretch gap-2" v-show="showChildren">
+      <ul
+        v-show="showChildren"
+        class="flex flex-col items-stretch gap-2 pl-4"
+      >
         <slot name="contents" />
       </ul>
     </template>
     <InertiaLink
+      v-else
       v-bind="$attrs"
       :class="linkClasses"
-      v-else
     >
       <slot />
     </InertiaLink>

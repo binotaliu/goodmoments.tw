@@ -20,7 +20,7 @@ final class BannerFactory extends Factory
                 'zh_Hant_TW' => $this->faker->words(3, asText: true),
             ],
             'description' => [
-                'en' =>  $showDescription ? 'en:' . $this->faker->words(9, asText: true) : '',
+                'en' => $showDescription ? 'en:' . $this->faker->words(9, asText: true) : '',
                 'zh_Oan' => $showDescription ? 'oan:' . $this->faker->words(9, asText: true) : '',
                 'zh_Hant_TW' => $showDescription ? $this->faker->words(9, asText: true) : '',
             ],

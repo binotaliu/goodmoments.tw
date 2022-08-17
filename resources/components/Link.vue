@@ -1,5 +1,8 @@
 <template>
-  <Link v-bind="$attrs" class="text-blue-500 hover:underline">
+  <Link
+    v-bind="$attrs"
+    class="text-blue-500 hover:underline"
+  >
     <slot />
   </Link>
 </template>

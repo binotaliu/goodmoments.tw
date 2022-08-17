@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full flex flex-col center-center gap-2">
-    <h1 class="text-2xl font-semibold">登入</h1>
+  <div class="center-center flex w-full flex-col gap-2">
+    <h1 class="text-2xl font-semibold">
+      登入
+    </h1>
     <GMCard class="w-full md:w-64 lg:w-80">
       <form
         class="flex flex-col items-stretch justify-center gap-4"
@@ -10,29 +12,35 @@
           {{ $page.props.flash.message }}
         </GMAlert>
 
-        <GMFormField id="username" name="帳號">
+        <GMFormField
+          id="username"
+          name="帳號"
+        >
           <template #icon>
-            <UserIcon class="w-4 h-4" />
+            <UserIcon class="h-4 w-4" />
           </template>
           <GMInput
             id="username"
+            v-model="form.username"
             name="username"
             placeholder="帳號"
-            v-model="form.username"
             autofocus
           />
         </GMFormField>
 
-        <GMFormField id="password" name="密碼">
+        <GMFormField
+          id="password"
+          name="密碼"
+        >
           <template #icon>
-            <LockClosedIcon class="w-4 h-4" />
+            <LockClosedIcon class="h-4 w-4" />
           </template>
           <GMInput
             id="password"
+            v-model="form.password"
             name="password"
             placeholder="密碼"
             type="password"
-            v-model="form.password"
           />
         </GMFormField>
 
@@ -43,7 +51,12 @@
         </GMButton>
 
         <div class="flex justify-end">
-          <GMLink :href="$route('password.request')" class="text-sm">忘記密碼？</GMLink>
+          <GMLink
+            :href="$route('password.request')"
+            class="text-sm"
+          >
+            忘記密碼？
+          </GMLink>
         </div>
       </form>
     </GMCard>

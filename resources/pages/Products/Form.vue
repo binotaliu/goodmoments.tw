@@ -1,72 +1,146 @@
 <template>
-  <div class="w-full flex items-center justify-between mb-4">
-    <h1 class="text-2xl font-semibold text-wood-600" v-if="isCreating">建立產品 - {{ category.name.zh_Hant_TW }}</h1>
-    <h1 class="text-2xl font-semibold text-wood-600" v-else>編輯產品 - {{ product.name.zh_Hant_TW }} - {{ category.name.zh_Hant_TW }}</h1>
+  <div class="mb-4 flex w-full items-center justify-between">
+    <h1
+      v-if="isCreating"
+      class="text-2xl font-semibold text-wood-600"
+    >
+      建立產品 - {{ category.name.zh_Hant_TW }}
+    </h1>
+    <h1
+      v-else
+      class="text-2xl font-semibold text-wood-600"
+    >
+      編輯產品 - {{ product.name.zh_Hant_TW }} - {{ category.name.zh_Hant_TW }}
+    </h1>
   </div>
 
   <form
     :action="
       isCreating
-      ? $route('admin.categories.products.store', [category.id])
-      : $route('admin.categories.products.update', [category.id, product.id])
+        ? $route('admin.categories.products.store', [category.id])
+        : $route('admin.categories.products.update', [category.id, product.id])
     "
     method="post"
+    class="flex w-full flex-col gap-4"
     @submit.prevent="submit"
-    class="w-full flex flex-col gap-4"
   >
-    <GMCard class="w-full flex flex-col gap-2">
-      <GMFormField id="slug" name="Slug">
-        <GMInput id="slug" v-model="form.slug" />
+    <GMCard class="flex w-full flex-col gap-2">
+      <GMFormField
+        id="slug"
+        name="Slug"
+      >
+        <GMInput
+          id="slug"
+          v-model="form.slug"
+        />
       </GMFormField>
-      <GMFormField id="name" error-key="name.zh_Hant_TW" name="名稱">
-        <GMInput id="username" v-model="form.name.zh_Hant_TW" />
+      <GMFormField
+        id="name"
+        error-key="name.zh_Hant_TW"
+        name="名稱"
+      >
+        <GMInput
+          id="username"
+          v-model="form.name.zh_Hant_TW"
+        />
       </GMFormField>
-      <GMFormField id="cover_image" name="封面圖片">
+      <GMFormField
+        id="cover_image"
+        name="封面圖片"
+      >
         <GMAttachment
-          class="w-full"
           id="cover_image_uuid"
           v-model="form.cover_image_uuid"
           v-model:processing="imageProcessStatus.coverImage"
           v-model:attachments="coverImageAttachments"
+          class="w-full"
           :meta="{ type: 'productCoverImage' }"
         />
       </GMFormField>
-      <GMFormField id="images" name="其他圖片">
+      <GMFormField
+        id="images"
+        name="其他圖片"
+      >
         <GMAttachment
-          class="w-full"
           id="image_uuids"
           v-model="form.image_uuids"
           v-model:processing="imageProcessStatus.images"
           v-model:attachments="form.images"
+          class="w-full"
           :meta="{ type: 'productImages' }"
           multiple
         />
       </GMFormField>
-      <GMFormField id="price" name="價格">
-        <GMInput id="price" type="number" v-model="form.price" />
+      <GMFormField
+        id="price"
+        name="價格"
+      >
+        <GMInput
+          id="price"
+          v-model="form.price"
+          type="number"
+        />
       </GMFormField>
-      <GMFormField id="unit" error-key="unit.zh_Hant_TW" name="單位">
-        <GMInput id="unit" v-model="form.unit.zh_Hant_TW" />
+      <GMFormField
+        id="unit"
+        error-key="unit.zh_Hant_TW"
+        name="單位"
+      >
+        <GMInput
+          id="unit"
+          v-model="form.unit.zh_Hant_TW"
+        />
       </GMFormField>
-      <GMFormField id="store_url" name="賣場網址">
-        <GMInput id="store_url" type="url" v-model="form.store_url" />
+      <GMFormField
+        id="store_url"
+        name="賣場網址"
+      >
+        <GMInput
+          id="store_url"
+          v-model="form.store_url"
+          type="url"
+        />
       </GMFormField>
-      <GMFormField id="store_url_text" error-key="store_url_text.zh_Hant_TW" name="賣場網址連結文字">
-        <GMInput id="store_url_text" v-model="form.store_url_text.zh_Hant_TW" />
+      <GMFormField
+        id="store_url_text"
+        error-key="store_url_text.zh_Hant_TW"
+        name="賣場網址連結文字"
+      >
+        <GMInput
+          id="store_url_text"
+          v-model="form.store_url_text.zh_Hant_TW"
+        />
       </GMFormField>
-      <GMFormField id="description" error-key="description.zh_Hant_TW" name="說明">
-        <GMTextarea id="description" v-model="form.description.zh_Hant_TW" rows="10" />
+      <GMFormField
+        id="description"
+        error-key="description.zh_Hant_TW"
+        name="說明"
+      >
+        <GMTextarea
+          id="description"
+          v-model="form.description.zh_Hant_TW"
+          rows="10"
+        />
       </GMFormField>
     </GMCard>
 
-    <div class="w-full flex justify-end">
-      <GMButton type="submit" :disabled="!imageProcessed">
+    <div class="flex w-full justify-end">
+      <GMButton
+        type="submit"
+        :disabled="!imageProcessed"
+      >
         <GMLoadingText :loading="form.processing">
-          <div class="flex center-center gap-2" v-if="isCreating">
-            <PlusIcon class="w-4 h-4" /> 新增
+          <div
+            v-if="isCreating"
+            class="center-center flex gap-2"
+          >
+            <PlusIcon class="h-4 w-4" /> 新增
           </div>
-          <div class="flex center-center gap-2" v-else>
-            <SaveIcon class="w-4 h-4" /> 保存
+          <div
+            v-else
+            class="center-center flex gap-2"
+          >
+            <SaveIcon class="h-4 w-4" /> 保存
           </div>
         </GMLoadingText>
       </GMButton>

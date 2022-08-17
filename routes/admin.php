@@ -3,8 +3,8 @@
 use App\Http\Controllers\Admin\AttachmentController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\SetupPasswordController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SetupPasswordController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 

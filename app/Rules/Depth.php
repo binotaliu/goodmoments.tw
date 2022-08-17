@@ -19,6 +19,7 @@ final class Depth implements Rule
 
         if ($depthDetected > $this->depth) {
             $this->message = __('validation.depth', ['attribute' => $attribute, 'max' => $this->depth]);
+
             return false;
         }
 
@@ -34,7 +35,7 @@ final class Depth implements Rule
     {
         $depth = $initialDepth;
         foreach ($value as $item) {
-            if (!is_array($item)) {
+            if (! is_array($item)) {
                 continue;
             }
 

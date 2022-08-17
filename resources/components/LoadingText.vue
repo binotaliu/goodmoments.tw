@@ -5,11 +5,11 @@
     </span>
 
     <div
-      class="absolute top-0 left-0 w-full h-full flex center-center"
+      class="center-center absolute top-0 left-0 flex h-full w-full"
       :class="{ 'opacity-0': !loading }"
     >
       <div class="animate-spin">
-        <GMLoadingIcon class="w-4 h-4" />
+        <GMLoadingIcon class="h-4 w-4" />
       </div>
     </div>
   </div>
@@ -17,6 +17,6 @@
 
 <script setup>
 defineProps({
-  loading: { type: Boolean, default: false },
+  loading: { type: Boolean, default: false }
 })
 </script>

@@ -1,13 +1,28 @@
 <template>
   <div>
-    <div class="touch:hidden flex items-center gap-2">
-      <input :id="id" type="checkbox" class="p-2 rounded border-wood-600 checked:bg-wood-600 checked:hover:bg-wood-500 transition-colors" v-model="value" />
-      <label :for="id" class="select-none">{{ label }}</label>
+    <div class="flex items-center gap-2 touch:hidden">
+      <input
+        :id="id"
+        v-model="value"
+        type="checkbox"
+        class="rounded border-wood-600 p-2 transition-colors checked:bg-wood-600 checked:hover:bg-wood-500"
+      >
+      <label
+        :for="id"
+        class="select-none"
+      >{{ label }}</label>
     </div>
 
-    <div class="hidden touch:flex items-center select-none">
-      <label :for="id" class="mr-2">{{ label }}</label>
-      <input :id="id" type="checkbox" class="sr-only" />
+    <div class="hidden select-none items-center touch:flex">
+      <label
+        :for="id"
+        class="mr-2"
+      >{{ label }}</label>
+      <input
+        :id="id"
+        type="checkbox"
+        class="sr-only"
+      >
       <div
         :class="[
           'inline-block relative',
@@ -20,8 +35,8 @@
           'overflow-hidden',
           'transition-colors',
         ]"
-        @click="value = !value"
         aria-hidden="true"
+        @click="value = !value"
       >
         <div
           :class="[
@@ -34,7 +49,7 @@
             'shadow-lg',
             'transition-all',
           ]"
-        ></div>
+        />
       </div>
     </div>
   </div>

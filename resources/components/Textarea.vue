@@ -23,6 +23,6 @@ const value = computed({
   },
   set (value) {
     emits('update:modelValue', value)
-  },
+  }
 })
 </script>

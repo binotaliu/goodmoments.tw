@@ -45,6 +45,7 @@ final class Attachment extends Model
             set: static function ($value) {
                 ksort($value);
                 $encoded = json_encode($value, JSON_THROW_ON_ERROR);
+
                 return [
                     'meta' => $encoded,
                     'meta_md5' => md5($encoded),

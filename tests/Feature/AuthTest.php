@@ -70,7 +70,6 @@ it('can create a new user', function (): void {
     $newlyCreatedUser = User::whereEmail($email)->firstOrFail();
 
     Notification::assertSentTo($newlyCreatedUser, PasswordSetupNotification::class);
-
 });
 
 it('able to set up password after been created', function (): void {

@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full flex flex-col center-center gap-2">
-    <h1 class="text-2xl font-semibold">設定密碼</h1>
+  <div class="center-center flex w-full flex-col gap-2">
+    <h1 class="text-2xl font-semibold">
+      設定密碼
+    </h1>
     <GMCard class="w-full md:w-64 lg:w-80">
       <form
         class="flex flex-col items-stretch justify-center gap-4"
@@ -10,45 +12,54 @@
           {{ status }}
         </GMAlert>
 
-        <GMFormField id="email" name="電子郵件">
+        <GMFormField
+          id="email"
+          name="電子郵件"
+        >
           <template #icon>
-            <MailIcon class="w-4 h-4" />
+            <MailIcon class="h-4 w-4" />
           </template>
           <GMInput
             id="email"
+            v-model="form.email"
             name="email"
             placeholder="電子郵件"
-            v-model="form.email"
             autofocus
           />
         </GMFormField>
 
-        <GMFormField id="password" name="新密碼">
+        <GMFormField
+          id="password"
+          name="新密碼"
+        >
           <template #icon>
-            <LockClosedIcon class="w-4 h-4" />
+            <LockClosedIcon class="h-4 w-4" />
           </template>
           <GMInput
-            type="password"
             id="password"
+            v-model="form.password"
+            type="password"
             name="password"
             autocomplete="new-password"
             placeholder="新密碼"
-            v-model="form.password"
             autofocus
           />
         </GMFormField>
 
-        <GMFormField id="password_confirmation" name="確認密碼">
+        <GMFormField
+          id="password_confirmation"
+          name="確認密碼"
+        >
           <template #icon>
-            <LockClosedIcon class="w-4 h-4" />
+            <LockClosedIcon class="h-4 w-4" />
           </template>
           <GMInput
-            type="password"
             id="password_confirmation"
+            v-model="form.password_confirmation"
+            type="password"
             name="password_confirmation"
             autocomplete="new-password"
             placeholder="確認密碼"
-            v-model="form.password_confirmation"
             autofocus
           />
         </GMFormField>
@@ -72,7 +83,7 @@ import { watch } from 'vue'
 const props = defineProps({
   status: { type: String, default: '' },
   email: { type: String, default: '' },
-  url: { type: String, default: '' },
+  url: { type: String, default: '' }
 })
 
 defineOptions({
@@ -82,7 +93,7 @@ defineOptions({
 const form = useForm({
   email: '',
   password: '',
-  password_confirmation: '',
+  password_confirmation: ''
 })
 
 watch(() => props.email, (email) => {

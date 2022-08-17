@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('banners', static function (Blueprint $table) {
+        Schema::create('banners', static function (Blueprint $table): void {
             $table->id();
 
             $table->unsignedBigInteger('creator_id');

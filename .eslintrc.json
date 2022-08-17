@@ -1,0 +1,46 @@
+{
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@babel/eslint-parser"
+  },
+  "extends": [
+    "standard",
+    "plugin:vue/vue3-recommended",
+    "plugin:tailwindcss/recommended"
+  ],
+  "plugins": ["tailwindcss"],
+  "globals": {
+    "axios": "readonly",
+    "math": "readonly",
+    "route": "readonly",
+    "dayjs": "readonly",
+    // thoses are **compiler macros** of vue.js
+    "defineProps": "readonly",
+    "defineEmits": "readonly",
+    "defineOptions": "readonly",
+    "withDefaults": "readonly",
+    // namespace in types.d.ts is causing some bug for vue-eslint-parser.
+    // simply suppress them here:
+    "App": "readonly",
+    "Concrete": "readonly",
+    "Components": "readonly",
+    "Models": "readonly",
+    "Nova": "readonly",
+    "Enums": "readonly",
+    "Forms": "readonly",
+    "Illuminate": "readonly",
+    "Pagination": "readonly"
+  },
+  "rules": {
+    "vue/no-reserved-component-names": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/component-definition-name-casing": "off",
+    "tailwindcss/no-custom-classname": ["warn", {
+        "whitelist": ["form-field"]
+    }]
+  },
+  "ignorePatterns": [
+    "types.d.ts",
+    "*.test.js"
+  ]
+}

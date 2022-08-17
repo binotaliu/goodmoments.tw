@@ -23,7 +23,7 @@ class AttachmentFactory extends Factory
         return [
             'uuid' => $uuid->getHex()->toString(),
             'disk' => $this->faker->randomElement(['public', 'cover', 'image']),
-            'path' => '/' . substr($uuid, 0, 2) . '/' . base64_url_encode($uuid) . '.jpg',
+            'path' => '/' . mb_substr($uuid, 0, 2) . '/' . base64_url_encode($uuid) . '.jpg',
             'mime' => 'image/jpeg',
             'name' => $this->faker->slug . '.jpg',
             'size' => $this->faker->numberBetween(1000, 1_000_000_000),
@@ -53,6 +53,7 @@ class AttachmentFactory extends Factory
     public function withMeta(array $meta): self
     {
         ksort($meta);
+
         return $this->state(fn () => ['meta' => $meta, 'meta_md5' => md5(json_encode($meta, JSON_THROW_ON_ERROR))]);
     }
 
@@ -63,6 +64,7 @@ class AttachmentFactory extends Factory
             ...$meta,
         ];
         ksort($meta);
+
         return $this->state(fn (array $attributes) => [
             'meta' => $meta,
             'meta_md5' => md5(json_encode($meta, JSON_THROW_ON_ERROR)),

@@ -6,11 +6,8 @@ use App\Jobs\RemoveOrphanAttachments;
 use App\Models\Attachment;
 use App\Models\Attachmentable;
 use App\Models\User;
-
 use Illuminate\Http\UploadedFile;
-
 use Illuminate\Support\Facades\Storage;
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
@@ -19,8 +16,7 @@ use function Pest\Laravel\post;
 /**
  * @see docs/attachments.md
  */
-
-it('uploads an image', function () {
+it('uploads an image', function (): void {
     $user = User::factory()->active()->create();
     actingAs($user);
 
@@ -33,9 +29,8 @@ it('uploads an image', function () {
         ->assertStatus(201)
         ->json();
 
-
     expect($attachment)->toBeArray()
-        ->toHaveKeys(['uuid', 'url', 'disk', 'path', 'mime', 'size', 'md5'])
+        ->toHaveKeys(['uuid', 'url', 'disk', 'path', 'mime', 'size', 'file_md5', 'meta_md5'])
         ->and($attachment['disk'])
         ->not->toBeEmpty()
         ->and($attachment['path'])
@@ -54,7 +49,7 @@ it('uploads an image', function () {
     ]);
 });
 
-it('removes orphan attachments', function () {
+it('removes orphan attachments', function (): void {
     $orphanAttachment = Attachment::factory()->withImage()->create();
     $notOrphanAttachment = Attachment::factory()->withImage()->create();
 

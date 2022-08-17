@@ -37,7 +37,7 @@ final class ProductCreationRequest extends FormRequest
                     ::exists('attachments', 'uuid')
                     ->where('meta->type', Product::ATTACHMENT_TYPE_COVER),
             ],
-            'image_uuids' =>[
+            'image_uuids' => [
                 'required',
                 'array',
                 AllExists

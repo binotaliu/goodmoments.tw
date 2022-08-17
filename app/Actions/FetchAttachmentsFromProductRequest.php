@@ -13,8 +13,9 @@ use Illuminate\Validation\ValidationException;
 final class FetchAttachmentsFromProductRequest
 {
     /**
-     * @param ProductCreationRequest $request
+     * @param  ProductCreationRequest  $request
      * @return Collection<Attachment>|Attachment[]
+     *
      * @throws ValidationException
      */
     public function __invoke(ProductCreationRequest|ProductUpdateRequest $request): Collection

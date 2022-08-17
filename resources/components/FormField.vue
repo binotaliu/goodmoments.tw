@@ -1,15 +1,29 @@
 <template>
   <div class="form-field flex flex-col items-start justify-center gap-1">
-    <label :for="id" class="flex justify-start items-center gap-1 text-gray-400 form-field-focus:text-gray-800 text-sm transition-colors">
-      <span class="inline-flex center-center" v-if="$slots.icon">
+    <label
+      :for="id"
+      class="flex items-center justify-start gap-1 text-sm text-gray-400 transition-colors form-field-focus:text-gray-800"
+    >
+      <span
+        v-if="$slots.icon"
+        class="center-center inline-flex"
+      >
         <slot name="icon" />
       </span>
       {{ name }}
     </label>
     <slot />
     <transition>
-      <ul class="list-disc pl-6 text-red-600 text-sm" v-if="hasErrors">
-        <li v-for="error in errors" :key="error">{{ error }}</li>
+      <ul
+        v-if="hasErrors"
+        class="list-disc pl-6 text-sm text-red-600"
+      >
+        <li
+          v-for="error in errors"
+          :key="error"
+        >
+          {{ error }}
+        </li>
       </ul>
     </transition>
   </div>

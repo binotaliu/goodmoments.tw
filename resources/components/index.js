@@ -20,7 +20,7 @@ export default {
   install (Vue) {
     Vue.component('GMAlert', Alert)
     Vue.component('GMAttachment', Attachment)
-    Vue.component('GMButton', Button);
+    Vue.component('GMButton', Button)
     Vue.component('GMCard', Card)
     Vue.component('GMCheckbox', Checkbox)
     Vue.component('GMFormField', FormField)

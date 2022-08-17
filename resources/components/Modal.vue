@@ -1,6 +1,14 @@
 <template>
-  <TransitionRoot appear :show="open" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
+  <TransitionRoot
+    appear
+    :show="open"
+    as="template"
+  >
+    <Dialog
+      as="div"
+      class="relative z-10"
+      @close="closeModal"
+    >
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -10,7 +18,7 @@
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black bg-opacity-25" />
+        <div class="fixed inset-0 bg-black/25" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
@@ -42,7 +50,10 @@
                 as="h3"
                 class="text-lg font-medium leading-6 text-gray-900"
               >
-                <slot name="title" v-if="title === null"/>
+                <slot
+                  v-if="title === null"
+                  name="title"
+                />
                 <span v-else>{{ title }}</span>
               </DialogTitle>
 
@@ -50,7 +61,7 @@
                 <slot />
               </div>
 
-              <div class="-mx-6 -mb-6 px-6 py-4 bg-pearl-100 text-right">
+              <div class="-mx-6 -mb-6 bg-pearl-100 px-6 py-4 text-right">
                 <slot name="footer" />
               </div>
             </DialogPanel>
@@ -71,8 +82,7 @@ defineProps({
 
 const emits = defineEmits(['close'])
 
-function closeModal() {
+function closeModal () {
   emits('close')
 }
 </script>
-

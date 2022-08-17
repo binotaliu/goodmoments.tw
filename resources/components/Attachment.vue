@@ -1,36 +1,57 @@
 <template>
   <div class="flex flex-col items-stretch gap-y-2">
-    <div class="w-full px-4 py-2 border border-2 border-wood-400 border-dashed rounded">
-      <div class="w-full h-28 flex center-center text-wood-400" v-if="previews.length <= 0">尚未選擇</div>
+    <div class="w-full rounded border-2 border-dashed border-wood-400 px-4 py-2">
+      <div
+        v-if="previews.length <= 0"
+        class="center-center flex h-28 w-full text-wood-400"
+      >
+        尚未選擇
+      </div>
 
-      <div class="w-full flex flex-wrap gap-2" v-else>
+      <div
+        v-else
+        class="flex w-full flex-wrap gap-2"
+      >
         <div
-          class="group w-1/3 relative"
           v-for="(preview, i) in previews"
+          :key="preview.url"
+          class="group relative w-1/3"
         >
-          <div class="border border-gray-100 rounded shadow group-hover:shadow-lg touch:group-hover:shadow transition-shadow relative">
-            <div class="rounded overflow-hidden">
-              <img :src="preview.url" :alt="preview.filename" />
+          <div class="relative rounded border border-gray-100 shadow transition-shadow group-hover:shadow-lg touch:group-hover:shadow">
+            <div class="overflow-hidden rounded">
+              <img
+                :src="preview.url"
+                :alt="preview.filename"
+              >
             </div>
 
-            <div class="absolute w-full h-full left-0 top-0 flex center-center bg-gray-800/30 text-white" v-if="preview.progress < 1">
-              <GMLoadingIcon class="w-6 h-6 fill-white/60 animate-spin" />
+            <div
+              v-if="preview.progress < 1"
+              class="center-center absolute left-0 top-0 flex h-full w-full bg-gray-800/30 text-white"
+            >
+              <GMLoadingIcon class="h-6 w-6 animate-spin fill-white/60" />
             </div>
           </div>
 
-          <p class="text-xs text-center">{{ preview.filename }}</p>
-          <p class="hidden touch:block text-center mt-2" v-if="preview.processing >= 1">
+          <p class="text-center text-xs">
+            {{ preview.filename }}
+          </p>
+          <p
+            v-if="preview.processing >= 1"
+            class="mt-2 hidden text-center touch:block"
+          >
             <GMButton
               type="button"
               size="sm"
               theme="danger"
-              class="inline-flex center-center gap-2"
+              class="center-center inline-flex gap-2"
               @click="remove(i)"
             >
-              <TrashIcon class="w-4 h-4" /> 刪除
+              <TrashIcon class="h-4 w-4" /> 刪除
             </GMButton>
           </p>
           <button
+            v-if="preview.processing >= 1"
             type="button"
             :class="[
               'absolute',
@@ -45,9 +66,8 @@
               'transition-opacity'
             ]"
             @click="remove(i)"
-            v-if="preview.processing >= 1"
           >
-            <XIcon class="w-4 h-4" />
+            <XIcon class="h-4 w-4" />
           </button>
         </div>
       </div>
@@ -63,19 +83,18 @@
           ...buttonStyles.theme.DEFAULT,
         ]"
       >
-        <FolderIcon class="w-4 h-4" /> 選擇檔案
+        <FolderIcon class="h-4 w-4" /> 選擇檔案
       </label>
       <input
         :id="id"
         type="file"
         rel="fileInputEl"
         class="hidden"
-        @change="handleFileChange"
         :multiple="multiple"
-      />
+        @change="handleFileChange"
+      >
     </div>
   </div>
-
 </template>
 
 <script setup>
@@ -84,7 +103,7 @@
  */
 
 import axios from 'axios'
-import { computed, reactive, ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import { FolderIcon, TrashIcon, XIcon } from '@heroicons/vue/solid'
 
 import { mapObjectIntoFormData } from '@/js/utils'
@@ -102,17 +121,17 @@ const props = defineProps({
 
 const emits = defineEmits(['update:modelValue', 'update:attachments', 'update:processing'])
 
-const readFile = (file) => new Promise((accepts, rejects) => {
+const readFile = (file) => new Promise((resolve, reject) => {
   const reader = new FileReader()
 
   reader.onload = (e) => {
     const data = e.target.result
-    accepts(data)
+    resolve(data)
   }
 
   reader.onerror = (e) => {
     const error = e.target.error
-    rejects(error)
+    reject(error)
   }
 
   reader.readAsDataURL(file)
@@ -185,11 +204,11 @@ const handleFileChange = async (event) => {
       filename: file.name,
       url: null,
       uploaded: false,
-      progress: 0,
+      progress: 0
     })
 
     preview.url = await readFile(file)
-    promises.push(uploadFile(file, (progress) => preview.progress = progress)
+    promises.push(uploadFile(file, (progress) => { preview.progress = progress })
       .then(({ data }) => {
         preview.uuid = data.uuid
         preview.url = data.url

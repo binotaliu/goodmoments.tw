@@ -20,7 +20,7 @@ final class AllExists implements Rule
 
     public function passes($attribute, $value): bool
     {
-        if (!Arr::accessible($value)) {
+        if (! Arr::accessible($value)) {
             return $this->failsWith(__('validation.array', ['attribute' => $attribute]));
         }
 
@@ -28,7 +28,7 @@ final class AllExists implements Rule
             return true;
         }
 
-        if (!empty(array_filter($value, fn ($v) => !is_string($v) && !is_int($v)))) {
+        if (! empty(array_filter($value, fn ($v) => ! is_string($v) && ! is_int($v)))) {
             return $this->failsWith(__('validation.all_exists', ['attribute' => $attribute]));
         }
 

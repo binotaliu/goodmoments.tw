@@ -33,7 +33,7 @@ final class AttachmentController
         }
 
         $uuidHex = $uuid->getHex()->toString();
-        $path = '/' . substr($uuidHex, 0, 2) . '/';
+        $path = '/' . mb_substr($uuidHex, 0, 2) . '/';
         $filename = base64_url_encode($uuid->getBytes()) . '.' . $file->guessExtension();
         $disk = $request->input('disk', 'public');
 

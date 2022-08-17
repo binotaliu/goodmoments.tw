@@ -4,15 +4,13 @@ use App\Models\Attachment;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
-
 use Inertia\Testing\AssertableInertia;
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-it('lists categories', function () {
+it('lists categories', function (): void {
     actingAs(User::factory()->create());
 
     Category::factory()->count(random_int(5, 25))->create();
@@ -26,7 +24,7 @@ it('lists categories', function () {
         );
 });
 
-it('can create category', function () {
+it('can create category', function (): void {
     $user = User::factory()->active()->create();
     actingAs($user);
 
@@ -35,7 +33,7 @@ it('can create category', function () {
         'name' => [
             'en' => 'Category name',
             'zh_Hant_TW' => '分類名稱',
-            'zh_Oan' => '分類名'
+            'zh_Oan' => '分類名',
         ],
     ])->assertValid()->assertRedirect();
 
@@ -44,7 +42,7 @@ it('can create category', function () {
     ]);
 });
 
-it('lists products inside a category', function () {
+it('lists products inside a category', function (): void {
     $user = User::factory()->active()->create();
     actingAs($user);
 
@@ -64,7 +62,7 @@ it('lists products inside a category', function () {
         );
 });
 
-it('creates a product inside a category', function () {
+it('creates a product inside a category', function (): void {
     $user = User::factory()->active()->create();
     $category = Category::factory()->create();
     actingAs($user);
@@ -90,20 +88,26 @@ it('creates a product inside a category', function () {
         'name' => [
             'en' => 'Product name',
             'zh_Hant_TW' => '產品名稱',
-            'zh_Oan' => '產品名'
+            'zh_Oan' => '產品名',
         ],
         'cover_image_uuid' => $coverImageAttachment->uuid,
         'image_uuids' => $imageAttachments->pluck('uuid')->toArray(),
         'price' => random_int(100, 1000),
+        'store_url' => 'https://www.example.com',
+        'store_url_text' => [
+            'en' => 'Buy Now',
+            'zh_Hant_TW' => '立即購買',
+            'zh_Oan' => '立即購買',
+        ],
         'unit' => [
             'en' => 'unit',
             'zh_Hant_TW' => '單位',
-            'zh_Oan' => '單位'
+            'zh_Oan' => '單位',
         ],
         'description' => [
             'en' => 'description',
             'zh_Hant_TW' => '描述',
-            'zh_Oan' => '描述'
+            'zh_Oan' => '描述',
         ],
     ])
         ->assertValid()
