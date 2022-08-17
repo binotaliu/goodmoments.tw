@@ -10,7 +10,7 @@
 
 @layer base {
     :root {
-        --swiper-theme-color: #9b8b6e;
+        --swiper-theme-color: theme(colors.wood.500);
     }
 }
 

@@ -41,7 +41,7 @@ final class DatabaseSeeder extends Seeder
 
         Banner
             ::factory()
-            ->count(80)
+            ->count(12)
             ->for(User::factory(), 'creator')
             ->withImage()
             ->create();

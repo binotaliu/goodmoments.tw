@@ -6,7 +6,9 @@ namespace App\Providers;
 
 use App\Paginator\LengthAwarePaginator;
 use Illuminate\Pagination\LengthAwarePaginator as IlluminatePaginator;
+use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +30,9 @@ final class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->bind(IlluminatePaginator::class, LengthAwarePaginator::class);
+
+        Route::macro('is', function (string $pattern) {
+            return Str::is($pattern, $this->uri);
+        });
     }
 }

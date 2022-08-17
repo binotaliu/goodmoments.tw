@@ -1,8 +1,9 @@
 import Alpine from 'alpinejs'
-import Swiper, { Navigation, Pagination } from 'swiper'
+import Swiper, { Autoplay, Navigation, Pagination } from 'swiper'
 
 window.Swiper = Swiper
-window.swiperModules = [Navigation, Pagination]
+
+Swiper.use([Autoplay, Navigation, Pagination])
 
 window.Alpine = Alpine
 

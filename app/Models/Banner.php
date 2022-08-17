@@ -4,11 +4,13 @@ namespace App\Models;
 
 use App\Enums\BannerLocation;
 use App\Models\Concerns\HasAttachments;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -52,5 +54,16 @@ final class Banner extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function scopeWhereActive(Builder $query): Builder
+    {
+        return $query
+            ->where('started_at', '>=', DB::raw('NOW()'))
+            ->orWhere(
+                fn (Builder $q) => $q
+                    ->whereNull('ended_at')
+                    ->orWhere('ended_at', '<', DB::raw('NOW()')),
+            );
     }
 }

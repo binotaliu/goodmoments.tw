@@ -15,12 +15,7 @@
                     navigation: {
                       nextEl: '.swiper-button-next',
                       prevEl: '.swiper-button-prev'
-                    },
-
-                    scrollbar: {
-                      el: '.swiper-scrollbar'
-                    },
-                    modules: swiperModules
+                    }
                 })">
                 <div class="swiper" x-ref="swiperEl">
                     <div class="swiper-wrapper">
