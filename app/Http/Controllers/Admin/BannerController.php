@@ -61,4 +61,11 @@ final class BannerController
 
         return Redirect::route('admin.banners.edit', [$banner]);
     }
+
+    public function destroy(Banner $banner): RedirectResponse
+    {
+        $banner->deleteOrFail();
+
+        return Redirect::route('admin.banners.index');
+    }
 }
