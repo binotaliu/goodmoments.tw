@@ -1,4 +1,4 @@
-<h1 align="center">🌄 <code>goodmoment.tw</code></h1>
+<h1 align="center">🌄 <code>goodmoments.tw</code></h1>
 
 ----
 
@@ -6,7 +6,7 @@
 
 [![PHP 8.1](https://img.shields.io/badge/PHP-8.1-8892BF?logo=php)](https://php.net/) [![Laravel 9](https://img.shields.io/badge/Laravel-9-FF2D20?logo=laravel)](https://laravel.com/) [![Vue.js 3](https://img.shields.io/badge/Vue.js%20-3-4fc08d?logo=vue.js)](https://vuejs.org) [![Inertia.js](https://img.shields.io/badge/Made%20with-Inertia.js-6B45C1)](https://inertiajs.com/)
 
-`goodmoment.tw` is a branding website made for "好時・左鎮公舘."
+`goodmoments.tw` is a branding website made for "好時・左鎮公舘."
 
 ## Installation
 
