@@ -4,13 +4,23 @@ declare(strict_types=1);
 
 namespace App\Csp\Policies;
 
+use Illuminate\Http\Request;
 use Spatie\Csp\Directive;
 use Spatie\Csp\Keyword;
 use Spatie\Csp\Policies\Policy;
 use Spatie\Csp\Scheme;
+use Symfony\Component\HttpFoundation\Response;
 
 final class App extends Policy
 {
+    public function shouldBeApplied(Request $request, Response $response): bool
+    {
+        if ($request->routeIs('telescope')) {
+            return false;
+        }
+
+        return parent::shouldBeApplied($request, $response);
+    }
 
     public function configure(): void
     {
