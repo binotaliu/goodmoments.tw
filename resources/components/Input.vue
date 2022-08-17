@@ -31,6 +31,10 @@
 import { computed, useSlots } from 'vue'
 import * as styles from './styles/input'
 
+defineOptions({
+  inheritAttrs: false
+})
+
 const props = defineProps({
   type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },

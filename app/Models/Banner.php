@@ -32,12 +32,20 @@ final class Banner extends Model
 
     protected $appends = [
         'image',
+        'image_uuid',
     ];
 
     public function image(): Attribute
     {
         return Attribute::get(
             fn () => $this->attachments->sole(),
+        );
+    }
+
+    public function imageUuid(): Attribute
+    {
+        return Attribute::get(
+            fn () => $this->image?->uuid,
         );
     }
 

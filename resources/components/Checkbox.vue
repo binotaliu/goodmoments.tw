@@ -49,10 +49,15 @@ const props = defineProps({
   modelValue: { type: Boolean, required: true }
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue', 'change'])
 
 const value = computed({
   get: () => props.modelValue,
-  set: (value) => emits('update:modelValue', value)
+  set: (value) => {
+    if (value !== props.modelValue) {
+      emits('change', value)
+    }
+    emits('update:modelValue', value)
+  }
 })
 </script>

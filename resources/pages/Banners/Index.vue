@@ -67,7 +67,7 @@
           </td>
           <td>
             <div class="flex justify-center gap-2">
-              <GMLinkButton :href="$route('admin.banners.show', [banner.id])" size="sm" class="flex items-center gap-2"><EyeIcon class="w-4 h-4" /> 檢視</GMLinkButton>
+              <GMLinkButton :href="$route('admin.banners.edit', [banner.id])" size="sm" class="flex items-center gap-2"><EyeIcon class="w-4 h-4" /> 檢視</GMLinkButton>
               <GMButton size="sm" class="flex items-center gap-2" @click="showRemoveModal(banner)"><TrashIcon class="w-4 h-4" /> 刪除</GMButton>
             </div>
           </td>

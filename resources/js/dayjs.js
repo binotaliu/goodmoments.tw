@@ -12,4 +12,6 @@ dayjs.extend(utc)
 dayjs.extend(isSameOrBefore)
 dayjs.extend(isSameOrAfter)
 
+window.dayjs = dayjs
+
 export default dayjs
