@@ -31,7 +31,7 @@ final class Depth implements Rule
         return $this->message;
     }
 
-    private function checkArrayDepth(array $value, int $initialDepth = 0): int
+    private function checkArrayDepth(array $value, int $initialDepth = 1): int
     {
         $depth = $initialDepth;
         foreach ($value as $item) {
