@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('categories/{category:slug}/products/{product:slug}', [ProductController::class, 'show'])->scopeBindings();
+Route::get('categories/{category:slug}/products/{product:slug}', [ProductController::class, 'show'])
+    ->name('categories.products.show')
+    ->scopeBindings();

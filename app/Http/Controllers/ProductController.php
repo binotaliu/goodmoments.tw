@@ -13,7 +13,7 @@ final class ProductController
     public function show(Category $category, Product $product): View
     {
         return view('products.show', [
-            'product' => $product
+            'product' => $product,
         ]);
     }
 }

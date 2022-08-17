@@ -24,6 +24,7 @@
         "vue": "^3.2.37"
     },
     "dependencies": {
-        "@inertiajs/progress": "^0.2.7"
+        "@inertiajs/progress": "^0.2.7",
+        "swiper": "^8.3.2"
     }
 }

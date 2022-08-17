@@ -16,7 +16,7 @@
         <th class="w-40">Slug</th>
         <th class="w-40">分類</th>
         <th>名稱</th>
-        <th class="w-60">動作</th>
+        <th class="w-64">動作</th>
       </tr></thead>
       <tbody>
         <tr v-for="product in products.data">
@@ -25,6 +25,7 @@
           <td>{{ product.name.zh_Hant_TW}}</td>
           <td>
             <div class="flex justify-center gap-2">
+              <GMLinkButton :href="$route('categories.products.show', [product.category.slug, product.slug])" size="sm" class="flex items-center gap-2"><ExternalLinkIcon class="w-4 h-4" /> 開啟</GMLinkButton>
               <GMLinkButton :href="$route('admin.categories.products.show', [product.category_id, product.id])" size="sm" class="flex items-center gap-2"><EyeIcon class="w-4 h-4" /> 檢視</GMLinkButton>
               <GMButton size="sm" class="flex items-center gap-2" @click="showRemoveModal(product)"><TrashIcon class="w-4 h-4" /> 刪除</GMButton>
             </div>
@@ -55,7 +56,7 @@
   </Teleport>
 </template>
 <script setup>
-import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
+import { PlusIcon, ExternalLinkIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 

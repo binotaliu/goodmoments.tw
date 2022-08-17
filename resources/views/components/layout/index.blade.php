@@ -14,7 +14,7 @@
     @endif
 
     @stack('header-extensions')
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'], 'build/front')
 </head>
 <body class="overflow-x-hidden antialiased">
 

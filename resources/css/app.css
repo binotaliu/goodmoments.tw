@@ -1,8 +1,18 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 @tailwind base;
 
 @tailwind utilities;
 
 @tailwind components;
+
+@layer base {
+    :root {
+        --swiper-theme-color: #9b8b6e;
+    }
+}
 
 @layer utilities {
     .center-center {
