@@ -38,4 +38,5 @@ Route::resource('categories.products', ProductController::class)
     ->only(['index', 'create', 'store', 'update', 'show', 'destroy'])
     ->scoped();
 
-Route::resource('banners', BannerController::class);
+Route::resource('banners', BannerController::class)
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
