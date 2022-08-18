@@ -93,3 +93,38 @@ it('updates banner', function (): void {
         'url' => $url,
     ]);
 });
+
+it('display banners on front page', function (): void {
+    $availableBannerCount = 3;
+    $availableBanners = Banner::factory()
+        ->for(User::factory(), 'creator')
+        ->has(Attachment::factory()->withImage())
+        ->count($availableBannerCount)
+        ->sequence(
+            ['started_at' => now()->subWeek(), 'ended_at' => null],
+            ['started_at' => now()->subWeek(), 'ended_at' => now()->addWeek()],
+        )
+        ->create();
+
+    $hiddenBannerCount = 5;
+    $hiddenBanners = Banner::factory()
+        ->for(User::factory(), 'creator')
+        ->has(Attachment::factory()->withImage())
+        ->count($hiddenBannerCount)
+        ->sequence(
+            ['started_at' => now()->addWeek(), 'ended_at' => null],
+            ['started_at' => now()->addWeek(), 'ended_at' => now()->addMonths(1)],
+            ['started_at' => now()->subMonth(), 'ended_at' => now()->subWeek()],
+            ['started_at' => now()->subWeek(), 'ended_at' => now()->subDay()],
+            ['started_at' => now()->subDay(), 'ended_at' => now()->subMinute()],
+        )
+        ->create();
+
+    $page = get(route('index'))->assertSuccessful();
+
+    $page
+        ->assertSee($availableBanners->pluck('url')->toArray())
+        ->assertSee($availableBanners->pluck('title.zh_Hant_TW')->toArray())
+        ->assertSee($availableBanners->pluck('description.zh_Hant_TW')->filter()->toArray())
+        ->assertDontSee($hiddenBanners->pluck('url')->toArray());
+});

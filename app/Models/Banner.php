@@ -64,11 +64,11 @@ final class Banner extends Model
     public function scopeWhereActive(Builder $query): Builder
     {
         return $query
-            ->where('started_at', '>=', DB::raw('NOW()'))
-            ->orWhere(
+            ->where('started_at', '<=', now())
+            ->where(
                 fn (Builder $q) => $q
                     ->whereNull('ended_at')
-                    ->orWhere('ended_at', '<', DB::raw('NOW()')),
+                    ->orWhere('ended_at', '>', now()),
             );
     }
 }
