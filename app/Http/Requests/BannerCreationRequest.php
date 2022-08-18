@@ -19,7 +19,7 @@ final class BannerCreationRequest extends FormRequest
             'title' => ['required', 'array'],
             'title.*' => ['nullable', 'string', 'max:255'],
             'title.zh_Hant_TW' => ['required'],
-            'description' => ['required', 'array'],
+            'description' => ['present', 'array'],
             'description.*' => ['nullable', 'string', 'max:255'],
             'image_uuid' => ['required', Rule::exists('attachments', 'uuid')],
             'image_description' => ['required', 'array'],

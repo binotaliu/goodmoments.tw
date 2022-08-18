@@ -32,6 +32,11 @@ final class Banner extends Model
         'location' => BannerLocation::class,
     ];
 
+    protected $dates = [
+        'started_at',
+        'ended_at',
+    ];
+
     protected $appends = [
         'image',
         'image_uuid',
