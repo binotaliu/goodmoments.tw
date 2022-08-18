@@ -31,7 +31,7 @@
                                 <div href="{{ $banner->url }}" class="flex flex-col">
                                     <x-external-link class="overflow-hidden" :href="$banner->url">
                                         <img
-                                            src="https://picsum.photos/2560/960?random={{ $banner->image->url }}"
+                                            src="{{ $banner->image->url }}"
                                             width="2560"
                                             height="960"
                                             alt="{{ $banner->image_description }}"
