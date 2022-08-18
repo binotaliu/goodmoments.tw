@@ -1,4 +1,4 @@
-<x-layout :title="$product->name . ' – ' . $product->category->name . ' – ' . config('app.name')">
+<x-layout :title="$product->name . ' – ' . $product->category->name">
     <div class="max-w-4xl mx-auto mb-32 px-6">
         <div class="flex gap-8">
             <div
