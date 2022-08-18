@@ -13,6 +13,7 @@ import Logo from './Logo.vue'
 import Modal from './Modal.vue'
 import NavItem from './NavItem.vue'
 import Paginator from './Paginator.vue'
+import RichEditor from './RichEditor.vue'
 import Textarea from './Textarea.vue'
 import TextLogo from './TextLogo.vue'
 
@@ -33,6 +34,7 @@ export default {
     Vue.component('GMModal', Modal)
     Vue.component('GMNavItem', NavItem)
     Vue.component('GMPaginator', Paginator)
+    Vue.component('GMRichEditor', RichEditor)
     Vue.component('GMTextarea', Textarea)
     Vue.component('GMTextLogo', TextLogo)
   }

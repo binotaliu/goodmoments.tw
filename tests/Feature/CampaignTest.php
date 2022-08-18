@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Article;
 use App\Models\Attachment;
 use App\Models\Banner;
 use App\Models\User;
@@ -127,4 +128,68 @@ it('display banners on front page', function (): void {
         ->assertSee($availableBanners->pluck('title.zh_Hant_TW')->toArray())
         ->assertSee($availableBanners->pluck('description.zh_Hant_TW')->filter()->toArray())
         ->assertDontSee($hiddenBanners->pluck('url')->toArray());
+});
+
+it('creates new article', function (): void {
+    $user = User::factory()->active()->create();
+    actingAs($user);
+
+    $coverImage = Attachment
+        ::factory()
+        ->withImage()
+        ->withMeta(['type' => 'articleCoverImage'])
+        ->create();
+
+    $socialImage = Attachment
+        ::factory()
+        ->withImage()
+        ->withMeta(['type' => 'articleSocialImage'])
+        ->create();
+
+    post(route('admin.articles.store'), [
+        'slug' => $slug = 'article-slug-' . random_int(1, 100000),
+        'title' => [
+            'en' => 'Article title',
+            'zh_Hant_TW' => '文章標題',
+            'zh_Oan' => '文章標題',
+        ],
+        'description' => [
+            'en' => 'Article description',
+            'zh_Hant_TW' => '文章描述',
+            'zh_Oan' => '文章描述',
+        ],
+        'cover_image_uuid' => $coverImage->uuid,
+        'social_image_uuid' => $socialImage->uuid,
+        'content' => [
+            'en' => 'Article content',
+            'zh_Hant_TW' => '文章內容',
+            'zh_Oan' => '文章內容',
+        ],
+    ])->assertValid()->assertRedirect();
+
+    assertDatabaseHas('articles', [
+        'creator_id' => $user->id,
+        'slug' => $slug,
+    ]);
+});
+
+it('updates an article', function (): void {
+    $user = User::factory()->create();
+
+    actingAs($user);
+    $article = Article::factory()->withImages()->for($user, 'creator')->create();
+
+    put(route('admin.articles.update', [$article]), [
+        'slug' => 'new-slug-' . $article->slug,
+        'title' => $article->getTranslations('title'),
+        'description' => $article->getTranslations('description'),
+        'cover_image_uuid' => $article->cover_image_uuid,
+        'social_image_uuid' => $article->social_image_uuid,
+        'content' => $article->getTranslations('content'),
+    ])->assertValid()->assertRedirect();
+
+    assertDatabaseHas('articles', [
+        'id' => $article->id,
+        'slug' => 'new-slug-' . $article->slug,
+    ]);
 });

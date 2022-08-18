@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AttachmentController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -39,4 +40,7 @@ Route::resource('categories.products', ProductController::class)
     ->scoped();
 
 Route::resource('banners', BannerController::class)
+    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+
+Route::resource('articles', ArticleController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);

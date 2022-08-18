@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
@@ -45,5 +46,7 @@ final class DatabaseSeeder extends Seeder
             ->for(User::factory(), 'creator')
             ->withImage()
             ->create();
+
+        Article::factory()->count(25)->withImages()->create();
     }
 }

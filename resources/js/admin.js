@@ -2,6 +2,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
+import CKEditor from '@ckeditor/ckeditor5-vue'
 
 import components from '../components'
 import AdminLayout from '../layouts/Admin.vue'
@@ -21,6 +22,7 @@ createInertiaApp({
     const app = createApp({ render: () => h(App, props) })
     app.use(plugin)
     app.use(components)
+    app.use(CKEditor)
     app.config.globalProperties.$route = route
     app.config.globalProperties.$dayjs = dayjs
 

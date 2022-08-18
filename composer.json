@@ -15,6 +15,7 @@
         "mallardduck/blade-boxicons": "^2.3",
         "spatie/laravel-csp": "^2.7",
         "spatie/laravel-translatable": "^6.0",
+        "stevebauman/purify": "^5.0",
         "symfony/mime": "^6.1",
         "terpomoj/base64-url-helpers": "^0.1.0",
         "tightenco/ziggy": "^1.4"

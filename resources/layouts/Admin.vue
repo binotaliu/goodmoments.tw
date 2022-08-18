@@ -55,6 +55,12 @@
                   橫幅
                 </div>
               </GMNavItem>
+              <GMNavItem :href="$route('admin.articles.index')">
+                <div class="inline-flex items-center gap-2">
+                  <PencilIcon class="h-4 w-4" />
+                  文章
+                </div>
+              </GMNavItem>
             </template>
           </GMNavItem>
         </ul>
@@ -72,6 +78,6 @@
 </template>
 
 <script setup>
-import { CollectionIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
+import { CollectionIcon, PencilIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
 const year = (new Date()).getFullYear()
 </script>
