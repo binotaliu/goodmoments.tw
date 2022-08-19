@@ -26,21 +26,23 @@ Route::middleware(['signed'])
     ->resource('password-setup', SetupPasswordController::class)
     ->only(['index', 'store']);
 
-Route::resource('attachments', AttachmentController::class)
-    ->only(['store']);
+Route::middleware('auth')->group(function () {
+    Route::resource('attachments', AttachmentController::class)
+        ->only(['store']);
 
-Route::resource('users', UserController::class)
-    ->only(['index', 'show', 'store', 'update', 'create']);
+    Route::resource('users', UserController::class)
+        ->only(['index', 'show', 'store', 'update', 'create']);
 
-Route::resource('categories', CategoryController::class)
-    ->only(['index', 'show', 'create', 'store', 'destroy']);
+    Route::resource('categories', CategoryController::class)
+        ->only(['index', 'show', 'create', 'store', 'destroy']);
 
-Route::resource('categories.products', ProductController::class)
-    ->only(['index', 'create', 'store', 'update', 'show', 'destroy'])
-    ->scoped();
+    Route::resource('categories.products', ProductController::class)
+        ->only(['index', 'create', 'store', 'update', 'show', 'destroy'])
+        ->scoped();
 
-Route::resource('banners', BannerController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    Route::resource('banners', BannerController::class)
+        ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 
-Route::resource('articles', ArticleController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+    Route::resource('articles', ArticleController::class)
+        ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+});
