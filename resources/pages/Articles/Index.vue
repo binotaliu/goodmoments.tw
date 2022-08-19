@@ -40,13 +40,13 @@
           </td>
           <td>
             <div class="flex justify-center gap-2">
-<!--              <GMLinkButton-->
-<!--                :href="$route('articles.show', [article.slug])"-->
-<!--                size="sm"-->
-<!--                class="flex items-center gap-2"-->
-<!--              >-->
-<!--                <ExternalLinkIcon class="h-4 w-4" /> 開啟-->
-<!--              </GMLinkButton>-->
+              <!--              <GMLinkButton-->
+              <!--                :href="$route('articles.show', [article.slug])"-->
+              <!--                size="sm"-->
+              <!--                class="flex items-center gap-2"-->
+              <!--              >-->
+              <!--                <ExternalLinkIcon class="h-4 w-4" /> 開啟-->
+              <!--              </GMLinkButton>-->
               <GMLinkButton
                 :href="$route('admin.articles.edit', [article.id])"
                 size="sm"

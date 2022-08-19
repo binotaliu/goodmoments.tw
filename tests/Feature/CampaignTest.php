@@ -6,17 +6,15 @@ use App\Models\Article;
 use App\Models\Attachment;
 use App\Models\Banner;
 use App\Models\User;
-
 use Illuminate\Support\Str;
 use Inertia\Testing\AssertableInertia;
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function Pest\Laravel\put;
 
-it('lists banners', function () {
+it('lists banners', function (): void {
     actingAs(User::factory()->create());
 
     Banner::factory()
@@ -61,7 +59,6 @@ it('creates banner', function (): void {
         'started_at' => now()->toIso8601String(),
         'ended_at' => now()->addDays(7)->toIso8601String(),
     ])->assertValid()->assertRedirect();
-
 
     assertDatabaseHas('banners', [
         'creator_id' => $user->id,

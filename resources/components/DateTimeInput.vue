@@ -1,5 +1,8 @@
 <template>
-  <GMInput type="datetime-local" v-model="proxiedValue" />
+  <GMInput
+    v-model="proxiedValue"
+    type="datetime-local"
+  />
 </template>
 
 <script setup>

@@ -46,6 +46,5 @@ final class ArticleFactory extends Factory
                     'type' => 'articleSocialImage',
                 ])
             );
-
     }
 }

@@ -6,7 +6,6 @@ namespace App\Providers;
 
 use App\Paginator\LengthAwarePaginator;
 use Illuminate\Pagination\LengthAwarePaginator as IlluminatePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;

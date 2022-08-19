@@ -26,7 +26,7 @@ Route::middleware(['signed'])
     ->resource('password-setup', SetupPasswordController::class)
     ->only(['index', 'store']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function (): void {
     Route::resource('attachments', AttachmentController::class)
         ->only(['store']);
 

@@ -166,7 +166,7 @@ const form = useForm({
     en: null,
     zh_Hant_TW: null,
     zh_Oan: null
-  },
+  }
 })
 
 const coverImageAttachments = computed({
