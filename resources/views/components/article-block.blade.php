@@ -5,7 +5,7 @@
         <a href="{{ route('articles.show', $article) }}">
             <img
                 class="bg-center motion-safe:group-hover:scale-[1.03] transition-transform"
-                src="https://picsum.photos/960/256?{{ $article->cover_image->url }}"
+                src="{{ $article->cover_image->url }}"
                 aria-hidden="true"
                 width="960"
                 height="256"
