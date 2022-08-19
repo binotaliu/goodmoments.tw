@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProductController;
 use App\Http\Requests\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,6 @@ Route::get('categories/{category:slug}/products', [ProductController::class, 'in
 Route::get('categories/{category:slug}/products/{product:slug}', [ProductController::class, 'show'])
     ->name('categories.products.show')
     ->scopeBindings();
+
+Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
+Route::get('articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');

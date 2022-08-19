@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="-mt-8 bg-wood-100">
+    <section class="-mt-8 mb-16 bg-wood-100">
         <h3 class="sr-only">最新活動</h3>
 
         <div class="max-w-4xl mx-auto">
@@ -73,4 +73,26 @@
             </div>
         </div>
     </section>
+
+    @if($articles->isNotEmpty())
+        <section class="max-w-4xl mx-auto mb-16">
+            <h3 class="text-2xl text-wood-700 mb-4">最新消息</h3>
+            <div>
+                <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8 mb-4">
+                    @foreach($articles as $article)
+                        <li class="mb-2 last:mb-0">
+                            <x-article-block :article="$article" />
+                        </li>
+                    @endforeach
+                </ul>
+
+                <div class="text-right">
+                    <a
+                        href="{{ route('articles.index') }}"
+                        class="inline-block px-4 py-2 bg-wood-500 hover:bg-wood-400 text-white text-semibold transition-colors"
+                    >更多資訊</a>
+                </div>
+            </div>
+        </section>
+    @endif
 </x-layout>

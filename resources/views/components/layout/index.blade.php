@@ -93,7 +93,9 @@
     </div>
 </footer>
 
-@stack('footer-extensions')
+@isset($footerScripts)
+    {{ $footerScripts }}
+@endif
 
 <script type="application/ld+json">
 {
@@ -105,18 +107,19 @@
   "email": "contact@goodmoments.tw",
   "sameAs": [
     "https://www.facebook.com/%E5%8F%B0%E5%8D%97%E5%B8%82%E5%B7%A6%E9%8E%AE%E5%8D%80%E5%85%AC%E8%88%98%E7%A4%BE%E5%8D%80-199524760230777/",
-    "https://www.instagram.com/gongguan5730/",
+    "https://www.instagram.com/gongguan5730/"
   ],
   "address": {
     "@type": "PostalAddress",
     "addressCountry": "TW",
-    "postalCode": 713002",
+    "postalCode": 713002,
     "addressRegion": "台南市",
     "addressLocality": "左鎮區",
     "streetAddress": "崗林31號"
   },
-   "logo": "https://goodmoments.tw/images/logo.png",
-   "telephone": "+886-6-573-0107"
+  "image": "{{ asset('images/logo.png') }}",
+  "logo": "{{ asset('images/logo.png') }}",
+  "telephone": "+886-6-573-0107"
 }
 </script>
 </body>

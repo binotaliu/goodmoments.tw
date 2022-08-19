@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasAttachments;
+use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +11,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
+/**
+ * @mixin IdeHelperArticle
+ */
 final class Article extends Model
 {
     use HasFactory;
@@ -20,7 +24,7 @@ final class Article extends Model
 
     public array $translatable = ['title', 'description', 'content', 'content_src'];
 
-    protected $casts = ['published_at'];
+    protected $dates = ['published_at'];
 
     protected $with = ['attachments'];
     protected $appends = [
@@ -61,5 +65,10 @@ final class Article extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'creator_id');
+    }
+
+    public function scopeWherePublished(Builder $query): Builder
+    {
+        return $query->where('published_at', '<=', now());
     }
 }
