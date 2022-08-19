@@ -13,6 +13,7 @@ use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function Pest\Laravel\put;
+use function Pest\Laravel\travelTo;
 
 it('lists banners', function (): void {
     actingAs(User::factory()->create());
@@ -189,4 +190,24 @@ it('updates an article', function (): void {
         'id' => $article->id,
         'slug' => 'new-slug-' . $article->slug,
     ]);
+});
+
+it('lists only published article', function (): void {
+    $article = Article::factory()
+        ->withImages()
+        ->for(User::factory(), 'creator')
+        ->state([
+            'published_at' => now()->addMonth(),
+        ])
+        ->create();
+
+    get(route('articles.index'))
+        ->assertSuccessful()
+        ->assertDontSee($article->url);
+
+    travelTo($article->published_at->addDay());
+
+    get(route('articles.index'))
+        ->assertSuccessful()
+        ->assertSee($article->url);
 });
