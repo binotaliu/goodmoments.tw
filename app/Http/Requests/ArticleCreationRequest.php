@@ -23,6 +23,7 @@ final class ArticleCreationRequest extends FormRequest
             'description' => ['required', 'array'],
             'description.*' => ['nullable', 'string', 'max:255'],
             'description.zh_Hant_TW' => ['required', 'string', 'max:255'],
+            'published_at' => ['required', 'date'],
             'cover_image_uuid' => ['required', 'string', Rule::exists('attachments', 'uuid')->where('meta->type', 'articleCoverImage')],
             'social_image_uuid' => ['nullable', 'string', Rule::exists('attachments', 'uuid')->where('meta->type', 'articleSocialImage')],
             'content' => ['required', 'array'],

@@ -20,6 +20,8 @@ final class Article extends Model
 
     public array $translatable = ['title', 'description', 'content', 'content_src'];
 
+    protected $casts = ['published_at'];
+
     protected $with = ['attachments'];
     protected $appends = [
         'cover_image',

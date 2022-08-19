@@ -55,6 +55,16 @@
         />
       </GMFormField>
       <GMFormField
+        id="published_at"
+        error-key="published_at"
+        name="發佈時間"
+      >
+        <GMDateTimeInput
+          id="published_at"
+          v-model="form.published_at"
+        />
+      </GMFormField>
+      <GMFormField
         id="cover_image_uuid"
         name="封面圖片"
       >
@@ -147,6 +157,7 @@ const form = useForm({
     zh_Hant_TW: null,
     zh_Oan: null
   },
+  published_at: null,
   cover_image: null,
   cover_image_uuid: null,
   social_image: null,

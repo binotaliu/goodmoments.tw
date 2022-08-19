@@ -26,6 +26,7 @@ final class ArticleUpdateRequest extends FormRequest
             'description' => ['required', 'array'],
             'description.*' => ['nullable', 'string', 'max:255'],
             'description.zh_Hant_TW' => ['required', 'string', 'max:255'],
+            'published_at' => ['required', 'date'],
             'cover_image_uuid' => [
                 'required',
                 'string',

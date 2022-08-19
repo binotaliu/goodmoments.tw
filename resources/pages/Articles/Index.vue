@@ -21,7 +21,7 @@
           </th>
           <th>標題</th>
           <th class="w-40">
-            建立日期
+            發佈時間
           </th>
           <th class="w-64">
             動作
@@ -35,8 +35,8 @@
         >
           <td>{{ article.slug }}</td>
           <td>{{ article.title.zh_Hant_TW }}</td>
-          <td :title="$dayjs(article.created_at).local().format('YYYY-MM-DD HH:mm:ss')">
-            {{ $dayjs(article.created_at).local().format('YYYY-MM-DD HH:mm') }}
+          <td :title="$dayjs(article.published_at).local().format('YYYY-MM-DD HH:mm:ss')">
+            {{ $dayjs(article.published_at).local().format('YYYY-MM-DD HH:mm') }}
           </td>
           <td>
             <div class="flex justify-center gap-2">

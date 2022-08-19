@@ -26,6 +26,10 @@ final class ArticleFactory extends Factory
                 'zh_Hant_TW' => $this->faker->randomHtml,
                 'zh_Oan' => $this->faker->randomHtml,
             ],
+            'published_at' => $this->faker->dateTimeBetween(
+                '-1 year',
+                $this->faker->boolean(90) ? 'now' : '+1 year',
+            ),
         ];
     }
 

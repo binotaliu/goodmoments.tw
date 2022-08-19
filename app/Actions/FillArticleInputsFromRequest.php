@@ -29,6 +29,7 @@ final class FillArticleInputsFromRequest
             'zh_Hant_TW' => $request->input('description.zh_Hant_TW'),
             'zh_Oan' => $request->input('description.zh_Oan'),
         ];
+        $article->published_at = $request->input('published_at');
         $article->content = [
             'en' => $this->purifyContent($request->input('content.en')),
             'zh_Hant_TW' => $this->purifyContent($request->input('content.zh_Hant_TW')),

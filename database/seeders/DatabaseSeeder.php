@@ -47,6 +47,11 @@ final class DatabaseSeeder extends Seeder
             ->withImage()
             ->create();
 
-        Article::factory()->count(25)->withImages()->create();
+        Article
+            ::factory()
+            ->count(25)
+            ->for(User::factory(), 'creator')
+            ->withImages()
+            ->create();
     }
 }

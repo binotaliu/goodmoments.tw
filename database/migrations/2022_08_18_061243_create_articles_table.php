@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('creator_id');
 
+            $table->timestamp('published_at');
+
             $table->timestamps();
             $table->softDeletes();
 
