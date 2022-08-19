@@ -19,6 +19,10 @@ final class App extends Policy
             return false;
         }
 
+        if ($response->isServerError() && app()->environment('local', 'stage')) {
+            return false;
+        }
+
         return parent::shouldBeApplied($request, $response);
     }
 
