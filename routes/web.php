@@ -30,3 +30,5 @@ Route::get('categories/{category:slug}/products/{product:slug}', [ProductControl
 
 Route::get('articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
+
+Route::feeds();
