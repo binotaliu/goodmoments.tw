@@ -53,5 +53,7 @@ final class DatabaseSeeder extends Seeder
             ->for(User::factory(), 'creator')
             ->withImages()
             ->create();
+
+        $this->call(SysvalSeeder::class);
     }
 }
