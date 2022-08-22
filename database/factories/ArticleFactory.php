@@ -13,13 +13,13 @@ final class ArticleFactory extends Factory
             'slug' => $this->faker->unique()->slug,
             'title' => [
                 'en' => $this->faker->sentence,
-                'zh_Hant_TW' => $this->faker->sentence,
-                'zh_Oan' => $this->faker->sentence,
+                'zh_Hant_TW' => $this->faker->realTextBetween(10, 24),
+                'zh_Oan' => $this->faker->realTextBetween(10, 24),
             ],
             'description' => [
                 'en' => $this->faker->sentence,
-                'zh_Hant_TW' => $this->faker->sentence,
-                'zh_Oan' => $this->faker->sentence,
+                'zh_Hant_TW' => $this->faker->realTextBetween(26, 128),
+                'zh_Oan' => $this->faker->realTextBetween(26, 128),
             ],
             'content' => [
                 'en' => $this->faker->randomHtml,

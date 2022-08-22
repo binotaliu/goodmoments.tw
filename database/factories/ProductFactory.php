@@ -27,8 +27,8 @@ final class ProductFactory extends Factory
         return [
             'slug' => $this->faker->unique()->slug,
             'name' => [
-                'zh_Hant_TW' => $this->faker->words(asText: true),
-                'zh_Oan' => 'oan:' . $this->faker->words(asText: true),
+                'zh_Hant_TW' => mb_substr($this->faker->realTextBetween(10, 16), random_int(0, 8)),
+                'zh_Oan' => 'oan:' . mb_substr($this->faker->realTextBetween(10, 16), random_int(0, 8)),
                 'en' => 'en:' . $this->faker->words(asText: true),
             ],
 
@@ -45,8 +45,8 @@ final class ProductFactory extends Factory
                 'en' => 'Buy Now',
             ],
             'description' => [
-                'zh_Hant_TW' => $this->faker->paragraphs(random_int(1, 3), asText: true),
-                'zh_Oan' => 'zh_Oan:' . $this->faker->paragraphs(random_int(1, 3), asText: true),
+                'zh_Hant_TW' => $this->faker->realTextBetween(160, 320),
+                'zh_Oan' => 'zh_Oan:' . $this->faker->realTextBetween(160, 320),
                 'en' => 'en:' . $this->faker->paragraphs(random_int(1, 3), asText: true),
             ],
         ];
