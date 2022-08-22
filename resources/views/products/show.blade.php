@@ -52,4 +52,23 @@
             </div>
         </div>
     </div>
+
+    <x-slot:footerScripts>
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "{{ $product->name }}",
+                "image": "{{ $product->cover_image->url }}",
+                "description": "{{ $product->description }}",
+                "offers": {
+                    "@type": "Offer",
+                    "priceCurrency": "TWD",
+                    "price": "{{ $product->price }}",
+                    "url": "{{ $product->store_url }}",
+                    "itemCondition": "https://schema.org/NewCondition"
+                }
+            }
+        </script>
+    </x-slot:footerScripts>
 </x-layout>
