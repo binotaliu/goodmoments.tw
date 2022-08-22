@@ -24,7 +24,9 @@
     </div>
 
     <div class="max-w-4xl mx-auto px-4 mx:px-6 mb-16">
-        {!! $article->content !!}
+        <article class="prose lg:prose-xl prose-neutral">
+            {!! $article->content !!}
+        </article>
     </div>
 
     <x-slot:footerScripts>
