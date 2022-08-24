@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LifeController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProductController;
@@ -39,5 +40,8 @@ Route::get('about', AboutController::class)->name('about');
 Route::get('life', LifeController::class)->name('life');
 
 Route::get('map', MapController::class)->name('map');
+
+Route::get('contact', [ContactController::class, 'form'])->name('contact.form');
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::feeds();
