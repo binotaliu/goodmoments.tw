@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\SysvalKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 
@@ -17,22 +18,26 @@ final class Sysval extends Model
     public $incrementing = false;
     public $timestamps = false;
 
-    public static function get(string $key, mixed $default = null): mixed
+    protected $casts = [
+        'value' => 'json',
+    ];
+
+    public static function get(SysvalKey $key, mixed $default = null): mixed
     {
         return Cache::remember(
-            self::CACHE_PREFIX . base64_url_encode($key),
+            self::CACHE_PREFIX . $key->value,
             now()->addSeconds(self::CACHE_EXPIRES_SECONDS),
-            static fn () => static::where('key', $key)->value('value'),
+            static fn () => static::where('key', $key->value)->value('value'),
         ) ?? $default;
     }
 
-    public static function set(string $key, mixed $value): mixed
+    public static function set(SysvalKey $key, mixed $value): mixed
     {
-        $sysval = static::firstOrNew(['key' => $key]);
+        $sysval = static::firstOrNew(['key' => $key->value]);
         $sysval->value = $value;
         $sysval->save();
 
-        Cache::forget(self::CACHE_PREFIX . base64_url_encode($key));
+        Cache::forget(self::CACHE_PREFIX . $key->value);
         return $value;
     }
 }

@@ -7,8 +7,10 @@ namespace Database\Seeders;
 use App\Models\Article;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Member;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -52,6 +54,26 @@ final class DatabaseSeeder extends Seeder
             ->count(25)
             ->for(User::factory(), 'creator')
             ->withImages()
+            ->create();
+
+        Member
+            ::factory()
+            ->count(15)
+            ->withImage()
+            ->state(new Sequence(
+                ['row' => 0, 'priority' => 0],
+                ['row' => 0, 'priority' => 1],
+                ['row' => 1, 'priority' => 0],
+                ['row' => 1, 'priority' => 1],
+                ['row' => 1, 'priority' => 2],
+                ['row' => 1, 'priority' => 3],
+                ['row' => 1, 'priority' => 4],
+                ['row' => 1, 'priority' => 5],
+                ['row' => 2, 'priority' => 1],
+                ['row' => 2, 'priority' => 2],
+                ['row' => 2, 'priority' => 3],
+                ['row' => 2, 'priority' => 4],
+            ))
             ->create();
 
         $this->call(SysvalSeeder::class);
