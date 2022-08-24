@@ -13,7 +13,9 @@
         <title>好時・左鎮公舘</title>
     @endif
 
-    @stack('header-extensions')
+    @isset($headerExtensions)
+        {{ $headerExtensions}}
+    @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'], 'build/front')
 </head>
 <body class="overflow-x-hidden antialiased">

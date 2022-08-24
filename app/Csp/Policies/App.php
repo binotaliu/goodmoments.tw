@@ -15,6 +15,7 @@ final class App extends Policy
 {
     public function shouldBeApplied(Request $request, Response $response): bool
     {
+        return false;
         if ($request->routeIs('telescope')) {
             return false;
         }

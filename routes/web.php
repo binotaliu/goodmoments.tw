@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\LifeController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\ProductController;
 use App\Http\Requests\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +37,7 @@ Route::get('articles/{article:slug}', [ArticleController::class, 'show'])->name(
 Route::get('about', AboutController::class)->name('about');
 
 Route::get('life', LifeController::class)->name('life');
+
+Route::get('map', MapController::class)->name('map');
 
 Route::feeds();

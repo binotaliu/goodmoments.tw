@@ -8,4 +8,5 @@ enum SysvalKey: string
 {
     case about__description = 'about:description';
     case life__blocks = 'life:blocks';
+    case map_description = 'map:description';
 }

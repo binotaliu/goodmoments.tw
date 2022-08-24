@@ -44,5 +44,11 @@ final class SysvalSeeder extends Seeder
                 ['left', 'right', 'left', 'right', 'left', 'right'],
             ),
         );
+
+        Sysval::set(SysvalKey::map_description, [
+            'en' => fake()->paragraph,
+            'zh_Oan' => fake()->realTextBetween(120, 240),
+            'zh_Hant_TW' => fake()->realTextBetween(120, 240),
+        ]);
     }
 }

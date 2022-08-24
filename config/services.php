@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'map' => [
+        'tileLayer' => env('MAP_TILELAYER'),
+        'tileLayerAttribution' => env('MAP_TILELAYER_ATTRIBUTION'),
+    ],
 ];
