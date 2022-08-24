@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('attachmentables', static function (Blueprint $table): void {
             $table->bigInteger('attachment_id');
-            $table->bigInteger('attachmentable_id');
+            $table->string('attachmentable_id');
             $table->string('attachmentable_type');
 
             $table->unique(['attachment_id', 'attachmentable_id', 'attachmentable_type'], 'attachmentables_unique');

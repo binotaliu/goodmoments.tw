@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LifeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Requests\IndexController;
 use Illuminate\Support\Facades\Route;
@@ -33,5 +34,7 @@ Route::get('articles', [ArticleController::class, 'index'])->name('articles.inde
 Route::get('articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
 
 Route::get('about', AboutController::class)->name('about');
+
+Route::get('life', LifeController::class)->name('life');
 
 Route::feeds();

@@ -44,7 +44,7 @@
                 >特色產品</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('categories/workshops') }}">體驗課程</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('about') }}" :active="Route::current()->is('about')">關於我們</x-layout.nav-item>
-                <x-layout.nav-item href="{{ url('guide') }}">食衣住行育樂</x-layout.nav-item>
+                <x-layout.nav-item href="{{ url('life') }}" :active="Route::current()->is('life')">食衣住行育樂</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('maps') }}">交通資訊</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('contact') }}">聯絡我們</x-layout.nav-item>
             </ul>

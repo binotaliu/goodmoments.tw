@@ -7,7 +7,7 @@
     <main class="max-w-4xl mx-auto px-4 mx:px-6 mb-16">
         <article class="flex items-center mb-16">
             <div class="w-full md:w-2/3">
-                {!! $description !!}
+                {!! $description['zh_Hant_TW'] !!}
             </div>
             <div class="w-1/3 hidden md:block" aria-hidden="true">
                 <div class="flex flex-col justify-center items-center gap-2 py-6">
