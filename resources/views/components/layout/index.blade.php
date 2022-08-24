@@ -124,5 +124,7 @@
   "telephone": "+886-6-573-0107"
 }
 </script>
+
+@includeIf('components.layout.analytics')
 </body>
 </html>
