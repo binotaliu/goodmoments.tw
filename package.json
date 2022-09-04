@@ -18,7 +18,7 @@
         "alpinejs": "^3.10.3",
         "autoprefixer": "^10.4.7",
         "axios": "^0.27.2",
-        "dotenv": "^16.0.1",
+        "dotenv": "^16.0.2",
         "eslint": "^8.22.0",
         "eslint-config-standard": "^17.0.0",
         "eslint-plugin-tailwindcss": "^3.6.0",
