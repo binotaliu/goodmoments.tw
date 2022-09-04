@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('sysvals', static function (Blueprint $table) {
+        Schema::create('sysvals', static function (Blueprint $table): void {
             $table->string('key')->unique();
             $table->json('value');
         });

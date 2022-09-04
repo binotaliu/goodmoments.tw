@@ -81,7 +81,6 @@ it('creates a product inside a category', function (): void {
         ->withMeta(['type' => Product::ATTACHMENT_TYPE_IMAGE])
         ->create();
 
-
     post(route('admin.categories.products.store', $category), [
         'slug' => $slug = 'product-slug-' . time(),
         'name' => [

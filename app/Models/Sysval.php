@@ -42,6 +42,7 @@ final class Sysval extends Model
         $sysval->save();
 
         Cache::forget(self::CACHE_PREFIX . $key->value);
+
         return $value;
     }
 
