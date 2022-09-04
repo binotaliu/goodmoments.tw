@@ -52,6 +52,8 @@
         "lint": [
             "@php ./vendor/bin/pint -vvv"
         ],
+        "vendors:publish": [
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
