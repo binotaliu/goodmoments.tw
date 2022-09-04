@@ -67,8 +67,8 @@ jobs:
           npm run build:front
           npm run build:admin
 
-      - name: Publish Vendor Assets
-        run: composer run vendors:publish
+      # - name: Publish Vendor Assets
+      #   run: composer run vendors:publish
 
       - name: Upload Compiled Resources
         uses: actions/upload-artifact@v2
