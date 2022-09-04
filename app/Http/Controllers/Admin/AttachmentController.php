@@ -26,7 +26,6 @@ final class AttachmentController
         throw_if(empty($file), ValidationException::withMessages(['file' => __('validation.file', ['attribute' => 'file'])]));
 
         $meta = $request->input('meta', []);
-        ray($meta);
 
         if ($existing = Attachment::withFile($file)->withMeta($meta)->first()) {
             return tap($existing)->touch();
