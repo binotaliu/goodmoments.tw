@@ -163,6 +163,7 @@ it('creates new article', function (): void {
             'zh_Hant_TW' => '文章內容',
             'zh_Oan' => '文章內容',
         ],
+        'published_at' => now(),
     ])->assertValid()->assertRedirect();
 
     assertDatabaseHas('articles', [
@@ -184,6 +185,7 @@ it('updates an article', function (): void {
         'cover_image_uuid' => $article->cover_image_uuid,
         'social_image_uuid' => $article->social_image_uuid,
         'content' => $article->getTranslations('content'),
+        'published_at' => $article->published_at,
     ])->assertValid()->assertRedirect();
 
     assertDatabaseHas('articles', [
