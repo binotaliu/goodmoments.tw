@@ -1,0 +1,120 @@
+name: Tests
+
+on:
+  push:
+    branches: [ '**', '!dependabot/**' ]
+  pull_request_target:
+    types: [ opened, edited, reopened, synchronize, unlocked ]
+
+permissions: read-all
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: NPM Install
+        uses: bahmutov/npm-install@v1
+
+      - name: Composer Install
+        uses: ./.github/actions/composer-install
+
+      - name: ESlint
+        run: npm run lint
+
+      - name: Pint
+        run: composer lint -- --test
+
+  static-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: spatie/x-ray
+
+      - name: Composer Install
+        uses: ./.github/actions/composer-install
+
+      - name: Prepare Laravel
+        uses: ./.github/actions/prepare-laravel
+
+      - name: Check for ray calls
+        run: x-ray . --compact --github
+
+  vite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Composer Install
+        uses: ./.github/actions/composer-install
+
+      - name: NPM Install
+        uses: bahmutov/npm-install@v1
+
+      - name: Vite
+        run: |
+          npm run build:front
+          npm run build:admin
+
+      - name: Publish Vendor Assets
+        run: composer run vendors:publish
+
+      - name: Upload Compiled Resources
+        uses: actions/upload-artifact@v2
+        with:
+          name: vite
+          path: |
+            web/public/build
+            web/public/vendor
+
+  tests:
+    runs-on: ubuntu-latest
+    needs: vite
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with: { php-version: 8.1 }
+
+      - name: Composer Install
+        uses: ./.github/actions/composer-install
+
+      - name: Prepare Database
+        uses: ./.github/actions/prepare-database
+
+      - name: Prepare Laravel
+        uses: ./.github/actions/prepare-laravel
+
+      - name: Download Vite Resources
+        uses: actions/download-artifact@v2
+        with: { name: vite, path: web/public }
+
+      - name: Run PEST
+        run: php artisan test --coverage
+
+      - name: Upload Logs
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with: { name: logs, path: web/storage/logs }
+
+  clean-up:
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: tests
+    steps:
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: vite
+          failOnError: false
