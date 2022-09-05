@@ -39,7 +39,7 @@ Route::get('about', AboutController::class)->name('about');
 
 Route::get('life', LifeController::class)->name('life');
 
-Route::get('map', MapController::class)->name('map');
+Route::get('maps', MapController::class)->name('map');
 
 Route::get('contact', [ContactController::class, 'form'])->name('contact.form');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');

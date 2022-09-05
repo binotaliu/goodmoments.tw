@@ -9,6 +9,7 @@
         "cybercog/laravel-optimus": "^3.8",
         "guzzlehttp/guzzle": "^7.5",
         "inertiajs/inertia-laravel": "^0.6.3",
+        "jenssegers/agent": "^2.6",
         "laravel/fortify": "^1.13.3",
         "laravel/framework": "^9.27",
         "laravel/sanctum": "^2.15.1",

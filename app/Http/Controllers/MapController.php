@@ -11,7 +11,7 @@ final class MapController extends Controller
 {
     public function __invoke(Request $request): View
     {
-        return view('map', [
+        return view('maps', [
             'travelDescription' => Sysval::get(SysvalKey::map_description),
         ]);
     }
