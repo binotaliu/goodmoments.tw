@@ -8,14 +8,13 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use App\Notifications\PasswordSetupNotification;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
 final class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index(): InertiaResponse
     {
         return Inertia::render('Users/Index', [
             'users' => User::paginate(),
