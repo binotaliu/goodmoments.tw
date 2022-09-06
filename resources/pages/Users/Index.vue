@@ -48,11 +48,11 @@
           <td>
             <div class="flex justify-center gap-2">
               <GMLinkButton
-                :href="$route('admin.users.show', [user.id])"
+                :href="$route('admin.users.edit', [user.id])"
                 size="sm"
                 class="flex items-center gap-2"
               >
-                <EyeIcon class="h-4 w-4" /> 檢視
+                <PencilIcon class="h-4 w-4" /> 編輯
               </GMLinkButton>
               <GMButton
                 size="sm"
@@ -70,7 +70,7 @@
   </GMCard>
 </template>
 <script setup>
-import { CheckIcon, PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
+import { CheckIcon, PencilIcon, PlusIcon, TrashIcon } from '@heroicons/vue/solid'
 
 defineProps({
   users: { type: Object, required: true }

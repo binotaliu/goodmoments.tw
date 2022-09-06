@@ -33,7 +33,7 @@ final class UserController extends Controller
 
         $user->notify(new PasswordSetupNotification($user));
 
-        return Redirect::route('admin.users.show', ['user' => $user]);
+        return Redirect::route('admin.users.edit', ['user' => $user]);
     }
 
     public function edit(User $user): InertiaResponse
@@ -51,7 +51,7 @@ final class UserController extends Controller
         $user->is_active = $request->boolean('is_active');
         $user->save();
 
-        return Redirect::route('admin.users.show', ['user' => $user]);
+        return Redirect::route('admin.users.edit', ['user' => $user]);
     }
 
     public function create(): InertiaResponse
