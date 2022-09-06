@@ -11,6 +11,12 @@
 
       <nav class="px-4">
         <ul class="flex w-full flex-col items-stretch gap-2">
+          <GMNavItem :href="$route('admin.dashboard')">
+            <div class="inline-flex items-center gap-2">
+              <HomeIcon class="h-4 w-4" />
+              首頁
+            </div>
+          </GMNavItem>
           <GMNavItem>
             <div class="inline-flex items-center gap-2">
               <UsersIcon class="h-4 w-4" />
@@ -78,6 +84,6 @@
 </template>
 
 <script setup>
-import { CollectionIcon, PencilIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
+import { CollectionIcon, HomeIcon, PencilIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
 const year = (new Date()).getFullYear()
 </script>

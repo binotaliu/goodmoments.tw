@@ -11,7 +11,7 @@ import dayjs from './dayjs'
 
 // noinspection JSIgnoredPromiseFromCall
 createInertiaApp({
-  title: (title) => title ? `${title} – 管理面板 – 左鎮・好時公舘` : `管理面板 – 左鎮・好時公舘`,
+  title: (title) => title ? `${title} – 管理面板 – 左鎮・好時公舘` : '管理面板 – 左鎮・好時公舘',
   resolve: (name) =>
     resolvePageComponent(`../pages/${name}.vue`, import.meta.glob('../pages/**/*.vue'))
       .then((component) => {

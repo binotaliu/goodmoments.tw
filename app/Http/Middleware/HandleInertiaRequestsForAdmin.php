@@ -40,6 +40,9 @@ final class HandleInertiaRequestsForAdmin extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
+            'app' => [
+                'user' => fn () => $request->user(),
+            ],
             'flash' => [
                 'message' => fn () => $request->session()->get('flash.message'),
             ],

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AttachmentController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SetupPasswordController;
 use App\Http\Controllers\Admin\UserController;
@@ -20,13 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', fn () => view('welcome'));
-
 Route::middleware(['signed'])
     ->resource('password-setup', SetupPasswordController::class)
     ->only(['index', 'store']);
 
 Route::middleware('auth')->group(function (): void {
+    Route::get('dashboard', DashboardController::class)->name('dashboard');
+
     Route::resource('attachments', AttachmentController::class)
         ->only(['store']);
 
