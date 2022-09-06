@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\CategoryCreationRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Attachmentable;
 use App\Models\Category;
 use App\Models\Product;
@@ -23,13 +24,6 @@ final class CategoryController
         ]);
     }
 
-    public function show(Category $category): InertiaResponse
-    {
-        return Inertia::render('Categories/Form', [
-            'category' => $category,
-        ]);
-    }
-
     public function create(): InertiaResponse
     {
         return Inertia::render('Categories/Form');
@@ -44,7 +38,24 @@ final class CategoryController
 
         $category->save();
 
-        return Redirect::route('admin.categories.show', $category);
+        return Redirect::route('admin.categories.edit', $category);
+    }
+
+    public function edit(Category $category): InertiaResponse
+    {
+        return Inertia::render('Categories/Form', [
+            'category' => $category,
+        ]);
+    }
+
+    public function update(CategoryUpdateRequest $request, Category $category): RedirectResponse
+    {
+        $category->slug = $request->slug;
+        $category->name = $request->name;
+
+        $category->save();
+
+        return Redirect::route('admin.categories.edit', $category);
     }
 
     public function destroy(Category $category): RedirectResponse

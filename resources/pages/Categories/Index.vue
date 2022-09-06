@@ -42,11 +42,11 @@
                 <ShoppingBagIcon class="h-4 w-4" /> 產品列表
               </GMLinkButton>
               <GMLinkButton
-                :href="$route('admin.categories.show', [category.id])"
+                :href="$route('admin.categories.edit', [category.id])"
                 size="sm"
                 class="flex items-center gap-2"
               >
-                <EyeIcon class="h-4 w-4" /> 檢視
+                <PencilIcon class="h-4 w-4" /> 編輯
               </GMLinkButton>
               <GMButton
                 size="sm"
@@ -93,7 +93,7 @@
   </Teleport>
 </template>
 <script setup>
-import { PlusIcon, ShoppingBagIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
+import { PencilIcon, PlusIcon, ShoppingBagIcon, TrashIcon } from '@heroicons/vue/solid'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 

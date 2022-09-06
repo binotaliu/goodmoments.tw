@@ -9,6 +9,7 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
+use function Pest\Laravel\put;
 
 it('lists categories', function (): void {
     actingAs(User::factory()->create());
@@ -39,6 +40,25 @@ it('can create category', function (): void {
 
     assertDatabaseHas('categories', [
         'slug' => $slug,
+    ]);
+});
+
+it('updates a category', function (): void {
+    $user = User::factory()->active()->create();
+    $category = Category::factory()->create();
+
+    actingAs($user);
+    put(route('admin.categories.update', ['category' => $category]), [
+        'slug' => $newSlug = 'new-slug-' . time(),
+        'name' => [
+            'en' => 'Category name',
+            'zh_Hant_TW' => '分類名稱',
+            'zh_Oan' => '分類名',
+        ],
+    ])->assertValid()->assertRedirect();
+
+    assertDatabaseHas('categories', [
+        'slug' => $newSlug,
     ]);
 });
 
