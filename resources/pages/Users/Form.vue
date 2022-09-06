@@ -1,4 +1,6 @@
 <template>
+  <InertiaHead :title="isCreating ? '建立使用者' : `${user.name} – 編輯使用者`" />
+
   <div class="mb-4 flex w-full items-center justify-between">
     <h1
       v-if="isCreating"

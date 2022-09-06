@@ -1,4 +1,6 @@
 <template>
+  <InertiaHead :title="isCreating ? '建立橫幅' : `${banner.title.zh_Hant_TW} – 編輯橫幅`" />
+
   <div class="mb-4 flex w-full items-center justify-between">
     <h1
       v-if="isCreating"

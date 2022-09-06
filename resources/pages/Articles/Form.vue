@@ -1,4 +1,6 @@
 <template>
+  <InertiaHead :title="isCreating ? '建立文章' : `${article.title.zh_Hant_TW} - 編輯文章`" />
+
   <div class="mb-4 flex w-full items-center justify-between">
     <h1
       v-if="isCreating"

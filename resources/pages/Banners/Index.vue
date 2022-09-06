@@ -1,4 +1,6 @@
 <template>
+  <InertiaHead title="橫幅列表" />
+
   <div class="mb-4 flex w-full items-center justify-between">
     <h1 class="text-2xl font-semibold text-wood-600">
       橫幅列表

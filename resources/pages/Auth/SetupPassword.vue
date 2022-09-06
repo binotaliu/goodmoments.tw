@@ -1,4 +1,6 @@
 <template>
+  <InertiaHead title="設定密碼" />
+
   <div class="center-center flex w-full flex-col gap-2">
     <h1 class="text-2xl font-semibold">
       設定密碼

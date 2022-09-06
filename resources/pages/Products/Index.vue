@@ -1,4 +1,6 @@
 <template>
+  <InertiaHead :title="`產品列表 – ${category.name.zh_Hant_TW}`" />
+
   <div class="mb-4 flex w-full items-center justify-between">
     <h1 class="text-2xl font-semibold text-wood-600">
       產品列表 - {{ category.name.zh_Hant_TW }}

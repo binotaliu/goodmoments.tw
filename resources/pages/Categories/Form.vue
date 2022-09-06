@@ -1,4 +1,6 @@
 <template>
+  <InertiaHead :title="isCreating ? '建立分類' : `${category.name.zh_Hant_TW} – 編輯分類`" />
+
   <div class="mb-4 flex w-full items-center justify-between">
     <h1
       v-if="isCreating"
