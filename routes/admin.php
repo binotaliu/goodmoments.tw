@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function (): void {
         ->only(['store']);
 
     Route::resource('users', UserController::class)
-        ->only(['index', 'show', 'store', 'update', 'create']);
+        ->only(['index', 'store', 'edit', 'update', 'create']);
 
     Route::resource('categories', CategoryController::class)
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);

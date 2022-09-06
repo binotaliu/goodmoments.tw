@@ -22,13 +22,6 @@ final class UserController extends Controller
         ]);
     }
 
-    public function show(User $user): InertiaResponse
-    {
-        return Inertia::render('Users/Form', [
-            'user' => $user,
-        ]);
-    }
-
     public function store(UserCreationRequest $request): RedirectResponse
     {
         $user = new User();
@@ -42,6 +35,13 @@ final class UserController extends Controller
         $user->notify(new PasswordSetupNotification($user));
 
         return Redirect::route('admin.users.show', ['user' => $user]);
+    }
+
+    public function edit(User $user): InertiaResponse
+    {
+        return Inertia::render('Users/Form', [
+            'user' => $user,
+        ]);
     }
 
     public function update(User $user, UserUpdateRequest $request): RedirectResponse
