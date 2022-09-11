@@ -2,24 +2,26 @@
   <div>
     <div class="flex items-center gap-2 touch:hidden">
       <input
-        :id="id"
+        :id="id || fieldId"
+        :name="name || id || fieldId"
         v-model="value"
         type="checkbox"
         class="rounded border-wood-600 p-2 transition-colors checked:bg-wood-600 checked:hover:bg-wood-500"
       >
       <label
-        :for="id"
+        :for="id || fieldId"
         class="select-none"
-      >{{ label }}</label>
+      >{{ label || fieldName }}</label>
     </div>
 
     <div class="hidden select-none items-center touch:flex">
       <label
-        :for="id"
+        :for="id || fieldId"
         class="mr-2"
-      >{{ label }}</label>
+      >{{ label || fieldName }}</label>
       <input
-        :id="id"
+        :id="id || fieldId"
+        :name="name || id || fieldId"
         type="checkbox"
         class="sr-only"
       >
@@ -56,15 +58,19 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 
 const props = defineProps({
-  id: { type: String, required: true },
-  label: { type: String, required: true },
+  id: { type: String, default: null },
+  name: { type: String, default: null },
+  label: { type: String, default: null },
   modelValue: { type: Boolean, required: true }
 })
 
 const emits = defineEmits(['update:modelValue', 'change'])
+
+const fieldId = inject('field-id', null)
+const fieldName = inject('field-name', null)
 
 const value = computed({
   get: () => props.modelValue,

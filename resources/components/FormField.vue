@@ -31,7 +31,7 @@
 
 <script setup>
 import { usePage } from '@inertiajs/inertia-vue3'
-import { computed } from 'vue'
+import { computed, provide } from 'vue'
 
 const props = defineProps({
   id: { type: String, required: true },
@@ -58,4 +58,8 @@ const errors = computed(() => {
 })
 
 const hasErrors = computed(() => errors.value.length > 0)
+
+provide('field-id', computed(() => props.id))
+provide('field-name', computed(() => props.name))
+provide('field-has-errors', hasErrors)
 </script>

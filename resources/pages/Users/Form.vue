@@ -27,26 +27,19 @@
         id="name"
         name="顯示名稱"
       >
-        <GMInput
-          id="name"
-          v-model="form.name"
-        />
+        <GMInput v-model="form.name" />
       </GMFormField>
       <GMFormField
         id="username"
         name="帳號"
       >
-        <GMInput
-          id="username"
-          v-model="form.username"
-        />
+        <GMInput v-model="form.username" />
       </GMFormField>
       <GMFormField
         id="email"
         name="E-Mail"
       >
         <GMInput
-          id="email"
           v-model="form.email"
           type="email"
         />
@@ -55,11 +48,7 @@
         id="is_active"
         name="啟用"
       >
-        <GMCheckbox
-          id="is_active"
-          v-model="form.is_active"
-          label="啟用"
-        />
+        <GMCheckbox v-model="form.is_active" />
       </GMFormField>
     </GMCard>
 

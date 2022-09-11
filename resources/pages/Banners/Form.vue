@@ -32,20 +32,14 @@
         error-key="title.zh_Hant_TW"
         name="標題"
       >
-        <GMInput
-          id="title"
-          v-model="form.title.zh_Hant_TW"
-        />
+        <GMInput v-model="form.title.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="description"
         error-key="description.zh_Hant_TW"
         name="說明"
       >
-        <GMTextarea
-          id="description"
-          v-model="form.description.zh_Hant_TW"
-        />
+        <GMTextarea v-model="form.description.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="image"
@@ -64,26 +58,19 @@
         error-key="image_description.zh_Hant_TW"
         name="圖片替代文字"
       >
-        <GMInput
-          id="image_description"
-          v-model="form.image_description.zh_Hant_TW"
-        />
+        <GMInput v-model="form.image_description.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="url"
         name="連結網址"
       >
-        <GMInput
-          id="url"
-          v-model="form.url"
-        />
+        <GMInput v-model="form.url" />
       </GMFormField>
       <GMFormField
         id="started_at"
         name="開始時間"
       >
         <GMInput
-          id="started_at"
           type="datetime-local"
           :model-value="$dayjs(form.started_at).format('YYYY-MM-DDTHH:mm')"
           @update:model-value="(value) => form.started_at = $dayjs(value, 'YYYY-MM-DDTHH:mm').format()"
@@ -94,13 +81,11 @@
         name="結束時間"
       >
         <GMCheckbox
-          id="unlimited"
           label="無期限"
           :model-value="form.ended_at === null"
           @update:model-value="(unlimited) => form.ended_at = unlimited ? null : $dayjs(form.started_at).add(1, 'month').format('YYYY-MM-DDTHH:mm')"
         />
         <GMInput
-          id="ended_at"
           type="datetime-local"
           :model-value="$dayjs(form.ended_at).format('YYYY-MM-DDTHH:mm')"
           :min="$dayjs(form.started_at).format('YYYY-MM-DDTHH:mm')"

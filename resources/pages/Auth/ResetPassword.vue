@@ -22,10 +22,7 @@
             <MailIcon class="h-4 w-4" />
           </template>
           <GMInput
-            id="email"
             v-model="form.email"
-            name="email"
-            placeholder="電子郵件"
             autofocus
           />
         </GMFormField>
@@ -38,12 +35,9 @@
             <LockClosedIcon class="h-4 w-4" />
           </template>
           <GMInput
-            id="password"
             v-model="form.password"
             type="password"
-            name="password"
             autocomplete="new-password"
-            placeholder="新密碼"
             autofocus
           />
         </GMFormField>
@@ -56,12 +50,9 @@
             <LockClosedIcon class="h-4 w-4" />
           </template>
           <GMInput
-            id="password_confirmation"
             v-model="form.password_confirmation"
             type="password"
-            name="password_confirmation"
             autocomplete="new-password"
-            placeholder="確認密碼"
             autofocus
           />
         </GMFormField>

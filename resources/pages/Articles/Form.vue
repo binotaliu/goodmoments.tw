@@ -31,40 +31,28 @@
         id="slug"
         name="Slug"
       >
-        <GMInput
-          id="slug"
-          v-model="form.slug"
-        />
+        <GMInput v-model="form.slug" />
       </GMFormField>
       <GMFormField
         id="title"
         error-key="title.zh_Hant_TW"
         name="標題"
       >
-        <GMInput
-          id="title"
-          v-model="form.title.zh_Hant_TW"
-        />
+        <GMInput v-model="form.title.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="description"
         error-key="description.zh_Hant_TW"
         name="簡介"
       >
-        <GMTextarea
-          id="description"
-          v-model="form.description.zh_Hant_TW"
-        />
+        <GMTextarea v-model="form.description.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="published_at"
         error-key="published_at"
         name="發佈時間"
       >
-        <GMDateTimeInput
-          id="published_at"
-          v-model="form.published_at"
-        />
+        <GMDateTimeInput v-model="form.published_at" />
       </GMFormField>
       <GMFormField
         id="cover_image_uuid"

@@ -27,20 +27,14 @@
         id="slug"
         name="Slug"
       >
-        <GMInput
-          id="slug"
-          v-model="form.slug"
-        />
+        <GMInput v-model="form.slug" />
       </GMFormField>
       <GMFormField
         id="name"
         error-key="name.zh_Hant_TW"
         name="名稱"
       >
-        <GMInput
-          id="username"
-          v-model="form.name.zh_Hant_TW"
-        />
+        <GMInput v-model="form.name.zh_Hant_TW" />
       </GMFormField>
     </GMCard>
 

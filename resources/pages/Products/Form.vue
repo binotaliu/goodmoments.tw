@@ -41,10 +41,7 @@
         error-key="name.zh_Hant_TW"
         name="名稱"
       >
-        <GMInput
-          id="username"
-          v-model="form.name.zh_Hant_TW"
-        />
+        <GMInput v-model="form.name.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="cover_image"
@@ -78,7 +75,6 @@
         name="價格"
       >
         <GMInput
-          id="price"
           v-model="form.price"
           type="number"
         />
@@ -88,17 +84,13 @@
         error-key="unit.zh_Hant_TW"
         name="單位"
       >
-        <GMInput
-          id="unit"
-          v-model="form.unit.zh_Hant_TW"
-        />
+        <GMInput v-model="form.unit.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="store_url"
         name="賣場網址"
       >
         <GMInput
-          id="store_url"
           v-model="form.store_url"
           type="url"
         />
@@ -108,10 +100,7 @@
         error-key="store_url_text.zh_Hant_TW"
         name="賣場網址連結文字"
       >
-        <GMInput
-          id="store_url_text"
-          v-model="form.store_url_text.zh_Hant_TW"
-        />
+        <GMInput v-model="form.store_url_text.zh_Hant_TW" />
       </GMFormField>
       <GMFormField
         id="description"
@@ -119,7 +108,6 @@
         name="說明"
       >
         <GMTextarea
-          id="description"
           v-model="form.description.zh_Hant_TW"
           rows="10"
         />

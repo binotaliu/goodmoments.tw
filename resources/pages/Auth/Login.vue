@@ -22,10 +22,7 @@
             <UserIcon class="h-4 w-4" />
           </template>
           <GMInput
-            id="username"
             v-model="form.username"
-            name="username"
-            placeholder="帳號"
             autofocus
           />
         </GMFormField>
@@ -38,10 +35,7 @@
             <LockClosedIcon class="h-4 w-4" />
           </template>
           <GMInput
-            id="password"
             v-model="form.password"
-            name="password"
-            placeholder="密碼"
             type="password"
           />
         </GMFormField>

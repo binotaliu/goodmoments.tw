@@ -22,10 +22,7 @@
             <MailIcon class="h-4 w-4" />
           </template>
           <GMInput
-            id="email"
             v-model="form.email"
-            name="email"
-            placeholder="電子郵件"
             autofocus
           />
         </GMFormField>

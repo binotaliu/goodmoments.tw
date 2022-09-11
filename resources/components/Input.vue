@@ -18,7 +18,9 @@
     <input
       v-model="inputValue"
       :type="type"
-      :placeholder="placeholder"
+      :placeholder="placeholder || fieldName"
+      :id="id || fieldId"
+      :name="name || id || fieldId"
       :class="[
         ...styles.base(hasIcon)
       ]"
@@ -28,7 +30,7 @@
 </template>
 
 <script setup>
-import { computed, useSlots } from 'vue'
+import { computed, inject, useSlots } from 'vue'
 import * as styles from './styles/input'
 
 defineOptions({
@@ -38,7 +40,9 @@ defineOptions({
 const props = defineProps({
   type: { type: String, default: 'text' },
   placeholder: { type: String, default: '' },
-  modelValue: { type: [String, Number, null], required: true }
+  modelValue: { type: [String, Number, null], required: true },
+  id: { type: String, default: null },
+  name: { type: String, default: null }
 })
 
 const slots = useSlots()
@@ -46,6 +50,9 @@ const slots = useSlots()
 const emits = defineEmits(['update:modelValue'])
 
 const hasIcon = computed(() => !!slots.icon)
+
+const fieldId = inject('field-id', null)
+const fieldName = inject('field-name', null)
 
 const inputValue = computed({
   get () {
