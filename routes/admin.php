@@ -25,6 +25,8 @@ Route::middleware(['signed'])
     ->resource('password-setup', SetupPasswordController::class)
     ->only(['index', 'store']);
 
+Route::redirect('/', 'admin/dashboard')->name('index');
+
 Route::middleware('auth')->group(function (): void {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
 
