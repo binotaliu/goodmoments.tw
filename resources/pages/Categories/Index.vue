@@ -66,33 +66,16 @@
     <GMPaginator :paginator="categories" />
   </GMCard>
 
-  <Teleport to="body">
-    <GMModal
-      ref="removeModal"
-      title="確定要刪除？"
-    >
-      確定要刪除這個分類嗎？ <br>
-      <span class="font-medium">{{ removingCategory?.name?.zh_Hant_TW }}</span> <br>
-
-      刪除分類也會一併刪除其中所有產品，確定要刪除嗎？ <br>
-
-      <template #footer>
-        <div class="flex items-stretch justify-end gap-2">
-          <GMButton @click="removeModal.close()">
-            取消
-          </GMButton>
-          <GMButton
-            theme="danger"
-            @click="remove(removingCategory)"
-          >
-            <GMLoadingText :loading="removeForm.processing">
-              刪除
-            </GMLoadingText>
-          </GMButton>
-        </div>
-      </template>
-    </GMModal>
-  </Teleport>
+  <GMRemoveModal
+    ref="removeModal"
+    :loading="removeForm.processing"
+    @remove="remove(removingCategory)"
+  >
+    確定要刪除這個分類嗎？ <br>
+    <span class="font-medium">{{ removingCategory?.name?.zh_Hant_TW }}</span> <br>
+    <br>
+    刪除分類也會一併刪除其中所有產品，確定要刪除嗎？ <br>
+  </GMRemoveModal>
 </template>
 <script setup>
 import { PencilIcon, PlusIcon, ShoppingBagIcon, TrashIcon } from '@heroicons/vue/solid'
@@ -118,7 +101,7 @@ const remove = (category) => {
     route('admin.categories.destroy', [category.id]),
     {
       onFinish () {
-        removeModalOpen.value.close()
+        removeModal.value.close()
         removingCategory.value = null
       }
     }

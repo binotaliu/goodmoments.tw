@@ -116,31 +116,14 @@
     <GMPaginator :paginator="banners" />
   </GMCard>
 
-  <Teleport to="body">
-    <GMModal
-      ref="removeModal"
-      title="確定要刪除？"
-    >
-      確定要刪除這個橫幅嗎？ <br>
-      <span class="font-medium">{{ removingBanner?.title?.zh_Hant_TW }}</span> <br>
-
-      <template #footer>
-        <div class="flex items-stretch justify-end gap-2">
-          <GMButton @click="removeModal.close()">
-            取消
-          </GMButton>
-          <GMButton
-            theme="danger"
-            @click="remove(removingBanner)"
-          >
-            <GMLoadingText :loading="removeForm.processing">
-              刪除
-            </GMLoadingText>
-          </GMButton>
-        </div>
-      </template>
-    </GMModal>
-  </Teleport>
+  <GMRemoveModal
+    ref="removeModal"
+    :loading="removeForm.processing"
+    @remove="remove(removingBanner)"
+  >
+    確定要刪除這個橫幅嗎？ <br>
+    <span class="font-medium">{{ removingBanner?.title?.zh_Hant_TW }}</span> <br>
+  </GMRemoveModal>
 </template>
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'

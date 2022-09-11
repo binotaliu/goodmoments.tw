@@ -70,33 +70,16 @@
     </table>
 
     <GMPaginator :paginator="articles" />
-  </GMCard>
 
-  <Teleport to="body">
-    <GMModal
+    <GMRemoveModal
       ref="removeModal"
-      title="確定要刪除？"
+      :loading="removeForm.processing"
+      @remove="remove(removingArticle)"
     >
       確定要刪除這篇文章嗎？ <br>
       <span class="font-medium">{{ removingArticle?.title?.zh_Hant_TW }}</span> <br>
-
-      <template #footer>
-        <div class="flex items-stretch justify-end gap-2">
-          <GMButton @click="removeModal.close()">
-            取消
-          </GMButton>
-          <GMButton
-            theme="danger"
-            @click="remove(removingArticle)"
-          >
-            <GMLoadingText :loading="removeForm.processing">
-              刪除
-            </GMLoadingText>
-          </GMButton>
-        </div>
-      </template>
-    </GMModal>
-  </Teleport>
+    </GMRemoveModal>
+  </GMCard>
 </template>
 <script setup>
 import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
