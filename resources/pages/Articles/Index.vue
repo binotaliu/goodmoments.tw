@@ -74,15 +74,15 @@
 
   <Teleport to="body">
     <GMModal
-      :open="removeModalOpen"
+      ref="removeModal"
       title="確定要刪除？"
     >
       確定要刪除這篇文章嗎？ <br>
-      {{ removingArticle?.name?.zh_Hant_TW }}
+      <span class="font-medium">{{ removingArticle?.title?.zh_Hant_TW }}</span> <br>
 
       <template #footer>
         <div class="flex items-stretch justify-end gap-2">
-          <GMButton @click="removeModalOpen = false">
+          <GMButton @click="removeModal.close()">
             取消
           </GMButton>
           <GMButton
@@ -107,14 +107,14 @@ defineProps({
   articles: { type: Object, required: true }
 })
 
-const removeModalOpen = ref(false)
+const removeModal = ref(null)
 const removingArticle = ref(null)
 
 const removeForm = useForm({})
 
 const showRemoveModal = (article) => {
   removingArticle.value = article
-  removeModalOpen.value = true
+  removeModal.value.open()
 }
 
 const remove = (article) => {
@@ -122,7 +122,7 @@ const remove = (article) => {
     route('admin.articles.destroy', [article.id]),
     {
       onFinish () {
-        removeModalOpen.value = false
+        removeModal.value.close()
         removingArticle.value = null
       }
     }

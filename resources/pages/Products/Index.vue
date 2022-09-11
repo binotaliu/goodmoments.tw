@@ -72,15 +72,15 @@
 
   <Teleport to="body">
     <GMModal
-      :open="removeModalOpen"
+      ref="removeModal"
       title="確定要刪除？"
     >
       確定要刪除這個產品嗎？ <br>
-      {{ removingProduct?.name?.zh_Hant_TW }}
+      <span class="font-medium">{{ removingProduct?.name?.zh_Hant_TW }}</span>
 
       <template #footer>
         <div class="flex items-stretch justify-end gap-2">
-          <GMButton @click="removeModalOpen = false">
+          <GMButton @click="removeModal.close()">
             取消
           </GMButton>
           <GMButton
@@ -106,14 +106,14 @@ defineProps({
   products: { type: Object, required: true }
 })
 
-const removeModalOpen = ref(false)
+const removeModal = ref(null)
 const removingProduct = ref(null)
 
 const removeForm = useForm({})
 
 const showRemoveModal = (product) => {
   removingProduct.value = product
-  removeModalOpen.value = true
+  removeModal.value.open()
 }
 
 const remove = (product) => {
@@ -121,7 +121,7 @@ const remove = (product) => {
     route('admin.categories.products.destroy', [product.category_id, product.id]),
     {
       onFinish () {
-        removeModalOpen.value = false
+        removeModal.value.close()
         removingProduct.value = null
       }
     }

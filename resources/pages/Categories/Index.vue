@@ -68,17 +68,17 @@
 
   <Teleport to="body">
     <GMModal
-      :open="removeModalOpen"
+      ref="removeModal"
       title="確定要刪除？"
     >
       確定要刪除這個分類嗎？ <br>
-      {{ removingCategory?.name?.zh_Hant_TW }} <br>
+      <span class="font-medium">{{ removingCategory?.name?.zh_Hant_TW }}</span> <br>
 
       刪除分類也會一併刪除其中所有產品，確定要刪除嗎？ <br>
 
       <template #footer>
         <div class="flex items-stretch justify-end gap-2">
-          <GMButton @click="removeModalOpen = false">
+          <GMButton @click="removeModal.close()">
             取消
           </GMButton>
           <GMButton
@@ -103,13 +103,13 @@ defineProps({
   categories: { type: Object, required: true }
 })
 
-const removeModalOpen = ref(false)
+const removeModal = ref(null)
 const removingCategory = ref(null)
 
 const removeForm = useForm({})
 
 const showRemoveModal = (category) => {
-  removeModalOpen.value = true
+  removeModal.value.open()
   removingCategory.value = category
 }
 
@@ -118,7 +118,7 @@ const remove = (category) => {
     route('admin.categories.destroy', [category.id]),
     {
       onFinish () {
-        removeModalOpen.value = false
+        removeModalOpen.value.close()
         removingCategory.value = null
       }
     }

@@ -74,15 +74,22 @@
 
 <script setup>
 import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue'
+import { ref } from 'vue'
 
 defineProps({
-  open: { type: Boolean, default: false },
   title: { type: [String, null], default: () => null }
 })
 
-const emits = defineEmits(['close'])
+const open = ref(false)
 
 function closeModal () {
-  emits('close')
+  open.value = false
 }
+
+defineExpose({
+  open () {
+    open.value = true
+  },
+  close: closeModal
+})
 </script>

@@ -118,15 +118,15 @@
 
   <Teleport to="body">
     <GMModal
-      :open="removeModalOpen"
+      ref="removeModal"
       title="確定要刪除？"
     >
       確定要刪除這個橫幅嗎？ <br>
-      {{ removingBanner?.name?.zh_Hant_TW }} <br>
+      <span class="font-medium">{{ removingBanner?.title?.zh_Hant_TW }}</span> <br>
 
       <template #footer>
         <div class="flex items-stretch justify-end gap-2">
-          <GMButton @click="removeModalOpen = false">
+          <GMButton @click="removeModal.close()">
             取消
           </GMButton>
           <GMButton
@@ -155,13 +155,13 @@ defineProps({
 
 const now = ref(dayjs())
 
-const removeModalOpen = ref(false)
+const removeModal = ref(null)
 const removingBanner = ref(null)
 
 const removeForm = useForm({})
 
 const showRemoveModal = (banner) => {
-  removeModalOpen.value = true
+  removeModal.value.open()
   removingBanner.value = banner
 }
 
@@ -170,7 +170,7 @@ const remove = (banner) => {
     route('admin.banners.destroy', [banner.id]),
     {
       onFinish () {
-        removeModalOpen.value = false
+        removeModal.value.close()
         removingBanner.value = null
       }
     }
