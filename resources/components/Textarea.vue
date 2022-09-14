@@ -1,10 +1,10 @@
 <template>
   <textarea
+    :id="id || fieldId"
     v-model="value"
     :class="[
       ...styles.base(false)
     ]"
-    :id="id || fieldId"
     :name="name || id || fieldId"
     :placeholder="placeholder || fieldName"
   />

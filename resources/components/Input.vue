@@ -16,10 +16,10 @@
       <slot name="icon" />
     </span>
     <input
+      :id="id || fieldId"
       v-model="inputValue"
       :type="type"
       :placeholder="placeholder || fieldName"
-      :id="id || fieldId"
       :name="name || id || fieldId"
       :class="[
         ...styles.base(hasIcon)

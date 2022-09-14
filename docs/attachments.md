@@ -39,7 +39,7 @@ $product->attachments->first()->meta;
 
 ## 前端
 
-後台的前端提供了一個 [`GMAttachment`](../resources/components/Attachment.vue) Vue Component，可用來上傳圖片。  
+後台的前端提供了一個 [`GMImageAttachment`](../resources/components/ImageAttachment.vue) Vue Component，可用來上傳圖片。  
 該 Component 有三個 `v-model` 屬性：`modelValue`、`attachments`、`processing`，分別為圖片的 UUID、Attachment 實體、以及是否仍在上傳。  
   
 若將 `multiple` 屬性設為 `true`，則 `modelValue` 為字串。否則將為 UUID 的陣列。  

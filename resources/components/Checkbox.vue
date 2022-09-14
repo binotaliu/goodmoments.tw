@@ -3,8 +3,8 @@
     <div class="flex items-center gap-2 touch:hidden">
       <input
         :id="id || fieldId"
-        :name="name || id || fieldId"
         v-model="value"
+        :name="name || id || fieldId"
         type="checkbox"
         class="rounded border-wood-600 p-2 transition-colors checked:bg-wood-600 checked:hover:bg-wood-500"
       >

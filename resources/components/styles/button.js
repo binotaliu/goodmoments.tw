@@ -14,7 +14,7 @@ export const theme = {
     'bg-pearl-500 hover:bg-pearl-400 active:bg-pearl-600 disabled:bg-pearl-400'
   ],
   primary: [
-    'disabled:text-gray-700',
+    'text-pearl-300 disabled:text-gray-700',
     'border-sun-600',
     'bg-sun-500 hover:bg-sun-400 active:bg-sun-600 disabled:bg-sun-400'
   ],

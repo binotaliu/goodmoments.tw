@@ -55,27 +55,27 @@
         <GMDateTimeInput v-model="form.published_at" />
       </GMFormField>
       <GMFormField
-        id="cover_image_uuid"
+        id="cover_image"
         name="封面圖片"
       >
-        <GMAttachment
-          id="cover_image_uuid"
-          v-model="form.cover_image_uuid"
-          v-model:processing="imageProcessStatus.coverImage"
-          v-model:attachments="coverImageAttachments"
+        <GMImageAttachment
+          id="cover_image"
+          v-model="form.cover_image"
+          :aspect-ratio="2"
+          :max-width="2880"
           class="w-full"
           :meta="{ type: 'articleCoverImage' }"
         />
       </GMFormField>
       <GMFormField
-        id="social_image_uuid"
-        name="封面圖片"
+        id="social_image"
+        name="社群圖片"
       >
-        <GMAttachment
-          id="social_image_uuid"
-          v-model="form.social_image_uuid"
-          v-model:processing="imageProcessStatus.socialImage"
-          v-model:attachments="socialImageAttachments"
+        <GMImageAttachment
+          id="social_image"
+          v-model="form.social_image"
+          :aspect-ratio="2"
+          :max-width="1280"
           class="w-full"
           :meta="{ type: 'articleSocialImage' }"
         />

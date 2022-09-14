@@ -45,11 +45,11 @@
         id="image"
         name="圖片"
       >
-        <GMAttachment
+        <GMImageAttachment
           id="image"
-          v-model="form.image_uuid"
-          v-model:processing="imageProcessing"
-          v-model:attachments="attachments"
+          v-model="form.image"
+          :aspect-ratio="2.60"
+          :max-width="2560"
           class="w-full"
         />
       </GMFormField>

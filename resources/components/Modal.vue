@@ -7,7 +7,7 @@
     <Dialog
       as="div"
       class="relative z-10"
-      @close="closeModal"
+      @close="() => { if (closable) { closeModal() } }"
     >
       <TransitionChild
         as="template"
@@ -18,7 +18,7 @@
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black/25" />
+        <div class="fixed inset-0 bg-black/25 backdrop-blur-[2px]" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
@@ -77,7 +77,8 @@ import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } fro
 import { ref } from 'vue'
 
 defineProps({
-  title: { type: [String, null], default: () => null }
+  title: { type: [String, null], default: () => null },
+  closable: { type: Boolean, default: true }
 })
 
 const open = ref(false)

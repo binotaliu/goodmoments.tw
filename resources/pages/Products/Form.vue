@@ -47,11 +47,11 @@
         id="cover_image"
         name="封面圖片"
       >
-        <GMAttachment
+        <GMImageAttachment
           id="cover_image_uuid"
-          v-model="form.cover_image_uuid"
-          v-model:processing="imageProcessStatus.coverImage"
-          v-model:attachments="coverImageAttachments"
+          v-model="form.cover_image"
+          :aspect-ratio="1.125"
+          :max-width="1440"
           class="w-full"
           :meta="{ type: 'productCoverImage' }"
         />
@@ -60,11 +60,11 @@
         id="images"
         name="其他圖片"
       >
-        <GMAttachment
+        <GMImageAttachment
           id="image_uuids"
-          v-model="form.image_uuids"
-          v-model:processing="imageProcessStatus.images"
-          v-model:attachments="form.images"
+          v-model="form.images"
+          :aspect-ratio="1.125"
+          :max-width="1440"
           class="w-full"
           :meta="{ type: 'productImages' }"
           multiple
