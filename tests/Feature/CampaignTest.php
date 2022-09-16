@@ -50,7 +50,7 @@ it('creates banner', function (): void {
             'zh_Hant_TW' => '橫幅描述',
             'zh_Oan' => '橫幅描述',
         ],
-        'image_uuid' => $attachment->uuid,
+        'image' => $attachment->toArray(),
         'image_description' => [
             'en' => 'Banner image description',
             'zh_Hant_TW' => '橫幅圖片描述',
@@ -65,6 +65,9 @@ it('creates banner', function (): void {
         'creator_id' => $user->id,
         'url' => $url,
     ]);
+
+    $createdBanner = Banner::latest()->first();
+    expect($createdBanner)->toHaveAttachments([$attachment]);
 });
 
 it('updates banner', function (): void {
@@ -75,12 +78,14 @@ it('updates banner', function (): void {
         ->has(Attachment::factory()->withImage())
         ->create();
 
+    $attachment = Attachment::factory()->create();
+
     actingAs($user);
 
     put(route('admin.banners.update', [$banner]), [
         'title' => $banner->getTranslations('title'),
         'description' => $banner->getTranslations('description'),
-        'image_uuid' => $banner->attachments->sole()->uuid,
+        'image' => $attachment->toArray(),
         'image_description' => $banner->getTranslations('image_description'),
         'url' => $url = 'https://www.example.com?' . Str::random(),
         'started_at' => $banner->started_at->toIso8601String(),
@@ -91,6 +96,8 @@ it('updates banner', function (): void {
         'id' => $banner->id,
         'url' => $url,
     ]);
+
+    expect($banner)->toHaveAttachment($attachment);
 });
 
 it('display banners on front page', function (): void {
@@ -156,8 +163,8 @@ it('creates new article', function (): void {
             'zh_Hant_TW' => '文章描述',
             'zh_Oan' => '文章描述',
         ],
-        'cover_image_uuid' => $coverImage->uuid,
-        'social_image_uuid' => $socialImage->uuid,
+        'cover_image' => $coverImage->toArray(),
+        'social_image' => $socialImage->toArray(),
         'content' => [
             'en' => 'Article content',
             'zh_Hant_TW' => '文章內容',
@@ -170,6 +177,8 @@ it('creates new article', function (): void {
         'creator_id' => $user->id,
         'slug' => $slug,
     ]);
+
+    expect(Article::latest()->first())->toHaveAttachments([$coverImage, $socialImage]);
 });
 
 it('updates an article', function (): void {
@@ -177,13 +186,26 @@ it('updates an article', function (): void {
 
     actingAs($user);
     $article = Article::factory()->withImages()->for($user, 'creator')->create();
+    $newCoverImage = Attachment
+        ::factory()
+        ->withImage()
+        ->withMeta(['type' => 'articleCoverImage'])
+        ->create();
 
+    $newSocialImage = Attachment
+        ::factory()
+        ->withImage()
+        ->withMeta(['type' => 'articleSocialImage'])
+        ->create();
+
+    ray()->showQueries();
+    ray()->showRequests();
     put(route('admin.articles.update', [$article]), [
         'slug' => 'new-slug-' . $article->slug,
         'title' => $article->getTranslations('title'),
         'description' => $article->getTranslations('description'),
-        'cover_image_uuid' => $article->cover_image_uuid,
-        'social_image_uuid' => $article->social_image_uuid,
+        'cover_image' => $newCoverImage->toArray(),
+        'social_image' => $newSocialImage->toArray(),
         'content' => $article->getTranslations('content'),
         'published_at' => $article->published_at,
     ])->assertValid()->assertRedirect();
@@ -192,6 +214,8 @@ it('updates an article', function (): void {
         'id' => $article->id,
         'slug' => 'new-slug-' . $article->slug,
     ]);
+
+    expect($article->fresh())->toHaveAttachments([$newCoverImage, $newSocialImage]);
 });
 
 it('lists only published article', function (): void {

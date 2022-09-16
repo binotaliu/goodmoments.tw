@@ -11,7 +11,7 @@ use Illuminate\Validation\Rules\DatabaseRule;
 /**
  * @method static AllExists make(string $table, string $column = 'NULL')
  */
-final class AllExists implements Rule
+class AllExists implements Rule
 {
     use Makeable;
     use DatabaseRule;

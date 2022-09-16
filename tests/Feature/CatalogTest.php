@@ -108,8 +108,8 @@ it('creates a product inside a category', function (): void {
             'zh_Hant_TW' => '產品名稱',
             'zh_Oan' => '產品名',
         ],
-        'cover_image_uuid' => $coverImageAttachment->uuid,
-        'image_uuids' => $imageAttachments->pluck('uuid')->toArray(),
+        'cover_image' => $coverImageAttachment->toArray(),
+        'images' => $imageAttachments->toArray(),
         'price' => random_int(100, 1000),
         'store_url' => 'https://www.example.com',
         'store_url_text' => [
@@ -137,12 +137,34 @@ it('creates a product inside a category', function (): void {
     ]);
 
     $createdProduct = Product::where('slug', $slug)->where('category_id', $category->id)->firstOrFail();
-    $attachmentIds = [$coverImageAttachment->id, ...$imageAttachments->pluck('id')];
-    foreach ($attachmentIds as $attachmentId) {
-        assertDatabaseHas('attachmentables', [
-            'attachment_id' => $attachmentId,
-            'attachmentable_id' => $createdProduct->id,
-            'attachmentable_type' => Product::class,
-        ]);
-    }
+    $attachments = [$coverImageAttachment, ...$imageAttachments];
+    expect($createdProduct)->toHaveAttachments($attachments);
+});
+
+it('updates images of a product', function (): void {
+    $user = User::factory()->active()->create();
+
+    /** @var Category $category */
+    $category = Category::factory()->create();
+    /** @var Product $product */
+    $product = Product::factory()->for($category)->withImages()->create();
+
+    $newCover = Attachment::factory()->withImage()->withMeta(['type' => Product::ATTACHMENT_TYPE_COVER])->create();
+    $newImages = Attachment::factory()->count(random_int(4, 6))->withImage()->withMeta(['type' => Product::ATTACHMENT_TYPE_IMAGE])->create();
+
+    actingAs($user);
+    put(route('admin.categories.products.update', ['category' => $category, 'product' => $product]), [
+        'slug' => $product->slug,
+        'name' => $product->getTranslations('name'),
+        'cover_image' => $newCover->toArray(),
+        'images' => $newImages->toArray(),
+        'price' => $product->price,
+        'store_url' => $product->store_url,
+        'store_url_text' => $product->getTranslations('store_url_text'),
+        'unit' => $product->getTranslations('unit'),
+        'description' => $product->getTranslations('description'),
+    ])->assertValid()->assertRedirect();
+
+    expect($product->refresh())
+        ->toHaveAttachments([$newCover, ...$newImages]);
 });

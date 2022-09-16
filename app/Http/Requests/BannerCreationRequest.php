@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Attachment;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 final class BannerCreationRequest extends FormRequest
 {
@@ -21,7 +21,7 @@ final class BannerCreationRequest extends FormRequest
             'title.zh_Hant_TW' => ['required'],
             'description' => ['present', 'array'],
             'description.*' => ['nullable', 'string', 'max:255'],
-            'image_uuid' => ['required', Rule::exists('attachments', 'uuid')],
+            'image' => ['required', Attachment::make()],
             'image_description' => ['required', 'array'],
             'image_description.*' => ['nullable', 'string', 'max:255'],
             'image_description.zh_Hant_TW' => ['required'],

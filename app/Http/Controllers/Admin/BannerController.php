@@ -35,7 +35,7 @@ final class BannerController
 
     public function store(BannerCreationRequest $request): RedirectResponse
     {
-        $attachment = Attachment::whereUuid($request->input('image_uuid'))->sole();
+        $attachment = Attachment::whereUuid($request->input('image.uuid'))->sole();
 
         $banner = ($this->fillBannerInputFromRequest)($request);
         $banner->save();
@@ -53,7 +53,7 @@ final class BannerController
 
     public function update(BannerUpdateRequest $request, Banner $banner): RedirectResponse
     {
-        $attachment = Attachment::whereUuid($request->input('image_uuid'))->sole();
+        $attachment = Attachment::whereUuid($request->input('image.uuid'))->sole();
 
         ($this->fillBannerInputFromRequest)($request, $banner);
         $banner->save();

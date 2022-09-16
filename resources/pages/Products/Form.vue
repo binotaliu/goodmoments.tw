@@ -169,9 +169,7 @@ const form = useForm({
     zh_Oan: null
   },
   cover_image: null,
-  cover_image_uuid: null,
   images: [],
-  image_uuids: [],
   price: null,
   unit: {
     en: null,
@@ -188,15 +186,6 @@ const form = useForm({
     en: null,
     zh_Hant_TW: null,
     zh_Oan: null
-  }
-})
-
-const coverImageAttachments = computed({
-  get () {
-    return form.cover_image ? [form.cover_image] : []
-  },
-  set (coverImageAttachments) {
-    form.cover_image = coverImageAttachments[0] ?? null
   }
 })
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Attachment;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -27,19 +28,17 @@ final class ArticleUpdateRequest extends FormRequest
             'description.*' => ['nullable', 'string', 'max:255'],
             'description.zh_Hant_TW' => ['required', 'string', 'max:255'],
             'published_at' => ['required', 'date'],
-            'cover_image_uuid' => [
+            'cover_image' => [
                 'required',
-                'string',
-                Rule
-                    ::exists('attachments', 'uuid')
-                    ->where('meta->type', 'articleCoverImage'),
+                Attachment
+                    ::make()
+                    ->whereMeta('type', 'articleCoverImage'),
             ],
-            'social_image_uuid' => [
+            'social_image' => [
                 'nullable',
-                'string',
-                Rule
-                    ::exists('attachments', 'uuid')
-                    ->where('meta->type', 'articleSocialImage'),
+                Attachment
+                    ::make()
+                    ->whereMeta('type', 'articleSocialImage'),
             ],
             'content' => ['required', 'array'],
             'content.*' => ['nullable', 'string'],

@@ -35,12 +35,12 @@ final class ArticleController
 
     public function store(ArticleCreationRequest $request): RedirectResponse
     {
-        $coverImage = Attachment::where('uuid', $request->input('cover_image_uuid'))->firstOrFail();
-        $socialImage = Attachment::where('uuid', $request->input('social_image_uuid'))->firstOrFail();
+        $coverImage = Attachment::where('uuid', $request->input('cover_image.uuid'))->sole();
+        $socialImage = Attachment::where('uuid', $request->input('social_image.uuid'))->first();
 
         $article = ($this->fillArticleInputsFromRequest)($request);
         $article->save();
-        $article->attachments()->sync([$coverImage->id, $socialImage->id]);
+        $article->attachments()->sync(array_filter([$coverImage->id, $socialImage?->id]));
 
         return Redirect::route('admin.articles.edit', [$article]);
     }
@@ -54,12 +54,12 @@ final class ArticleController
 
     public function update(ArticleUpdateRequest $request, Article $article): RedirectResponse
     {
-        $coverImage = Attachment::where('uuid', $request->input('cover_image_uuid'))->firstOrFail();
-        $socialImage = Attachment::where('uuid', $request->input('social_image_uuid'))->firstOrFail();
+        $coverImage = Attachment::where('uuid', $request->input('cover_image.uuid'))->sole();
+        $socialImage = Attachment::where('uuid', $request->input('social_image.uuid'))->first();
 
         ($this->fillArticleInputsFromRequest)($request, $article);
         $article->save();
-        $article->attachments()->sync([$coverImage->id, $socialImage->id]);
+        $article->attachments()->sync(array_filter([$coverImage->id, $socialImage?->id]));
 
         return Redirect::route('admin.articles.edit', [$article]);
     }

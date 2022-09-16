@@ -11,6 +11,14 @@
 |
 */
 
+use App\Models\Attachment;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
+
+use PHPUnit\Framework\Assert;
+
+use function Pest\Laravel\assertDatabaseHas;
+
 uses(Tests\TestCase::class)->in('Feature');
 
 /*
@@ -25,6 +33,30 @@ uses(Tests\TestCase::class)->in('Feature');
 */
 
 expect()->extend('toBeOne', fn () => $this->toBe(1));
+
+expect()->extend('toHaveAttachments', function (array $attachments, ?string $attachmentableType = null) {
+    /** @var Model $model */
+    $model = $this->value;
+    $this->toBeInstanceOf(Model::class);
+    $modelName = get_class($model);
+    $modelId = $model->getKey();
+
+    foreach ($attachments as $attachment) {
+        Assert::assertInstanceOf(Attachment::class, $attachment);
+
+        assertDatabaseHas('attachmentables', [
+            'attachmentable_type' => $attachmentableType ?? $modelName,
+            'attachmentable_id' => $modelId,
+            'attachment_id' => $attachment->id,
+        ]);
+    }
+
+    return $this;
+});
+
+expect()->extend('toHaveAttachment', function (Attachment $attachment, ?string $attachmentableType = null) {
+    return $this->toHaveAttachments([$attachment], $attachmentableType);
+});
 
 /*
 |--------------------------------------------------------------------------

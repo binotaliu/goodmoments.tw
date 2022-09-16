@@ -20,13 +20,15 @@ final class FetchAttachmentsFromProductRequest
      */
     public function __invoke(ProductCreationRequest|ProductUpdateRequest $request): Collection
     {
-        $attachmentUuids = [$request->input('cover_image_uuid'), ...$request->input('image_uuids')];
+        $attachmentUuids = [$request->input('cover_image.uuid'), ...$request->input('images.*.uuid')];
 
         $attachments = Attachment::whereIn('uuid', $attachmentUuids)->get();
 
         // check images validity
-        $images = $attachments->whereIn('uuid', $request->input('image_uuids'));
-        throw_if($images->count() !== count($request->input('image_uuids')), ValidationException::withMessages(['image_uuids' => '圖片中含有不存在的圖片']));
+        $images = $attachments->whereIn('uuid', $request->input('images.*.uuid'));
+        if ($images->count() !== count($request->input('images.*.uuid'))) {
+            throw ValidationException::withMessages(['images' => '選擇的圖片中含有未上傳的圖片']);
+        }
 
         return $attachments;
     }

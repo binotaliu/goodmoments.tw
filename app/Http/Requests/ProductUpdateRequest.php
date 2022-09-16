@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Models\Product;
 use App\Rules\AllExists;
+use App\Rules\Attachment;
+use App\Rules\Attachments;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -33,18 +35,17 @@ final class ProductUpdateRequest extends FormRequest
                 'required',
                 'array',
             ],
-            'cover_image_uuid' => [
+            'cover_image' => [
                 'required',
-                'string',
-                Rule
-                    ::exists('attachments', 'uuid')
+                Attachment
+                    ::make()
                     ->where('meta->type', Product::ATTACHMENT_TYPE_COVER),
             ],
-            'image_uuids' => [
+            'images' => [
                 'required',
                 'array',
-                AllExists
-                    ::make('attachments', 'uuid')
+                Attachments
+                    ::make()
                     ->where('meta->type', Product::ATTACHMENT_TYPE_IMAGE),
             ],
             'name.zh_Hant_TW' => [
