@@ -146,7 +146,6 @@ const form = useForm({
     zh_Oan: null
   },
   image: null,
-  image_uuid: null,
   image_description: {
     en: null,
     zh_Hant_TW: null,
@@ -155,15 +154,6 @@ const form = useForm({
   url: null,
   started_at: null,
   ended_at: null
-})
-
-const attachments = computed({
-  get () {
-    return form.image ? [form.image] : []
-  },
-  set (imageAttachments) {
-    form.image = imageAttachments[0] ?? null
-  }
 })
 
 watch(() => props.banner, (banner, old) => {

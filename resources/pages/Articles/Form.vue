@@ -149,31 +149,11 @@ const form = useForm({
   },
   published_at: null,
   cover_image: null,
-  cover_image_uuid: null,
   social_image: null,
-  social_image_uuid: null,
   content: {
     en: null,
     zh_Hant_TW: null,
     zh_Oan: null
-  }
-})
-
-const coverImageAttachments = computed({
-  get () {
-    return form.cover_image ? [form.cover_image] : []
-  },
-  set (coverImageAttachments) {
-    form.cover_image = coverImageAttachments[0] ?? null
-  }
-})
-
-const socialImageAttachments = computed({
-  get () {
-    return form.cover_image ? [form.cover_image] : []
-  },
-  set (socialImageAttachments) {
-    form.cover_image = socialImageAttachments[0] ?? null
   }
 })
 
