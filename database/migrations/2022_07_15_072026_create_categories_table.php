@@ -13,11 +13,14 @@ return new class extends Migration
         Schema::create('categories', static function (Blueprint $table): void {
             $table->id();
 
-            $table->string('slug')->unique();
+            $table->string('slug');
             $table->json('name');
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['slug', 'deleted_at']);
+            $table->index('slug');
         });
     }
 

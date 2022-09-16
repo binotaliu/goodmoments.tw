@@ -4,9 +4,12 @@ use App\Models\Attachment;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertSoftDeleted;
+use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function Pest\Laravel\put;
@@ -62,6 +65,19 @@ it('updates a category', function (): void {
     ]);
 });
 
+it('deletes a category', function (): void {
+    $user = User::factory()->active()->create();
+    $category = Category::factory()->create();
+
+    actingAs($user);
+    delete(route('admin.categories.destroy', ['category' => $category]))
+        ->assertValid()->assertRedirect();
+
+    assertSoftDeleted('categories', [
+        'id' => $category->id,
+    ]);
+});
+
 it('lists products inside a category', function (): void {
     $user = User::factory()->active()->create();
     actingAs($user);
@@ -93,7 +109,7 @@ it('creates a product inside a category', function (): void {
         ->withImage()
         ->withMeta(['type' => Product::ATTACHMENT_TYPE_COVER])
         ->create();
-    /** @var \Illuminate\Support\Collection|Attachment[] $imageAttachments */
+    /** @var Collection|Attachment[] $imageAttachments */
     $imageAttachments = Attachment
         ::factory()
         ->count(random_int(4, 6))
@@ -167,4 +183,18 @@ it('updates images of a product', function (): void {
 
     expect($product->refresh())
         ->toHaveAttachments([$newCover, ...$newImages]);
+});
+
+it('deletes a product', function (): void {
+    $user = User::factory()->active()->create();
+    $category = Category::factory()->create();
+    $product = Product::factory()->for($category)->create();
+
+    actingAs($user);
+    delete(route('admin.categories.products.destroy', ['category' => $category, 'product' => $product]))
+        ->assertValid()->assertRedirect();
+
+    assertSoftDeleted('products', [
+        'id' => $product->id,
+    ]);
 });

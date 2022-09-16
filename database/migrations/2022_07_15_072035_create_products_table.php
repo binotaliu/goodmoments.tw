@@ -28,7 +28,8 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['category_id', 'slug']);
+            $table->unique(['category_id', 'slug', 'deleted_at']);
+            $table->index('slug');
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }

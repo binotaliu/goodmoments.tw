@@ -63,4 +63,11 @@ final class ArticleController
 
         return Redirect::route('admin.articles.edit', [$article]);
     }
+
+    public function destroy(Article $article): RedirectResponse
+    {
+        $article->deleteOrFail();
+
+        return Redirect::route('admin.articles.index');
+    }
 }

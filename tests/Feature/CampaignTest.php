@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Inertia\Testing\AssertableInertia;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertSoftDeleted;
+use function Pest\Laravel\delete;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 use function Pest\Laravel\put;
@@ -98,6 +100,24 @@ it('updates banner', function (): void {
     ]);
 
     expect($banner)->toHaveAttachment($attachment);
+});
+
+it('removes a banner', function (): void {
+    $user = User::factory()->active()->create();
+    $banner = Banner
+        ::factory()
+        ->for(User::factory()->create(), 'creator')
+        ->has(Attachment::factory()->withImage())
+        ->create();
+
+    actingAs($user);
+
+    delete(route('admin.banners.destroy', [$banner]))
+        ->assertValid()->assertRedirect();
+
+    assertSoftDeleted('banners', [
+        'id' => $banner->id,
+    ]);
 });
 
 it('display banners on front page', function (): void {
@@ -198,8 +218,6 @@ it('updates an article', function (): void {
         ->withMeta(['type' => 'articleSocialImage'])
         ->create();
 
-    ray()->showQueries();
-    ray()->showRequests();
     put(route('admin.articles.update', [$article]), [
         'slug' => 'new-slug-' . $article->slug,
         'title' => $article->getTranslations('title'),
@@ -216,6 +234,25 @@ it('updates an article', function (): void {
     ]);
 
     expect($article->fresh())->toHaveAttachments([$newCoverImage, $newSocialImage]);
+});
+
+it('deletes an article', function (): void {
+    $user = User::factory()->active()->create();
+
+    $article = Article
+        ::factory()
+        ->withImages()
+        ->for(User::factory(), 'creator')
+        ->create();
+
+    actingAs($user);
+
+    delete(route('admin.articles.destroy', [$article]))
+        ->assertValid()->assertRedirect();
+
+    assertSoftDeleted('articles', [
+        'id' => $article->id,
+    ]);
 });
 
 it('lists only published article', function (): void {
