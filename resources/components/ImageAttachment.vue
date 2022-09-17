@@ -31,6 +31,7 @@
               <img
                 :src="attachment.url"
                 :alt="attachment.name"
+                @click="handleImageClick(attachment)"
               >
 
               <div
@@ -142,7 +143,7 @@ const props = defineProps({
   maxWidth: { type: [Number, null], default: null }
 })
 
-const emits = defineEmits(['update:modelValue'])
+const emits = defineEmits(['update:modelValue', 'image-click'])
 
 const processingFiles = ref([])
 const isProcessing = computed(() => processingFiles.value.length > 0)
@@ -236,6 +237,14 @@ const remove = (attachment) => {
 
 const getFileUrl = (file) => {
   return URL.createObjectURL(file)
+}
+
+const handleImageClick = (attachment) => {
+  if (attachment.processing) {
+    return
+  }
+
+  emits('image-click', attachment)
 }
 
 defineExpose({

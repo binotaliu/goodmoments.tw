@@ -87,6 +87,23 @@
       >
         <GMRichEditor v-model="form.content.zh_Hant_TW" />
       </GMFormField>
+      <GMFormField
+        id="content_images"
+        name="文章內容圖片上傳"
+      >
+        <div class="w-full flex flex-col">
+          <span class="text-sm mb-2">在圖片上按一下以插入到文章中。插入圖片後，請仍在此處保留該圖片，以避免該圖片遭刪除。</span>
+          <GMImageAttachment
+            v-model="form.content_images"
+            id="content_images"
+            :meta="{ type: 'articleContentImage' }"
+            :maxHeight="2048"
+            :maxWidth="2048"
+            multiple
+            @image-click="(attachment) => insertAttachment(attachment)"
+          />
+        </div>
+      </GMFormField>
     </GMCard>
 
     <div class="flex w-full justify-end">
@@ -154,7 +171,8 @@ const form = useForm({
     en: null,
     zh_Hant_TW: null,
     zh_Oan: null
-  }
+  },
+  content_images: [],
 })
 
 watch(() => props.article, (article, old) => {
@@ -168,6 +186,14 @@ watch(() => props.article, (article, old) => {
 
   Object.assign(form, clone(article))
 }, { immediate: true })
+
+const insertAttachment = (attachment) => {
+  const $img = document.createElement('img')
+  $img.src = attachment.url
+
+  console.log(attachment)
+  form.content.zh_Hant_TW = `${form.content.zh_Hant_TW}<br />${$img.outerHTML}<br />`
+}
 
 const submit = () => {
   if (isCreating.value) {

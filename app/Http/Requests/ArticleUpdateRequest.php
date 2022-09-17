@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\Attachment;
+use App\Rules\Attachments;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -43,6 +44,7 @@ final class ArticleUpdateRequest extends FormRequest
             'content' => ['required', 'array'],
             'content.*' => ['nullable', 'string'],
             'content.zh_Hant_TW' => ['required', 'string'],
+            'content_attachments' => ['present', 'array', Attachments::make()->whereMeta('type', 'articleContentImage')],
         ];
     }
 }

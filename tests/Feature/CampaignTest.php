@@ -171,6 +171,13 @@ it('creates new article', function (): void {
         ->withMeta(['type' => 'articleSocialImage'])
         ->create();
 
+    $contentImages = Attachment
+        ::factory()
+        ->withImage()
+        ->withMeta(['type' => 'articleContentImage'])
+        ->count(random_int(0, 6))
+        ->create();
+
     post(route('admin.articles.store'), [
         'slug' => $slug = 'article-slug-' . random_int(1, 100000),
         'title' => [
@@ -190,6 +197,7 @@ it('creates new article', function (): void {
             'zh_Hant_TW' => '文章內容',
             'zh_Oan' => '文章內容',
         ],
+        'content_attachments' => $contentImages->toArray(),
         'published_at' => now(),
     ])->assertValid()->assertRedirect();
 
@@ -225,6 +233,7 @@ it('updates an article', function (): void {
         'cover_image' => $newCoverImage->toArray(),
         'social_image' => $newSocialImage->toArray(),
         'content' => $article->getTranslations('content'),
+        'content_images' => $article->content_images->toArray(),
         'published_at' => $article->published_at,
     ])->assertValid()->assertRedirect();
 

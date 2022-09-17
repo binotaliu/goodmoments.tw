@@ -36,22 +36,14 @@ final class Article extends Model implements Feedable
     protected $with = ['attachments'];
     protected $appends = [
         'cover_image',
-        'cover_image_uuid',
         'social_image',
-        'social_image_uuid',
+        'content_images',
     ];
 
     public function coverImage(): Attribute
     {
         return Attribute::get(
             fn () => $this->attachments->where('meta.type', 'articleCoverImage')->sole(),
-        );
-    }
-
-    public function coverImageUuid(): Attribute
-    {
-        return Attribute::get(
-            fn () => $this->cover_image->uuid,
         );
     }
 
@@ -62,10 +54,10 @@ final class Article extends Model implements Feedable
         );
     }
 
-    public function socialImageUuid(): Attribute
+    public function contentImages(): Attribute
     {
         return Attribute::get(
-            fn () => $this->social_image->uuid,
+            fn () => $this->attachments->where('meta.type', 'articleContentImage'),
         );
     }
 

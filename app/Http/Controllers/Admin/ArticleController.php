@@ -37,10 +37,15 @@ final class ArticleController
     {
         $coverImage = Attachment::where('uuid', $request->input('cover_image.uuid'))->sole();
         $socialImage = Attachment::where('uuid', $request->input('social_image.uuid'))->first();
+        $contentAttachments = Attachment::where('uuid', $request->input('content_attachments.*.uuid'))->get();
 
         $article = ($this->fillArticleInputsFromRequest)($request);
         $article->save();
-        $article->attachments()->sync(array_filter([$coverImage->id, $socialImage?->id]));
+        $article->attachments()->sync(array_filter([
+            $coverImage->id,
+            $socialImage?->id,
+            ...$contentAttachments->pluck('id')->toArray()
+        ]));
 
         return Redirect::route('admin.articles.edit', [$article]);
     }
@@ -56,10 +61,15 @@ final class ArticleController
     {
         $coverImage = Attachment::where('uuid', $request->input('cover_image.uuid'))->sole();
         $socialImage = Attachment::where('uuid', $request->input('social_image.uuid'))->first();
+        $contentAttachments = Attachment::where('uuid', $request->input('content_attachments.*.uuid'))->get();
 
         ($this->fillArticleInputsFromRequest)($request, $article);
         $article->save();
-        $article->attachments()->sync(array_filter([$coverImage->id, $socialImage?->id]));
+        $article->attachments()->sync(array_filter([
+            $coverImage->id,
+            $socialImage?->id,
+            ...$contentAttachments->pluck('id')->toArray()
+        ]));
 
         return Redirect::route('admin.articles.edit', [$article]);
     }
