@@ -14,61 +14,65 @@
     </GMLinkButton>
   </div>
 
-  <GMCard class="w-full">
-    <table class="gm-table w-full">
-      <thead>
-        <tr>
-          <th class="w-40">
-            Slug
-          </th>
-          <th class="w-40">
-            分類
-          </th>
-          <th>名稱</th>
-          <th class="w-64">
-            動作
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="product in products.data"
-          :key="product.id"
-        >
-          <td>{{ product.slug }}</td>
-          <td>{{ product.category.name.zh_Hant_TW }}</td>
-          <td>{{ product.name.zh_Hant_TW }}</td>
-          <td>
-            <div class="flex justify-center gap-2">
-              <GMLinkButton
-                :href="$route('categories.products.show', [product.category.slug, product.slug])"
-                size="sm"
-                class="flex items-center gap-2"
-              >
-                <ExternalLinkIcon class="h-4 w-4" /> 開啟
-              </GMLinkButton>
-              <GMLinkButton
-                :href="$route('admin.categories.products.update', [product.category_id, product.id])"
-                size="sm"
-                class="flex items-center gap-2"
-              >
-                <PencilIcon class="h-4 w-4" /> 編輯
-              </GMLinkButton>
-              <GMButton
-                size="sm"
-                class="flex items-center gap-2"
-                @click="showRemoveModal(product)"
-              >
-                <TrashIcon class="h-4 w-4" /> 刪除
-              </GMButton>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="mb-8 w-full overflow-x-auto">
+    <div class="min-w-[1024px]">
+      <GMCard class="w-full">
+        <table class="gm-table w-full">
+          <thead>
+            <tr>
+              <th class="w-40">
+                Slug
+              </th>
+              <th class="w-40">
+                分類
+              </th>
+              <th>名稱</th>
+              <th class="w-64">
+                動作
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="product in products.data"
+              :key="product.id"
+            >
+              <td>{{ product.slug }}</td>
+              <td>{{ product.category.name.zh_Hant_TW }}</td>
+              <td>{{ product.name.zh_Hant_TW }}</td>
+              <td>
+                <div class="flex justify-center gap-2">
+                  <GMLinkButton
+                    :href="$route('categories.products.show', [product.category.slug, product.slug])"
+                    size="sm"
+                    class="flex items-center gap-2"
+                  >
+                    <ExternalLinkIcon class="h-4 w-4" /> 開啟
+                  </GMLinkButton>
+                  <GMLinkButton
+                    :href="$route('admin.categories.products.update', [product.category_id, product.id])"
+                    size="sm"
+                    class="flex items-center gap-2"
+                  >
+                    <PencilIcon class="h-4 w-4" /> 編輯
+                  </GMLinkButton>
+                  <GMButton
+                    size="sm"
+                    class="flex items-center gap-2"
+                    @click="showRemoveModal(product)"
+                  >
+                    <TrashIcon class="h-4 w-4" /> 刪除
+                  </GMButton>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </GMCard>
+    </div>
+  </div>
 
-    <GMPaginator :paginator="products" />
-  </GMCard>
+  <GMPaginator :paginator="products" />
 
   <Teleport to="body">
     <GMModal

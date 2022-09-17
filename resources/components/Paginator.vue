@@ -1,5 +1,6 @@
 <template>
   <nav
+    class="w-full"
     role="navigation"
     aria-label="分頁選單"
   >

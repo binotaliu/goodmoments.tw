@@ -5,7 +5,10 @@
     <h1 class="text-2xl font-semibold">
       重設密碼
     </h1>
-    <GMCard class="w-full md:w-64 lg:w-80">
+    <GMCard
+      class="w-full md:w-64 lg:w-80"
+      expanded-on-mobile
+    >
       <form
         class="flex flex-col items-stretch justify-center gap-4"
         @submit.prevent="send"

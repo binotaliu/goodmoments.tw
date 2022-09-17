@@ -7,7 +7,7 @@
     </h1>
   </div>
 
-  <div class="mb-8 grid w-full grid-cols-2 gap-8">
+  <div class="mb-8 grid w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
     <GMCard class="flex items-center gap-4">
       <div>
         <UserIcon class="h-6 w-6" />
@@ -34,7 +34,7 @@
       <ChartBarIcon class="h-5 w-5" /> 統計
     </h3>
 
-    <dl class="grid grid-cols-3 gap-6">
+    <dl class="grid grid-cols-1 gap-6 md:grid-cols-3">
       <GMCard class="flex gap-2">
         <div class="center-center flex w-1/4">
           <NewspaperIcon class="h-8 w-8 text-ground-600" />
@@ -89,65 +89,67 @@
         <InformationCircleIcon class="h-8 w-8" />
       </div>
 
-      <div class="flex grow flex-col justify-center">
-        <h4 class="text-lg font-medium">
-          技術支援
-        </h4>
-        <p
-          v-if="isSupported"
-          class="text-sm text-wood-600"
-        >
-          如有任何技術問題，請聯絡我們。
-        </p>
-        <p
-          v-else-if="receivesSecurityPatch"
-          class="text-sm text-wood-600"
-        >
-          目前不再提供技術支援，<br>僅會就網站已知的安全性漏洞進行修補，<br>以避免遭受惡意攻擊。
-        </p>
-        <p
-          v-else
-          class="text-sm text-wood-600"
-        >
-          本網站已停止維護<br>當發現新的安全性漏洞時將不再接收修補程式，<br>可能會有受到惡意軟體攻擊的可能。
-        </p>
-      </div>
+      <div class="flex grow flex-col items-stretch gap-4 md:flex-row">
+        <div class="flex grow flex-col justify-center">
+          <h4 class="text-lg font-medium">
+            技術支援
+          </h4>
+          <p
+            v-if="isSupported"
+            class="text-sm text-wood-600"
+          >
+            如有任何技術問題，請聯絡我們。
+          </p>
+          <p
+            v-else-if="receivesSecurityPatch"
+            class="text-sm text-wood-600"
+          >
+            目前不再提供技術支援，<br>僅會就網站已知的安全性漏洞進行修補，<br>以避免遭受惡意攻擊。
+          </p>
+          <p
+            v-else
+            class="text-sm text-wood-600"
+          >
+            本網站已停止維護<br>當發現新的安全性漏洞時將不再接收修補程式，<br>可能會有受到惡意軟體攻擊的可能。
+          </p>
+        </div>
 
-      <div
-        class="flex flex-col rounded px-4 py-2 text-center"
-        :class="[supportDateBackground]"
-      >
-        <span>支援有效期限</span>
-        <template v-if="isSupported">
-          <p class="center-center flex grow text-xl">
-            {{ supportedUntil.format('YYYY 年 M 月 D 日') }}
-          </p>
-          <span class="text-xs">（安全性維護至 {{ $dayjs(securityPatchUntil).format('YYYY 年 M 月 D 日') }}）</span>
-        </template>
-        <template v-else-if="receivesSecurityPatch">
-          <p class="center-center flex grow text-xl">
-            僅安全性維護
-          </p>
-          <span class="text-xs">安全性維護至 {{ $dayjs(securityPatchUntil).format('YYYY 年 M 月 D 日') }}</span>
-        </template>
-        <template v-else>
-          <p class="center-center flex grow text-xl">
-            不安全
-          </p>
-        </template>
-      </div>
-
-      <div class="flex flex-col rounded bg-wood-100 px-4 py-2">
-        <span class="text-lg">{{ support.name }}</span>
-        <p class="mb-1 flex grow items-center gap-1">
-          <MailIcon class="h-4 w-4" /> <a :href="`mailto:?to=${support.email}&subject=${encodeURIComponent(`公舘網站支援 - ${$page.props.app.user.name}`)}&body=${encodeURIComponent(emailTemplate)}`">{{ support.email }}</a>
-        </p>
-        <p
-          v-if="isSupported"
-          class="text-xs"
+        <div
+          class="flex flex-col rounded px-4 py-2 text-center"
+          :class="[supportDateBackground]"
         >
-          歡迎來信詢問操作問題或回報 Bug
-        </p>
+          <span>支援有效期限</span>
+          <template v-if="isSupported">
+            <p class="center-center flex grow text-xl">
+              {{ supportedUntil.format('YYYY 年 M 月 D 日') }}
+            </p>
+            <span class="text-xs">（安全性維護至 {{ $dayjs(securityPatchUntil).format('YYYY 年 M 月 D 日') }}）</span>
+          </template>
+          <template v-else-if="receivesSecurityPatch">
+            <p class="center-center flex grow text-xl">
+              僅安全性維護
+            </p>
+            <span class="text-xs">安全性維護至 {{ $dayjs(securityPatchUntil).format('YYYY 年 M 月 D 日') }}</span>
+          </template>
+          <template v-else>
+            <p class="center-center flex grow text-xl">
+              不安全
+            </p>
+          </template>
+        </div>
+
+        <div class="flex flex-col items-center rounded bg-wood-100 px-4 py-2 md:items-start">
+          <span class="text-lg">{{ support.name }}</span>
+          <p class="mb-1 flex grow items-center gap-1">
+            <MailIcon class="h-4 w-4" /> <a :href="`mailto:?to=${support.email}&subject=${encodeURIComponent(`公舘網站支援 - ${$page.props.app.user.name}`)}&body=${encodeURIComponent(emailTemplate)}`">{{ support.email }}</a>
+          </p>
+          <p
+            v-if="isSupported"
+            class="text-xs"
+          >
+            歡迎來信詢問操作問題或回報 Bug
+          </p>
+        </div>
       </div>
     </GMCard>
   </div>
