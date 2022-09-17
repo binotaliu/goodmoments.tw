@@ -65,7 +65,7 @@
             v-else
             class="center-center flex gap-2"
           >
-            <SaveIcon class="h-4 w-4" /> 保存
+            <ArrowDownOnSquareIcon class="h-4 w-4" /> 保存
           </div>
         </GMLoadingText>
       </GMButton>
@@ -76,7 +76,7 @@
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
 
-import { PlusIcon, SaveIcon } from '@heroicons/vue/solid'
+import { PlusIcon, ArrowDownOnSquareIcon } from '@heroicons/vue/20/solid'
 import { computed, watch } from 'vue'
 
 const props = defineProps({

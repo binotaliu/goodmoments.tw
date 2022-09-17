@@ -79,7 +79,7 @@
             ]"
             @click="remove(attachment)"
           >
-            <XIcon class="h-4 w-4" />
+            <XMarkIcon class="h-4 w-4" />
           </button>
         </div> <!-- /attachment -->
       </div>
@@ -124,7 +124,7 @@
  */
 
 import { uuid4 } from '@/js/utils'
-import { FolderIcon, TrashIcon, XIcon } from '@heroicons/vue/solid'
+import { FolderIcon, TrashIcon, XMarkIcon } from '@heroicons/vue/20/solid'
 import axios from 'axios'
 import { serialize as serializeToFormData } from 'object-to-formdata'
 import { computed, ref } from 'vue'

@@ -20,7 +20,7 @@
             aria-label="展開選單"
             @click="showMenu = !showMenu"
           >
-            <MenuIcon class="h-6 w-6" />
+            <Bars3Icon class="h-6 w-6" />
           </button>
         </div>
       </div>
@@ -65,7 +65,7 @@
             <template #contents>
               <GMNavItem :href="$route('admin.users.index')">
                 <div class="inline-flex items-center gap-2">
-                  <ViewListIcon class="h-4 w-4" />
+                  <Bars4Icon class="h-4 w-4" />
                   使用者列表
                 </div>
               </GMNavItem>
@@ -91,13 +91,13 @@
         <ul class="flex w-full flex-col items-stretch gap-2">
           <GMNavItem>
             <div class="inline-flex items-center gap-2">
-              <PhotographIcon class="h-4 w-4" />
+              <PhotoIcon class="h-4 w-4" />
               宣傳
             </div>
             <template #contents>
               <GMNavItem :href="$route('admin.banners.index')">
                 <div class="inline-flex items-center gap-2">
-                  <CollectionIcon class="h-4 w-4" />
+                  <RectangleStackIcon class="h-4 w-4" />
                   橫幅
                 </div>
               </GMNavItem>
@@ -124,7 +124,7 @@
 </template>
 
 <script setup>
-import { CollectionIcon, HomeIcon, MenuIcon, PencilIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/outline'
+import { RectangleStackIcon, HomeIcon, Bars3Icon, PencilIcon, PhotoIcon, ShoppingBagIcon, TagIcon, UsersIcon, Bars4Icon } from '@heroicons/vue/24/outline'
 import { Inertia } from '@inertiajs/inertia'
 import { ref } from 'vue'
 

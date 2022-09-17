@@ -49,7 +49,7 @@
                   <!--                size="sm"-->
                   <!--                class="flex items-center gap-2"-->
                   <!--              >-->
-                  <!--                <ExternalLinkIcon class="h-4 w-4" /> 開啟-->
+                  <!--                <ArrowTopRightOnSquareIcon class="h-4 w-4" /> 開啟-->
                   <!--              </GMLinkButton>-->
                   <GMLinkButton
                     :href="$route('admin.articles.edit', [article.id])"
@@ -86,7 +86,7 @@
   </GMRemoveModal>
 </template>
 <script setup>
-import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
+import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/20/solid'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 

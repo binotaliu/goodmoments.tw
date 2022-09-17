@@ -22,7 +22,7 @@
           name="電子郵件"
         >
           <template #icon>
-            <MailIcon class="h-4 w-4" />
+            <EnvelopeIcon class="h-4 w-4" />
           </template>
           <GMInput
             v-model="form.email"
@@ -73,7 +73,7 @@
 <script setup>
 import Auth from '@/layouts/Auth.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
-import { LockClosedIcon, MailIcon } from '@heroicons/vue/solid'
+import { LockClosedIcon, EnvelopeIcon } from '@heroicons/vue/20/solid'
 import { watch } from 'vue'
 
 const props = defineProps({

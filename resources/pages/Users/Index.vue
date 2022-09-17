@@ -76,7 +76,7 @@
   <GMPaginator :paginator="users" />
 </template>
 <script setup>
-import { CheckIcon, PencilIcon, PlusIcon, TrashIcon } from '@heroicons/vue/solid'
+import { CheckIcon, PencilIcon, PlusIcon, TrashIcon } from '@heroicons/vue/20/solid'
 
 defineProps({
   users: { type: Object, required: true }

@@ -131,7 +131,7 @@
 </template>
 <script setup>
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
-import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/solid'
+import { PlusIcon, EyeIcon, TrashIcon } from '@heroicons/vue/20/solid'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { onBeforeUnmount, ref } from 'vue'
 import dayjs from '@/js/dayjs'

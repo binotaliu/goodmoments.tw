@@ -47,7 +47,7 @@
                     size="sm"
                     class="flex items-center gap-2"
                   >
-                    <ExternalLinkIcon class="h-4 w-4" /> 開啟
+                    <ArrowTopRightOnSquareIcon class="h-4 w-4" /> 開啟
                   </GMLinkButton>
                   <GMLinkButton
                     :href="$route('admin.categories.products.update', [product.category_id, product.id])"
@@ -101,7 +101,7 @@
   </Teleport>
 </template>
 <script setup>
-import { PencilIcon, PlusIcon, ExternalLinkIcon, TrashIcon } from '@heroicons/vue/solid'
+import { PencilIcon, PlusIcon, ArrowTopRightOnSquareIcon, TrashIcon } from '@heroicons/vue/20/solid'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 

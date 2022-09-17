@@ -146,7 +146,7 @@
 import { computed } from 'vue'
 import { Link as InertiaLink } from '@inertiajs/inertia-vue3'
 
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
 
 const props = defineProps({
   paginator: { type: Object, required: true }

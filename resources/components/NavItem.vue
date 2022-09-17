@@ -40,7 +40,7 @@
 <script setup>
 import { Link as InertiaLink } from '@inertiajs/inertia-vue3'
 import { computed, ref } from 'vue'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/solid'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/20/solid'
 
 const props = defineProps({
   active: { type: Boolean, default: false }

@@ -82,7 +82,7 @@
   </GMRemoveModal>
 </template>
 <script setup>
-import { PencilIcon, PlusIcon, ShoppingBagIcon, TrashIcon } from '@heroicons/vue/solid'
+import { PencilIcon, PlusIcon, ShoppingBagIcon, TrashIcon } from '@heroicons/vue/20/solid'
 import { useForm } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
 

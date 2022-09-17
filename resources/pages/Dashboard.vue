@@ -51,7 +51,7 @@
 
       <GMCard class="flex gap-2">
         <div class="center-center flex w-1/4">
-          <CollectionIcon class="h-8 w-8 text-ground-600" />
+          <RectangleStackIcon class="h-8 w-8 text-ground-600" />
         </div>
         <div class="flex grow flex-col justify-between">
           <dt class="text-sm">
@@ -141,7 +141,7 @@
         <div class="flex flex-col items-center rounded bg-wood-100 px-4 py-2 md:items-start">
           <span class="text-lg">{{ support.name }}</span>
           <p class="mb-1 flex grow items-center gap-1">
-            <MailIcon class="h-4 w-4" /> <a :href="`mailto:?to=${support.email}&subject=${encodeURIComponent(`公舘網站支援 - ${$page.props.app.user.name}`)}&body=${encodeURIComponent(emailTemplate)}`">{{ support.email }}</a>
+            <EnvelopeIcon class="h-4 w-4" /> <a :href="`mailto:?to=${support.email}&subject=${encodeURIComponent(`公舘網站支援 - ${$page.props.app.user.name}`)}&body=${encodeURIComponent(emailTemplate)}`">{{ support.email }}</a>
           </p>
           <p
             v-if="isSupported"
@@ -156,7 +156,7 @@
 </template>
 
 <script setup>
-import { CollectionIcon, ChartBarIcon, InformationCircleIcon, UserIcon, MailIcon, NewspaperIcon, QuestionMarkCircleIcon, ShoppingBagIcon } from '@heroicons/vue/outline'
+import { RectangleStackIcon, ChartBarIcon, InformationCircleIcon, UserIcon, EnvelopeIcon, NewspaperIcon, QuestionMarkCircleIcon, ShoppingBagIcon } from '@heroicons/vue/24/outline'
 import { usePage } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue'
 

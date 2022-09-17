@@ -65,7 +65,7 @@
 <script setup>
 import Auth from '@/layouts/Auth.vue'
 import { useForm } from '@inertiajs/inertia-vue3'
-import { UserIcon, LockClosedIcon } from '@heroicons/vue/solid'
+import { UserIcon, LockClosedIcon } from '@heroicons/vue/20/solid'
 
 defineOptions({
   layout: Auth
