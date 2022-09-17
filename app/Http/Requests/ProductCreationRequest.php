@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Models\Product;
-use App\Rules\AllExists;
 use App\Rules\Attachment;
 use App\Rules\Attachments;
 use Illuminate\Foundation\Http\FormRequest;

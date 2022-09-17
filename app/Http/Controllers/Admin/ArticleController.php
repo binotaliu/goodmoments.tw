@@ -44,7 +44,7 @@ final class ArticleController
         $article->attachments()->sync(array_filter([
             $coverImage->id,
             $socialImage?->id,
-            ...$contentAttachments->pluck('id')->toArray()
+            ...$contentAttachments->pluck('id')->toArray(),
         ]));
 
         return Redirect::route('admin.articles.edit', [$article]);
@@ -68,7 +68,7 @@ final class ArticleController
         $article->attachments()->sync(array_filter([
             $coverImage->id,
             $socialImage?->id,
-            ...$contentAttachments->pluck('id')->toArray()
+            ...$contentAttachments->pluck('id')->toArray(),
         ]));
 
         return Redirect::route('admin.articles.edit', [$article]);

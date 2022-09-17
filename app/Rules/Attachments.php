@@ -2,8 +2,6 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
-
 /**
  * @method static Attachments make()
  */

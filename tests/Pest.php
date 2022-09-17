@@ -13,11 +13,8 @@
 
 use App\Models\Attachment;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
-
-use PHPUnit\Framework\Assert;
-
 use function Pest\Laravel\assertDatabaseHas;
+use PHPUnit\Framework\Assert;
 
 uses(Tests\TestCase::class)->in('Feature');
 

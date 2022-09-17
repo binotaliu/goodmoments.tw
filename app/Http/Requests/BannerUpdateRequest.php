@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use App\Rules\Attachment;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 final class BannerUpdateRequest extends FormRequest
 {

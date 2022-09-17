@@ -91,14 +91,14 @@
         id="content_images"
         name="文章內容圖片上傳"
       >
-        <div class="w-full flex flex-col">
-          <span class="text-sm mb-2">在圖片上按一下以插入到文章中。插入圖片後，請仍在此處保留該圖片，以避免該圖片遭刪除。</span>
+        <div class="flex w-full flex-col">
+          <span class="mb-2 text-sm">在圖片上按一下以插入到文章中。插入圖片後，請仍在此處保留該圖片，以避免該圖片遭刪除。</span>
           <GMImageAttachment
-            v-model="form.content_images"
             id="content_images"
+            v-model="form.content_images"
             :meta="{ type: 'articleContentImage' }"
-            :maxHeight="2048"
-            :maxWidth="2048"
+            :max-height="2048"
+            :max-width="2048"
             multiple
             @image-click="(attachment) => insertAttachment(attachment)"
           />
@@ -172,7 +172,7 @@ const form = useForm({
     zh_Hant_TW: null,
     zh_Oan: null
   },
-  content_images: [],
+  content_images: []
 })
 
 watch(() => props.article, (article, old) => {
