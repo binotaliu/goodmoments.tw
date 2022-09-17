@@ -1,9 +1,11 @@
+/.licensed
 /node_modules
 /public/build
 /public/hot
 /public/storage
 /public/dist
 /public/vendor
+/resources/licenses.html
 /storage/*.key
 /vendor
 .env

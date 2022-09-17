@@ -65,7 +65,7 @@
                 </p>
                 <p class="text-xs text-pearl-400">
                     {{ __('footer.opensource') }}<br />
-                    {{ __('footer.opensource_detail') }}<a href="{{ url('license') }}" class="px-0.5 underline hover:no-underline">{{ __('footer.opensource_license') }}</a>{{ __('footer.opensource_and') }}<x-external-link href="https://github.com/binotaliu/goodmoments.tw" class="px-0.5 underline hover:no-underline">{{ __('footer.opensource_github') }}</x-external-link>{{ __('footer.opensource_end') }}
+                    {{ __('footer.opensource_detail') }}<a href="{{ url('licenses') }}" class="px-0.5 underline hover:no-underline">{{ __('footer.opensource_license') }}</a>{{ __('footer.opensource_and') }}<x-external-link href="https://github.com/binotaliu/goodmoments.tw" class="px-0.5 underline hover:no-underline">{{ __('footer.opensource_github') }}</x-external-link>{{ __('footer.opensource_end') }}
                 </p>
             </div>
 

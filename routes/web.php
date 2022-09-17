@@ -44,4 +44,6 @@ Route::get('maps', MapController::class)->name('map');
 Route::get('contact', [ContactController::class, 'form'])->name('contact.form');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
+Route::view('licenses', 'licenses');
+
 Route::feeds();
