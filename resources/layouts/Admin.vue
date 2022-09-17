@@ -9,6 +9,24 @@
         </h3>
       </div>
 
+      <div class="flex items-center justify-between gap-x-2 rounded border border-pearl-600 px-6 py-2">
+        <img
+          :src="$page.props.app.user.avatar_url"
+          class="h-8 w-8 rounded-full"
+          :alt="`${$page.props.app.user.name} 的顯示圖片`"
+        >
+        <div class="flex grow flex-col items-start justify-center">
+          <span class="text-lg font-medium">{{ $page.props.app.user.name }}</span>
+          <button
+            type="button"
+            class="-m-2 p-2 text-xs text-pearl-800 underline transition-colors hover:text-pearl-700 hover:no-underline"
+            @click="logout"
+          >
+            登出
+          </button>
+        </div>
+      </div>
+
       <nav class="px-4">
         <ul class="flex w-full flex-col items-stretch gap-2">
           <GMNavItem :href="$route('admin.dashboard')">
@@ -84,6 +102,12 @@
 </template>
 
 <script setup>
-import { CollectionIcon, HomeIcon, PencilIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/solid'
+import { CollectionIcon, HomeIcon, PencilIcon, PhotographIcon, ShoppingBagIcon, TagIcon, UsersIcon, ViewListIcon } from '@heroicons/vue/outline'
+import { Inertia } from '@inertiajs/inertia'
+
 const year = (new Date()).getFullYear()
+
+const logout = () => {
+  Inertia.post(route('logout'))
+}
 </script>

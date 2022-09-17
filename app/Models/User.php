@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,4 +49,17 @@ final class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_active' => 'bool',
     ];
+
+    protected $appends = [
+        'avatar_url',
+    ];
+
+    public function avatarUrl(): Attribute
+    {
+        return Attribute::get(function () {
+            $emailMd5 = md5($this->email);
+
+            return "https://www.gravatar.com/avatar/{$emailMd5}";
+        });
+    }
 }

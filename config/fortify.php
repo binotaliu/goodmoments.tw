@@ -122,6 +122,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Fortify Redirects
+    |--------------------------------------------------------------------------
+    |
+    | Here you may specify the URIs where users will be redirected after certain
+    | actions have been performed. You are free to change these values as you
+    | wish. The URIs you specify are only used when the features are enabled.
+    | Otherwise, the default Fortify redirects will be used.
+    */
+
+    'redirects' => [
+        'logout' => '/admin/login',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Features
     |--------------------------------------------------------------------------
     |
