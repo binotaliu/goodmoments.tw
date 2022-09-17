@@ -24,7 +24,7 @@ final class BannerController
     public function index(): InertiaResponse
     {
         return Inertia::render('Banners/Index', [
-            'banners' => Banner::paginate(),
+            'banners' => Banner::orderByDesc('started_at')->paginate(),
         ]);
     }
 

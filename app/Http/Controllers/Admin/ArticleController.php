@@ -24,7 +24,7 @@ final class ArticleController
     public function index(): InertiaResponse
     {
         return Inertia::render('Articles/Index', [
-            'articles' => Article::paginate(),
+            'articles' => Article::orderByDesc('published_at')->paginate(),
         ]);
     }
 
