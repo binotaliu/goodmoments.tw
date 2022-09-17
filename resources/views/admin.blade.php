@@ -13,6 +13,7 @@
 <body class="bg-pearl-100 antialiased">
 @inertia
 
+<x-support-bubble />
 @routes
 </body>
 </html>

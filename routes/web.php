@@ -47,3 +47,7 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 Route::view('licenses', 'licenses');
 
 Route::feeds();
+
+Route::middleware('auth')->group(function (): void {
+    Route::supportBubble();
+});

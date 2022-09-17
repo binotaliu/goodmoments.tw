@@ -3,6 +3,9 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   content: [
+    './vendor/spatie/laravel-support-bubble/config/**/*.php',
+    './vendor/spatie/laravel-support-bubble/resources/views/**/*.blade.php',
+
     './resources/**/*.vue',
     './resources/**/*.js',
     './resources/**/*.ts',
