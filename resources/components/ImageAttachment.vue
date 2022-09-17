@@ -14,7 +14,7 @@
         <div
           v-for="attachment in previews"
           :key="attachment.uuid"
-          class="group relative w-1/3"
+          class="group relative w-1/2 md:w-1/3"
         >
           <div
             class="
