@@ -38,13 +38,12 @@
 
     <nav class="bg-wood-600" role="navigation">
         <div class="max-w-4xl mx-auto md:block" x-bind:class="{ 'hidden': !showMenu }">
-            <ul class="flex flex-col md:flex-row justify-start items-stretch md:px-4">
+            <ul class="flex flex-col md:flex-row justify-center items-stretch md:px-4">
                 <x-layout.nav-item href="{{ url('/') }}" :active="Route::current()->is('')">首頁</x-layout.nav-item>
                 <x-layout.nav-item
                     href="{{ url('products') }}"
                     :active="Route::current()->is('categories/*/products/*') || Route::current()->is('products')"
                 >特色產品</x-layout.nav-item>
-                <x-layout.nav-item href="{{ url('categories/workshops') }}">體驗課程</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('about') }}" :active="Route::current()->is('about')">關於我們</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('life') }}" :active="Route::current()->is('life')">食衣住行育樂</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('maps') }}">交通資訊</x-layout.nav-item>
