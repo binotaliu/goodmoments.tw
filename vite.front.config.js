@@ -37,6 +37,35 @@ export default defineConfig({
     }
   },
   ...(server === null ? {} : { server }),
+
+  build: {
+    rollupOptions: {
+      manualChunks(id) {
+        const chunksMap = {
+          'node_modules': 'vendors'
+        }
+
+        return (
+          Object
+            .entries(chunksMap)
+            .find(([pattern]) => id.includes(pattern)) || []
+        )
+          .slice(1)
+          .find(() => true)
+      }
+    }
+  },
+
+  css: {
+    postcss: {
+      plugins: [
+        require('tailwindcss/nesting'),
+        require('tailwindcss')('./tailwind.config.front.js'),
+        require('autoprefixer')
+      ]
+    }
+  },
+
   plugins: [
     laravel({
       input: [

@@ -70,6 +70,16 @@ export default defineConfig({
     }
   },
 
+  css: {
+    postcss: {
+      plugins: [
+        require('tailwindcss/nesting'),
+        require('tailwindcss')('./tailwind.config.admin.js'),
+        require('autoprefixer')
+      ]
+    }
+  },
+
   plugins: [
     laravel({
       input: [
