@@ -3,7 +3,7 @@ name: 'goodmoments.tw'
 cache_path: '.licensed/'
 
 composer:
-  application_path: '/usr/local/bin/composer'
+  application_path: '/usr/bin/composer'
 
 allowed:
   - mit
