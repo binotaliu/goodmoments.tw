@@ -9,7 +9,9 @@ use App\Http\Requests\AboutPageUpdateRequest;
 use App\Models\Attachment;
 use App\Models\Member;
 use App\Models\Sysval;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Stevebauman\Purify\Facades\Purify;
@@ -31,7 +33,7 @@ final class AboutController
         ]);
     }
 
-    public function update(AboutPageUpdateRequest $request): void
+    public function update(AboutPageUpdateRequest $request): RedirectResponse
     {
         $description = [
             'en' => Purify::clean($request->input('description.en', '')),
@@ -43,6 +45,8 @@ final class AboutController
 
         $members = $request->input('members', []);
         $this->syncMembers(collect($members));
+
+        return Redirect::route('admin.pages.about.edit');
     }
 
     public function syncMembers(Collection $input): Collection
@@ -54,7 +58,6 @@ final class AboutController
         $attachments = Attachment::whereIn('uuid', $flattenedInput->pluck('image.uuid'))->get()->keyBy('uuid');
 
         [$newMembers, $oldMembers] = $flattenedInput->partition(fn ($i) => $i['id'] === null);
-        ray($newMembers);
         $newMembers
             ->each(function ($data) use ($attachments): void {
                 $member = new Member();
