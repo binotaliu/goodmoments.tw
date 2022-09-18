@@ -1,16 +1,16 @@
 <template>
-  <InertiaHead title="橫幅列表" />
+  <InertiaHead title="輪播圖片列表" />
 
   <div class="mb-4 flex w-full items-center justify-between">
     <h1 class="text-2xl font-semibold text-wood-600">
-      橫幅列表
+      輪播圖片列表
     </h1>
 
     <GMLinkButton
       :href="$route('admin.banners.create')"
       class="flex items-center justify-between gap-2"
     >
-      <PlusIcon class="h-4 w-4" /> 建立橫幅
+      <PlusIcon class="h-4 w-4" /> 建立輪播圖片
     </GMLinkButton>
   </div>
 
@@ -125,7 +125,7 @@
     :loading="removeForm.processing"
     @remove="remove(removingBanner)"
   >
-    確定要刪除這個橫幅嗎？ <br>
+    確定要刪除這個輪播圖片嗎？ <br>
     <span class="font-medium">{{ removingBanner?.title?.zh_Hant_TW }}</span> <br>
   </GMRemoveModal>
 </template>

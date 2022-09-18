@@ -1,18 +1,18 @@
 <template>
-  <InertiaHead :title="isCreating ? '建立橫幅' : `${banner.title.zh_Hant_TW} – 編輯橫幅`" />
+  <InertiaHead :title="isCreating ? '建立輪播圖片' : `${banner.title.zh_Hant_TW} – 編輯輪播圖片`" />
 
   <div class="mb-4 flex w-full items-center justify-between">
     <h1
       v-if="isCreating"
       class="text-2xl font-semibold text-wood-600"
     >
-      建立橫幅
+      建立輪播圖片
     </h1>
     <h1
       v-else
       class="text-2xl font-semibold text-wood-600"
     >
-      編輯橫幅 - {{ banner.title.zh_Hant_TW }}
+      編輯輪播圖片 - {{ banner.title.zh_Hant_TW }}
     </h1>
   </div>
 

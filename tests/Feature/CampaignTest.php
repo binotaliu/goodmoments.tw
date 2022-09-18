@@ -44,19 +44,19 @@ it('creates banner', function (): void {
     post(route('admin.banners.store'), [
         'title' => [
             'en' => 'Banner title',
-            'zh_Hant_TW' => '橫幅標題',
-            'zh_Oan' => '橫幅標題',
+            'zh_Hant_TW' => '輪播圖片標題',
+            'zh_Oan' => '輪播圖片標題',
         ],
         'description' => [
             'en' => 'Banner description',
-            'zh_Hant_TW' => '橫幅描述',
-            'zh_Oan' => '橫幅描述',
+            'zh_Hant_TW' => '輪播圖片描述',
+            'zh_Oan' => '輪播圖片描述',
         ],
         'image' => $attachment->toArray(),
         'image_description' => [
             'en' => 'Banner image description',
-            'zh_Hant_TW' => '橫幅圖片描述',
-            'zh_Oan' => '橫幅圖片描述',
+            'zh_Hant_TW' => '輪播圖片圖片描述',
+            'zh_Oan' => '輪播圖片圖片描述',
         ],
         'url' => $url = 'https://www.example.com?' . Str::random(),
         'started_at' => now()->toIso8601String(),

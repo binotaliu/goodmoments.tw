@@ -55,7 +55,7 @@
         </div>
         <div class="flex grow flex-col justify-between">
           <dt class="text-sm">
-            投放中橫幅 / 總橫幅數
+            投放中輪播圖片 / 總輪播圖片數
           </dt>
           <dt class="text-3xl">
             {{ activeBannersCount }} <small class="text-lg">/ {{ bannersCount }}</small>

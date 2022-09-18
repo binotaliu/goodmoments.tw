@@ -107,7 +107,7 @@
               <GMNavItem :href="$route('admin.banners.index')">
                 <div class="inline-flex items-center gap-2">
                   <RectangleStackIcon class="h-4 w-4" />
-                  橫幅
+                  輪播圖片
                 </div>
               </GMNavItem>
               <GMNavItem :href="$route('admin.articles.index')">
