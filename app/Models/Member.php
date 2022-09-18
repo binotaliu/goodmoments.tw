@@ -20,10 +20,33 @@ final class Member extends Model
 
     protected $with = ['attachments'];
 
+    protected $fillable = [
+        'title',
+        'name',
+        'description',
+        'row',
+        'priority',
+    ];
+
+    protected $appends = [
+        'image',
+    ];
+
+    protected $hidden = [
+        'attachments',
+    ];
+
+    public function image(): Attribute
+    {
+        return Attribute::get(
+            fn () => $this->attachments->first(),
+        );
+    }
+
     public function imageUrl(): Attribute
     {
         return Attribute::get(
-            fn () => $this->attachments->sole()->url,
+            fn () => $this->attachments->first()?->url,
         );
     }
 }

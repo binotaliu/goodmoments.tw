@@ -110,6 +110,34 @@
             </template>
           </GMNavItem>
         </ul>
+        <ul class="flex w-full flex-col items-stretch gap-2">
+          <GMNavItem>
+            <div class="inline-flex items-center gap-2">
+              <DocumentDuplicateIcon class="h-4 w-4" />
+              系統頁面
+            </div>
+            <template #contents>
+              <GMNavItem :href="$route('admin.pages.about.edit')">
+                <div class="inline-flex items-center gap-2">
+                  <UsersIcon class="h-4 w-4" />
+                  關於我們
+                </div>
+              </GMNavItem>
+              <GMNavItem :href="''">
+                <div class="inline-flex items-center gap-2">
+                  <HeartIcon class="shrink-0 h-4 w-4" />
+                  公舘的食衣住行育樂
+                </div>
+              </GMNavItem>
+              <GMNavItem :href="''">
+                <div class="inline-flex items-center gap-2">
+                  <MapIcon class="h-4 w-4" />
+                  交通資訊
+                </div>
+              </GMNavItem>
+            </template>
+          </GMNavItem>
+        </ul>
       </nav>
     </header>
 
@@ -124,7 +152,7 @@
 </template>
 
 <script setup>
-import { RectangleStackIcon, HomeIcon, Bars3Icon, PencilIcon, PhotoIcon, ShoppingBagIcon, TagIcon, UsersIcon, Bars4Icon } from '@heroicons/vue/24/outline'
+import { DocumentDuplicateIcon, RectangleStackIcon, HomeIcon, Bars3Icon, PencilIcon, PhotoIcon, ShoppingBagIcon, TagIcon, UsersIcon, Bars4Icon, MapIcon, HeartIcon } from '@heroicons/vue/24/outline'
 import { Inertia } from '@inertiajs/inertia'
 import { ref } from 'vue'
 

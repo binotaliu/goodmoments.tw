@@ -21,7 +21,12 @@ export const theme = {
   danger: [
     'text-pearl-100 disabled:text-pearl-600',
     'border-red-600',
-    'bg-red-500 hover:bg-red-400 active: bg-red-600 disabled:bg-red-400'
+    'bg-red-500 hover:bg-red-400 active:bg-red-600 disabled:bg-red-400'
+  ],
+  'danger-alt': [
+    'text-red-600 hover:text-white disabled:text-red-400',
+    'border-red-600 disabled:border-red-400',
+    'bg-white hover:bg-red-600 active:bg-red-600'
   ]
 }
 

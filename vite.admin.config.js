@@ -53,7 +53,8 @@ export default defineConfig({
           'resources/pages/Banners': 'campaign',
           'resources/pages/Categories': 'catalog',
           'resources/pages/Products': 'catalog',
-          'resources/pages/Users': 'users',
+          'resources/pages/Users': 'system',
+          'resources/pages/SystemPages': 'system',
           'resources/pages': 'misc',
           'resources/': 'misc',
         }
@@ -76,7 +77,12 @@ export default defineConfig({
         'resources/js/admin.js'
       ],
       buildDirectory: 'build/admin',
-      refresh: true
+      refresh: [
+        'app/Http/Controllers/**',
+        'resources/views/**',
+        'routes/**',
+        '!public/storage/**'
+      ]
     }),
     vue({
       template: {

@@ -1,0 +1,160 @@
+<template>
+  <InertiaHead title="關於我們 – 系統頁面" />
+
+  <div class="mb-4 flex w-full items-center justify-between">
+    <h1
+      class="text-2xl font-semibold text-wood-600"
+    >
+      關於我們
+    </h1>
+  </div>
+
+  <form
+    :action="$route('admin.pages.about.update')"
+    method="post"
+    class="flex w-full flex-col gap-4"
+    @submit.prevent="submit"
+  >
+    <GMCard class="flex w-full flex-col gap-2">
+      <GMFormField
+        id="description"
+        name="說明"
+      >
+        <GMRichEditor v-model="form.description.zh_Hant_TW" />
+      </GMFormField>
+      <GMFormField
+        id="members"
+        name="人員"
+        class="w-full"
+      >
+        <div class="w-full flex flex-col gap-4">
+          <div v-for="(row, rowIndex) in form.members" :key="rowIndex">
+            <div class="text-wood-700">第 {{ rowIndex + 1 }} 行</div>
+            <div class="flex flex-wrap gap-2 mb-2">
+              <template v-if="row.length">
+                <div class="grid grid-cols-4 gap-4">
+                  <AboutMember
+                    v-for="(member, memberIndex) in row"
+                    :key="member.id"
+                    v-model="form.members[rowIndex][memberIndex]"
+                    @remove="removeMember(rowIndex, memberIndex)"
+                  />
+                </div>
+              </template>
+              <div class="w-full h-32 flex center-center rounded border-2 border-dotted border-wood-500 text-wood-400" v-else>
+                此行暫無成員，點擊下方「新增一人」以開始編輯。
+              </div>
+            </div>
+            <div class="flex justify-end gap-2">
+              <GMButton
+                size="sm"
+                @click="removeRow(rowIndex)"
+                theme="danger-alt"
+              >
+                <span class="flex center-center gap-1"><MinusIcon class="w-4 h-4" />刪除此行</span>
+              </GMButton>
+              <GMButton
+                size="sm"
+                @click="pushMember(rowIndex)"
+              >
+                <span class="flex center-center gap-1"><UserPlusIcon class="w-4 h-4" />新增一人</span>
+              </GMButton>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <GMButton @click="addRow"><span class="flex center-center gap-1"><PlusIcon class="w-4 h-4"></PlusIcon>新增一行</span> </GMButton>
+        </div>
+      </GMFormField>
+    </GMCard>
+
+    <div class="flex justify-end">
+      <GMButton type="submit">
+        <span class="flex center-center gap-1">
+          <CheckIcon class="w-4 h-4" />
+          送出
+        </span>
+      </GMButton>
+    </div>
+  </form>
+</template>
+
+<script setup>
+import { clone } from '@/js/utils'
+
+import { UserPlusIcon, PlusIcon, MinusIcon, CheckIcon } from '@heroicons/vue/24/outline'
+import { useForm } from '@inertiajs/inertia-vue3'
+import { onMounted, watch } from 'vue'
+
+import AboutMember from './internals/AboutMember.vue'
+
+const props = defineProps({
+  description: { type: String, required: true },
+  members: { type: Array, required: true }
+})
+
+const form = useForm({
+  description: {
+    en: '',
+    zh_Hant_TW: '',
+    zh_Oan: ''
+  },
+  members: []
+})
+
+const pushMember = (rowIndex) => {
+  const rowMembers = form.members[rowIndex]
+  const maxPriority = Math.max(-1, ...rowMembers.map(({ priority }) => priority))
+
+  form.members[rowIndex].push({
+    id: null,
+    name: '',
+    title: '',
+    image: null,
+    row: rowIndex,
+    priority: maxPriority + 1
+  })
+}
+
+const removeMember = (rowIndex, memberIndex) => {
+  form.members[rowIndex].splice(memberIndex, 1)
+}
+
+const addRow = () => {
+  form.members.push([])
+}
+
+const removeRow = (rowIndex) => {
+  form.members.splice(rowIndex, 1)
+}
+
+const submit = () => {
+  form.put(route('admin.pages.about.update'))
+}
+
+const normalizeMembers = () => {
+  for (const rowIndex in form.members) {
+    const row = form.members[rowIndex]
+
+    for (const memberIndex in row) {
+      const member = row[memberIndex]
+
+      form.members[rowIndex][memberIndex] = {
+        ...member,
+        row: Number(rowIndex),
+        priority: Number(member.priority)
+      }
+    }
+  }
+}
+
+watch(() => form.members, normalizeMembers, { deep: true })
+
+onMounted(() => {
+  form.description.en = clone(props.description.en)
+  form.description.zh_Hant_TW = clone(props.description.zh_Hant_TW)
+  form.description.zh_Oan = clone(props.description.zh_Oan)
+  form.members = clone(props.members)
+})
+</script>
