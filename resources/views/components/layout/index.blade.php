@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="theme-color" content="#9b8b6e">
+    @if(!app()->environment('production'))
+        <meta name="robots" content="noindex, nofollow">
+    @endif
+
     @if($title)
         <title>{{ $title }} — 好時・左鎮公舘</title>
     @else

@@ -15,5 +15,7 @@
 
 <x-support-bubble />
 @routes
+
+@includeIf('admin-analytics')
 </body>
 </html>
