@@ -206,7 +206,7 @@ it('creates new article', function (): void {
         'slug' => $slug,
     ]);
 
-    expect(Article::latest()->first())->toHaveAttachments([$coverImage, $socialImage]);
+    expect(Article::latest()->first())->toHaveAttachments([$coverImage, $socialImage, ...$contentImages]);
 });
 
 it('updates an article', function (): void {
