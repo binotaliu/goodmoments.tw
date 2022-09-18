@@ -31,7 +31,7 @@ final class ArticleCreationRequest extends FormRequest
             'content' => ['required', 'array'],
             'content.*' => ['nullable', 'string'],
             'content.zh_Hant_TW' => ['required', 'string'],
-            'content_attachments' => ['present', 'array', Attachments::make()->whereMeta('type', 'articleContentImage')],
+            'content_images' => ['present', 'array', Attachments::make()->whereMeta('type', 'articleContentImage')],
         ];
     }
 }

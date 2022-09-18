@@ -197,7 +197,7 @@ it('creates new article', function (): void {
             'zh_Hant_TW' => '文章內容',
             'zh_Oan' => '文章內容',
         ],
-        'content_attachments' => $contentImages->toArray(),
+        'content_images' => $contentImages->toArray(),
         'published_at' => now(),
     ])->assertValid()->assertRedirect();
 
@@ -226,6 +226,13 @@ it('updates an article', function (): void {
         ->withMeta(['type' => 'articleSocialImage'])
         ->create();
 
+    $newContentImages = Attachment
+        ::factory()
+        ->withImage()
+        ->withMeta(['type' => 'articleContentImage'])
+        ->count(random_int(0, 6))
+        ->create();
+
     put(route('admin.articles.update', [$article]), [
         'slug' => 'new-slug-' . $article->slug,
         'title' => $article->getTranslations('title'),
@@ -233,7 +240,7 @@ it('updates an article', function (): void {
         'cover_image' => $newCoverImage->toArray(),
         'social_image' => $newSocialImage->toArray(),
         'content' => $article->getTranslations('content'),
-        'content_images' => $article->content_images->toArray(),
+        'content_images' => $newContentImages->toArray(),
         'published_at' => $article->published_at,
     ])->assertValid()->assertRedirect();
 
@@ -242,7 +249,7 @@ it('updates an article', function (): void {
         'slug' => 'new-slug-' . $article->slug,
     ]);
 
-    expect($article->fresh())->toHaveAttachments([$newCoverImage, $newSocialImage]);
+    expect($article->fresh())->toHaveAttachments([$newCoverImage, $newSocialImage, ...$newContentImages]);
 });
 
 it('deletes an article', function (): void {
