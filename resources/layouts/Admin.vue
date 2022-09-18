@@ -36,13 +36,22 @@
         >
         <div class="flex grow items-center justify-between md:flex-col md:items-start md:justify-center">
           <span class="text-lg font-medium">{{ $page.props.app.user.name }}</span>
-          <button
-            type="button"
-            class="-m-2 p-2 text-base text-pearl-800 underline transition-colors hover:text-pearl-700 hover:no-underline md:text-xs"
-            @click="logout"
-          >
-            登出
-          </button>
+          <div class="flex w-full justify-between">
+            <a
+              :href="$route('index')"
+              class="-m-2 p-2 text-base text-pearl-800 underline transition-colors hover:text-pearl-700 hover:no-underline md:text-xs"
+              target="_blank"
+            >
+              打開前台
+            </a>
+            <button
+              type="button"
+              class="-m-2 p-2 text-base text-pearl-800 underline transition-colors hover:text-pearl-700 hover:no-underline md:text-xs"
+              @click="logout"
+            >
+              登出
+            </button>
+          </div>
         </div>
       </div>
 
