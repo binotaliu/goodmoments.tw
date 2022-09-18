@@ -15,7 +15,7 @@ final class ListLicenseCommand extends Command
     public function handle(): int
     {
         $this->line('Running licensed...');
-        (new Process(['licensed', 'cache']))->mustRun();
+        (new Process(['licensed', 'cache']))->run();
 
         $this->line('Rendering licenses...');
         $files = (new Finder())
