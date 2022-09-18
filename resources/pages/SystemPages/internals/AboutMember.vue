@@ -1,39 +1,60 @@
 <template>
-  <div class="rounded border p-2 flex flex-col gap-2 center-center">
-    <div class="h-16 w-16 group relative rounded-full shadow">
+  <div class="center-center flex flex-col gap-2 rounded border p-2">
+    <div class="group relative h-16 w-16 rounded-full shadow">
       <img
+        v-if="value.image"
         :src="value.image.url"
         class="h-16 w-16 rounded-full"
         :alt="`${value.name} 的顯示圖片`"
-        v-if="value.image"
-      />
-      <div
-        class="h-16 w-16 rounded-full flex center-center bg-pearl-200"
-        v-else
       >
-        <UserIcon class="w-6 h-6 text-pearl-700" />
+      <div
+        v-else
+        class="center-center flex h-16 w-16 rounded-full bg-pearl-200"
+      >
+        <UserIcon class="h-6 w-6 text-pearl-700" />
       </div>
 
       <button
         type="button"
-        class="opacity-0 group-hover:opacity-100 transition-opacity left-0 top-0 absolute w-full h-full flex center-center rounded-full bg-black/70 text-white text-xs"
+        class="center-center absolute left-0 top-0 flex h-full w-full rounded-full bg-black/70 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100"
         @click="$refs.fileSelector.select()"
       >
         選擇圖片
       </button>
     </div>
-    <GMInput class="text-center" v-model="value.name" placeholder="姓名" />
-    <GMInput class="text-center" v-model="value.title" placeholder="職稱" />
+    <GMInput
+      v-model="value.name"
+      class="text-center"
+      placeholder="姓名"
+    />
+    <GMInput
+      v-model="value.title"
+      class="text-center"
+      placeholder="職稱"
+    />
 
-    <GMButton theme="danger-alt" size="sm" @click="remove">
-      <span class="flex center-center gap-1">
-        <TrashIcon class="w-4 h-4" />
+    <GMButton
+      theme="danger-alt"
+      size="sm"
+      @click="remove"
+    >
+      <span class="center-center flex gap-1">
+        <TrashIcon class="h-4 w-4" />
         刪除此成員
       </span>
     </GMButton>
 
-    <FileSelector ref="fileSelector" @selected="(file) => $refs.imageCropper.open(file)" />
-    <ImageCropper ref="imageCropper" :max-height="1024" :max-width="1024" :aspect-ratio="1" @cropped="uploadImage" />
+    <FileSelector
+      ref="fileSelector"
+      @selected="(file) => $refs.imageCropper.open(file)"
+    />
+    <ImageCropper
+      ref="imageCropper"
+      :max-height="1024"
+      :max-width="1024"
+      :aspect-ratio="1"
+      @cropped="uploadImage"
+    />
   </div>
 </template>
 

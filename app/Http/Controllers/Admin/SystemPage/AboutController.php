@@ -4,14 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin\SystemPage;
 
-use App\Enums\SystemPage;
 use App\Enums\SysvalKey;
 use App\Http\Requests\AboutPageUpdateRequest;
 use App\Models\Attachment;
 use App\Models\Member;
 use App\Models\Sysval;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Stevebauman\Purify\Facades\Purify;
@@ -33,7 +31,7 @@ final class AboutController
         ]);
     }
 
-    public function update(AboutPageUpdateRequest $request)
+    public function update(AboutPageUpdateRequest $request): void
     {
         $description = [
             'en' => Purify::clean($request->input('description.en', '')),
@@ -58,7 +56,7 @@ final class AboutController
         [$newMembers, $oldMembers] = $flattenedInput->partition(fn ($i) => $i['id'] === null);
         ray($newMembers);
         $newMembers
-            ->each(function ($data) use ($attachments) {
+            ->each(function ($data) use ($attachments): void {
                 $member = new Member();
                 $member->description = '';
                 $member->fill($data);
@@ -67,13 +65,13 @@ final class AboutController
                 $member
                     ->attachments()
                     ->sync(array_filter([
-                        optional(optional($attachments)[optional($data['image'])['uuid']])->id
+                        optional(optional($attachments)[optional($data['image'])['uuid']])->id,
                     ]));
             });
 
         $currentMembers = Member::whereIn('id', $oldMembers->pluck('id'))->get()->keyBy('id');
         $oldMembers
-            ->each(function ($data) use ($attachments, $currentMembers) {
+            ->each(function ($data) use ($attachments, $currentMembers): void {
                 $member = $currentMembers[$data['id']];
                 $member->description = $member->description ?? '';
                 $member->fill($data);
@@ -82,7 +80,7 @@ final class AboutController
                 $member
                     ->attachments()
                     ->sync(array_filter([
-                        optional($attachments)[optional($data['image'])['uuid']]?->id
+                        optional($attachments)[optional($data['image'])['uuid']]?->id,
                     ]));
             });
 

@@ -125,7 +125,7 @@
               </GMNavItem>
               <GMNavItem :href="''">
                 <div class="inline-flex items-center gap-2">
-                  <HeartIcon class="shrink-0 h-4 w-4" />
+                  <HeartIcon class="h-4 w-4 shrink-0" />
                   公舘的食衣住行育樂
                 </div>
               </GMNavItem>

@@ -27,10 +27,15 @@
         name="人員"
         class="w-full"
       >
-        <div class="w-full flex flex-col gap-4">
-          <div v-for="(row, rowIndex) in form.members" :key="rowIndex">
-            <div class="text-wood-700">第 {{ rowIndex + 1 }} 行</div>
-            <div class="flex flex-wrap gap-2 mb-2">
+        <div class="flex w-full flex-col gap-4">
+          <div
+            v-for="(row, rowIndex) in form.members"
+            :key="rowIndex"
+          >
+            <div class="text-wood-700">
+              第 {{ rowIndex + 1 }} 行
+            </div>
+            <div class="mb-2 flex flex-wrap gap-2">
               <template v-if="row.length">
                 <div class="grid grid-cols-4 gap-4">
                   <AboutMember
@@ -41,38 +46,43 @@
                   />
                 </div>
               </template>
-              <div class="w-full h-32 flex center-center rounded border-2 border-dotted border-wood-500 text-wood-400" v-else>
+              <div
+                v-else
+                class="center-center flex h-32 w-full rounded border-2 border-dotted border-wood-500 text-wood-400"
+              >
                 此行暫無成員，點擊下方「新增一人」以開始編輯。
               </div>
             </div>
             <div class="flex justify-end gap-2">
               <GMButton
                 size="sm"
-                @click="removeRow(rowIndex)"
                 theme="danger-alt"
+                @click="removeRow(rowIndex)"
               >
-                <span class="flex center-center gap-1"><MinusIcon class="w-4 h-4" />刪除此行</span>
+                <span class="center-center flex gap-1"><MinusIcon class="h-4 w-4" />刪除此行</span>
               </GMButton>
               <GMButton
                 size="sm"
                 @click="pushMember(rowIndex)"
               >
-                <span class="flex center-center gap-1"><UserPlusIcon class="w-4 h-4" />新增一人</span>
+                <span class="center-center flex gap-1"><UserPlusIcon class="h-4 w-4" />新增一人</span>
               </GMButton>
             </div>
           </div>
         </div>
 
         <div class="flex justify-end">
-          <GMButton @click="addRow"><span class="flex center-center gap-1"><PlusIcon class="w-4 h-4"></PlusIcon>新增一行</span> </GMButton>
+          <GMButton @click="addRow">
+            <span class="center-center flex gap-1"><PlusIcon class="h-4 w-4" />新增一行</span>
+          </GMButton>
         </div>
       </GMFormField>
     </GMCard>
 
     <div class="flex justify-end">
       <GMButton type="submit">
-        <span class="flex center-center gap-1">
-          <CheckIcon class="w-4 h-4" />
+        <span class="center-center flex gap-1">
+          <CheckIcon class="h-4 w-4" />
           送出
         </span>
       </GMButton>
