@@ -75,12 +75,12 @@ $ php artisan test
 
 All codes except for image assets contained in this repository are licensed under the [`AGPL-3.0-or-later`](LICENSE).  
   
-Please notice that image assets including but not limited to [`resources/images/logo.svg`](resources/images/logo.svg), [`resources/images/text-logo.svg`](resources/images/text-logo.svg), and [`resources/components/Logo.svg`](resources/components/Logo.vue) are copyrighted by "台南市左鎮區公舘社區發展協會", thus not covered by AGPL license. Please contact the organization for further information. **You are not allowed to redistribute these files without permission.**  
+Please notice that image assets including but not limited to [`resources/images/logo.svg`](resources/images/logo.svg), [`resources/images/text-logo.svg`](resources/images/text-logo.svg), and [`resources/components/Logo.svg`](resources/components/Logo.vue) are copyrighted by "台南市左鎮區公舘社區發展協會", thus not covered by AGPL license. Please contact the organization for further information. **You are not allowed to use or redistribute these files without permission.**  
 
 In the future releases I will remove these files from the repository to avoid unnecessary confusion.
 
 本專案中，除了圖片素材外，所有程式碼都適用於 [`AGPL-3.0-or-later`](LICENSE) 授權條款。  
 
-請注意，圖片素材，包跨但不限於 [`resources/images/logo.svg`](resources/images/logo.svg)、[`resources/images/text-logo.svg`](resources/images/text-logo.svg)、[`resources/components/Logo.svg`](resources/components/Logo.vue) 等，皆為「台南市左鎮區公舘社區發展協會」版權所有，並非 AGPL 授權條款的一部分。請聯絡該組織以取得更多資訊。**在未經授權的情況下，不可任意重新分發 (Redistribute) 這些檔案。**
+請注意，圖片素材，包括但不限於 [`resources/images/logo.svg`](resources/images/logo.svg)、[`resources/images/text-logo.svg`](resources/images/text-logo.svg)、[`resources/components/Logo.svg`](resources/components/Logo.vue) 等，皆為「台南市左鎮區公舘社區發展協會」版權所有，並非 AGPL 授權條款的一部分。請聯絡該組織以取得更多資訊。**在未經授權的情況下，不可任意使用或重新分發 (Redistribute) 這些檔案。**
 
-在未來的版本中，我會把這些檔案從 Repository 中刪除以避免不必要的誤會。
+在未來的版本中，我會把這些檔案從 Repository 中刪除，以避免不必要的誤會。
