@@ -61,4 +61,9 @@ Route::middleware('auth')->group(function (): void {
         ->name('pages.life.update');
     Route::post('pages/life/images', [SystemPage\LifeController::class, 'images'])
         ->name('pages.life.images.store');
+
+    Route::get('pages/maps', [SystemPage\MapsController::class, 'edit'])
+        ->name('pages.maps.edit');
+    Route::put('pages/maps', [SystemPage\MapsController::class, 'update'])
+        ->name('pages.maps.update');
 });

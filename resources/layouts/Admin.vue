@@ -129,7 +129,7 @@
                   公舘的食衣住行育樂
                 </div>
               </GMNavItem>
-              <GMNavItem :href="''">
+              <GMNavItem :href="$route('admin.pages.maps.edit')">
                 <div class="inline-flex items-center gap-2">
                   <MapIcon class="h-4 w-4" />
                   交通資訊
