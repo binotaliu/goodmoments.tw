@@ -126,7 +126,7 @@
               <GMNavItem :href="$route('admin.pages.life.edit')">
                 <div class="inline-flex items-center gap-2">
                   <HeartIcon class="h-4 w-4 shrink-0" />
-                  公舘的食衣住行育樂
+                  食衣住行育樂
                 </div>
               </GMNavItem>
               <GMNavItem :href="$route('admin.pages.maps.edit')">
