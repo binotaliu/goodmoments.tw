@@ -24,7 +24,12 @@
       </div>
 
       <div class="grow text-center">
-        <GMLinkButton>打開操作手冊</GMLinkButton>
+        <GMLinkButton
+          href="https://manual.goodmoments.tw/docs/account/"
+          target="_blank"
+        >
+          打開操作手冊
+        </GMLinkButton>
       </div>
     </GMCard>
   </div>
