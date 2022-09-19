@@ -41,7 +41,7 @@
                   <AboutMember
                     v-for="(member, memberIndex) in row"
                     :key="member.id"
-                    v-model="form.members[rowIndex][memberIndex]"
+                    v-model="proxiedMembers[rowIndex][memberIndex]"
                     @remove="removeMember(rowIndex, memberIndex)"
                   />
                 </div>
@@ -95,7 +95,7 @@ import { clone } from '@/js/utils'
 
 import { UserPlusIcon, PlusIcon, MinusIcon, CheckIcon } from '@heroicons/vue/24/outline'
 import { useForm } from '@inertiajs/inertia-vue3'
-import { onMounted, watch } from 'vue'
+import { computed, onMounted } from 'vue'
 
 import AboutMember from './internals/AboutMember.vue'
 
@@ -143,28 +143,33 @@ const submit = () => {
   form.put(route('admin.pages.about.update'))
 }
 
-const normalizeMembers = () => {
-  for (const rowIndex in form.members) {
-    const row = form.members[rowIndex]
+const proxiedMembers = computed({
+  get: () => clone(form.members),
+  set: (value) => {
+    const newMembers = clone(value)
 
-    for (const memberIndex in row) {
-      const member = row[memberIndex]
+    for (const rowIndex in newMembers) {
+      const row = newMembers[rowIndex]
 
-      form.members[rowIndex][memberIndex] = {
-        ...member,
-        row: Number(rowIndex),
-        priority: Number(member.priority)
+      for (const memberIndex in row) {
+        const member = row[memberIndex]
+
+        newMembers[rowIndex][memberIndex] = {
+          ...member,
+          row: Number(rowIndex),
+          priority: Number(member.priority)
+        }
       }
     }
-  }
-}
 
-watch(() => form.members, normalizeMembers, { deep: true })
+    form.members = newMembers
+  }
+})
 
 onMounted(() => {
   form.description.en = clone(props.description.en)
   form.description.zh_Hant_TW = clone(props.description.zh_Hant_TW)
   form.description.zh_Oan = clone(props.description.zh_Oan)
-  form.members = clone(props.members)
+  proxiedMembers.value = clone(props.members)
 })
 </script>
