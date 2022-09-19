@@ -14,7 +14,7 @@
                     </div>
                     @if($block['text_position'] === 'left')
                         <div class="w-1/8">
-                            <img src="{{ $block['image'] }}" alt="{{ $block['image_description']['zh_Hant_TW'] }}" />
+                            <img src="{{ $block['image'] }}" class="w-full" alt="{{ $block['image_description']['zh_Hant_TW'] }}" />
                         </div>
                     @endif
                 </div>
