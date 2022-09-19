@@ -48,6 +48,4 @@ Route::view('licenses', 'licenses');
 
 Route::feeds();
 
-Route::middleware('auth')->group(function (): void {
-    Route::supportBubble();
-});
+Route::supportBubble();
