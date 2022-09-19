@@ -57,7 +57,7 @@ final class Article extends Model implements Feedable
     public function contentImages(): Attribute
     {
         return Attribute::get(
-            fn () => $this->attachments->where('meta.type', 'articleContentImage'),
+            fn () => $this->attachments->where('meta.type', 'articleContentImage')->values(),
         );
     }
 
