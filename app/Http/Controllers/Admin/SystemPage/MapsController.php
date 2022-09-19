@@ -31,6 +31,6 @@ final class MapsController
 
         Sysval::set(SysvalKey::map_description, $description);
 
-        return Redirect::route('pages.maps.edit');
+        return Redirect::route('admin.pages.maps.edit');
     }
 }
