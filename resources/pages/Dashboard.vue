@@ -24,12 +24,13 @@
       </div>
 
       <div class="grow text-center">
-        <GMLinkButton
+        <a
+          class="text-xl text-pearl-700 underline hover:no-underline"
           href="https://manual.goodmoments.tw/docs/account/"
           target="_blank"
         >
           打開操作手冊
-        </GMLinkButton>
+        </a>
       </div>
     </GMCard>
   </div>
