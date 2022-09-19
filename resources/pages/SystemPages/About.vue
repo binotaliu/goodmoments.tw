@@ -122,24 +122,30 @@ const pushMember = (rowIndex) => {
     name: '',
     title: '',
     image: null,
+    description: '',
     row: rowIndex,
     priority: maxPriority + 1
   })
+  normalizeMembers()
 }
 
 const removeMember = (rowIndex, memberIndex) => {
   form.members[rowIndex].splice(memberIndex, 1)
+  normalizeMembers()
 }
 
 const addRow = () => {
   form.members.push([])
+  normalizeMembers()
 }
 
 const removeRow = (rowIndex) => {
   form.members.splice(rowIndex, 1)
+  normalizeMembers()
 }
 
 const submit = () => {
+  normalizeMembers()
   form.put(route('admin.pages.about.update'))
 }
 
@@ -158,8 +164,6 @@ const normalizeMembers = () => {
     }
   }
 }
-
-watch(() => form.members, normalizeMembers, { deep: true })
 
 onMounted(() => {
   form.description.en = clone(props.description.en)

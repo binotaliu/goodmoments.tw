@@ -66,8 +66,8 @@ final class AboutController
         $newMembers
             ->each(function ($data) use ($attachments): void {
                 $member = new Member();
-                $member->description = '';
                 $member->fill($data);
+                $member->description = $member->description ?? '';
                 $member->save();
 
                 $member
@@ -81,8 +81,8 @@ final class AboutController
         $oldMembers
             ->each(function ($data) use ($attachments, $currentMembers): void {
                 $member = $currentMembers[$data['id']];
-                $member->description = $member->description ?? '';
                 $member->fill($data);
+                $member->description = $member->description ?? '';
                 $member->save();
 
                 $member
