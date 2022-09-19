@@ -19,7 +19,13 @@
                     attribution: {{ Js::from(config('services.map.tileLayerAttribution')) }}
                 }).addTo(map);
 
-                marker = leaflet.marker([23.00733, 120.41476]).addTo(map);
+                const markerIcon = leaflet.icon({
+                    iconUrl: {{ Js::from(asset('images/logo.svg')) }},
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32],
+                });
+                marker = leaflet.marker([23.00733, 120.41476], { icon: markerIcon }).addTo(map);
             }
         "
         class="mb-4 h-[70vh]"
