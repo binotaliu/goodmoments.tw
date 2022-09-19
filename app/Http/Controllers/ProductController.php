@@ -12,10 +12,12 @@ use Illuminate\Contracts\View\View;
 final class ProductController
 {
     public const PRODUCTS_PER_PAGE = 20;
+
     public function index(?Category $category = null): View
     {
         return view('products.index', [
             'category' => $category,
+            'categories' => Category::all(),
             'products' => Product
                 ::when(
                     $category !== null,

@@ -1,6 +1,21 @@
 <x-layout :title="$category === null ? '產品列表' : $category->name . ' – 產品列表'">
     <div class="max-w-4xl mx-auto mb-32 px-6">
+        @empty($category)
+            <div class="flex flex-wrap gap-2 mb-8">
+                @foreach ($categories as $c)
+                    <x-link-button :href="route('categories.products.index', $c)">
+                        {{ $c->name }}
+                    </x-link-button>
+                @endforeach
+            </div>
+        @endempty
+
         <div class="flex flex-col gap-6">
+            @if($category === null)
+                <h2 class="text-2xl">所有產品</h2>
+            @else
+                <h2 class="text-2xl">{{ $category->name }}</h2>
+            @endif
             <div class="grid grid-cols-4 gap-x-4 gap-y-12">
                 @foreach($products as $product)
                     <div class="flex flex-col gap-1 group">
