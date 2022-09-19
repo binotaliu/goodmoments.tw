@@ -12,7 +12,7 @@ final class LifeController extends Controller
     public function __invoke(Request $request): View
     {
         return view('life', [
-            'blocks' => Sysval::get(SysvalKey::life__blocks),
+            'blocks' => Sysval::get(SysvalKey::life__blocks, []),
         ]);
     }
 }

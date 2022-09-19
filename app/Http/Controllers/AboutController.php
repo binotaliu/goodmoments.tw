@@ -12,7 +12,11 @@ final class AboutController extends Controller
 {
     public function __invoke(Request $request): View
     {
-        $description = Sysval::get(SysvalKey::about__description);
+        $description = Sysval::get(SysvalKey::about__description, [
+            'en' => '',
+            'zh_Hant_TW' => '',
+            'zh_Oan' => '',
+        ]);
         $members = Member
             ::all()
             ->groupBy('row')

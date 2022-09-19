@@ -12,7 +12,11 @@ final class MapController extends Controller
     public function __invoke(Request $request): View
     {
         return view('maps', [
-            'travelDescription' => Sysval::get(SysvalKey::map_description),
+            'travelDescription' => Sysval::get(SysvalKey::map_description, [
+                'en' => '',
+                'zh_Hant_TW' => '',
+                'zh_Oan' => '',
+            ]),
         ]);
     }
 }

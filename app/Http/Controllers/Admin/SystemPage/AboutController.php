@@ -20,7 +20,12 @@ final class AboutController
 {
     public function edit(): InertiaResponse
     {
-        $description = Sysval::get(SysvalKey::about__description, []);
+        $description = Sysval::get(SysvalKey::about__description, [
+            'en' => '',
+            'zh_Hant_TW' => '',
+            'zh_Oan' => '',
+        ]);
+
         $members = Member
             ::all()
             ->groupBy('row')

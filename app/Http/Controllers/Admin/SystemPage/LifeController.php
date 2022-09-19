@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\SystemPage;
 
 use App\Enums\SysvalKey;
+use App\Http\Requests\LifeImageStoreRequest;
 use App\Http\Requests\LifePageUpdateRequest;
 use App\Models\Sysval;
 use Illuminate\Http\RedirectResponse;
@@ -30,7 +31,7 @@ final class LifeController
         return Redirect::route('admin.system-pages.life.edit');
     }
 
-    public function images(Request $request): array
+    public function images(LifeImageStoreRequest $request): array
     {
         $image = $request->file('image');
         $fileName = base64_url_encode(Uuid::uuid4()->getBytes()) . '.' . $image->guessExtension();
