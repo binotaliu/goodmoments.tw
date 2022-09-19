@@ -60,7 +60,7 @@
             @endif
         </div>
 
-        <div class="prose lg:prose-xl">
+        <div class="prose lg:prose-xl w-full">
             {!! $travelDescription['zh_Hant_TW'] ?? '' !!}
         </div>
     </div>
