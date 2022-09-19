@@ -48,6 +48,7 @@
                     href="{{ url('products') }}"
                     :active="Route::current()->is('categories/*/products/*') || Route::current()->is('products')"
                 >特色產品</x-layout.nav-item>
+                <x-layout.nav-item href="{{ route('articles.index') }}" :active="Route::current()->is('articles')">最新消息</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('about') }}" :active="Route::current()->is('about')">關於我們</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('life') }}" :active="Route::current()->is('life')">食衣住行育樂</x-layout.nav-item>
                 <x-layout.nav-item href="{{ url('maps') }}">交通資訊</x-layout.nav-item>
