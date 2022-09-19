@@ -2,7 +2,7 @@
     <div class="relative mb-16 bg-pearl-200">
         <img
             class="-mt-8 w-full"
-            src="https://picsum.photos/960/256?{{ $article->cover_image->url }}"
+            src="{{ $article->cover_image->url }}"
             alt="文章封面圖片"
             width="960"
             height="256"
