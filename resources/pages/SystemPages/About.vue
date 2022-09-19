@@ -41,7 +41,7 @@
                   <AboutMember
                     v-for="(member, memberIndex) in row"
                     :key="member.id"
-                    v-model="proxiedMembers[rowIndex][memberIndex]"
+                    v-model="form.members[rowIndex][memberIndex]"
                     @remove="removeMember(rowIndex, memberIndex)"
                   />
                 </div>
@@ -95,7 +95,7 @@ import { clone } from '@/js/utils'
 
 import { UserPlusIcon, PlusIcon, MinusIcon, CheckIcon } from '@heroicons/vue/24/outline'
 import { useForm } from '@inertiajs/inertia-vue3'
-import { computed, onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 
 import AboutMember from './internals/AboutMember.vue'
 
@@ -143,33 +143,28 @@ const submit = () => {
   form.put(route('admin.pages.about.update'))
 }
 
-const proxiedMembers = computed({
-  get: () => clone(form.members),
-  set: (value) => {
-    const newMembers = clone(value)
+const normalizeMembers = () => {
+  for (const rowIndex in form.members) {
+    const row = form.members[rowIndex]
 
-    for (const rowIndex in newMembers) {
-      const row = newMembers[rowIndex]
+    for (const memberIndex in row) {
+      const member = row[memberIndex]
 
-      for (const memberIndex in row) {
-        const member = row[memberIndex]
-
-        newMembers[rowIndex][memberIndex] = {
-          ...member,
-          row: Number(rowIndex),
-          priority: Number(member.priority)
-        }
+      form.members[rowIndex][memberIndex] = {
+        ...member,
+        row: Number(rowIndex),
+        priority: Number(member.priority)
       }
     }
-
-    form.members = newMembers
   }
-})
+}
+
+watch(() => form.members, normalizeMembers, { deep: true })
 
 onMounted(() => {
   form.description.en = clone(props.description.en)
   form.description.zh_Hant_TW = clone(props.description.zh_Hant_TW)
   form.description.zh_Oan = clone(props.description.zh_Oan)
-  proxiedMembers.value = clone(props.members)
+  form.members = clone(props.members)
 })
 </script>
