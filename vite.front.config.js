@@ -70,7 +70,9 @@ export default defineConfig({
     laravel({
       input: [
         'resources/css/app.css',
-        'resources/js/app.js'
+        'resources/js/app.js',
+        'resources/css/leaflet.css',
+        'resources/js/leaflet.js'
       ],
       buildDirectory: 'build/front',
       refresh: true

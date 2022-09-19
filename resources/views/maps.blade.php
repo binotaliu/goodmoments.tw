@@ -1,6 +1,6 @@
 <x-layout title="交通">
     <x-slot:headerExtensions>
-        @vite(['resources/js/leaflet.js', 'resources/css/leaflet.css'])
+        @vite(['resources/js/leaflet.js', 'resources/css/leaflet.css'], 'build/front')
     </x-slot:headerExtensions>
 
     <div class="w-screen">
