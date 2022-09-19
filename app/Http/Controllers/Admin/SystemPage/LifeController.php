@@ -28,7 +28,7 @@ final class LifeController
         $blocks = $request->input('blocks', []);
         Sysval::set(SysvalKey::life__blocks, $blocks);
 
-        return Redirect::route('admin.system-pages.life.edit');
+        return Redirect::route('admin.pages.life.edit');
     }
 
     public function images(LifeImageStoreRequest $request): array
