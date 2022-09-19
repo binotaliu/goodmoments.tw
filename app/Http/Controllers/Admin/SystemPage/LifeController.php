@@ -18,7 +18,7 @@ final class LifeController
     public function edit(): InertiaResponse
     {
         return Inertia::render('SystemPages/Life', [
-            'blocks' => Sysval::get(SysvalKey::life__blocks),
+            'blocks' => Sysval::get(SysvalKey::life__blocks, []),
         ]);
     }
 

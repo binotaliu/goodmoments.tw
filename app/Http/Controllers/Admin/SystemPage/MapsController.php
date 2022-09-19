@@ -17,7 +17,7 @@ final class MapsController
     public function edit(): InertiaResponse
     {
         return Inertia::render('SystemPages/Maps', [
-            'description' => Sysval::get(SysvalKey::map_description),
+            'description' => Sysval::get(SysvalKey::map_description, []),
         ]);
     }
 
