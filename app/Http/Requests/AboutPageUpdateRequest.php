@@ -14,7 +14,7 @@ final class AboutPageUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'description.*' => ['string'],
+            'description.*' => ['nullable', 'string'],
             'description.zh_Hant_TW' => ['string'],
             'members' => ['array'],
             'members.*' => ['array'],
