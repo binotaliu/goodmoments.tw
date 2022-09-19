@@ -43,7 +43,9 @@
               <td>
                 <div class="flex justify-center gap-2">
                   <GMLinkButton
+                    as="a"
                     :href="$route('categories.products.show', [product.category.slug, product.slug])"
+                    target="_blank"
                     size="sm"
                     class="flex items-center gap-2"
                   >
