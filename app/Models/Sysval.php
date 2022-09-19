@@ -22,6 +22,11 @@ final class Sysval extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $fillable = [
+        'key',
+        'value',
+    ];
+
     protected $casts = [
         'value' => 'json',
     ];
