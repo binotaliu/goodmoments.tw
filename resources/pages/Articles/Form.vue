@@ -191,7 +191,6 @@ const insertAttachment = (attachment) => {
   const $img = document.createElement('img')
   $img.src = attachment.url
 
-  console.log(attachment)
   form.content.zh_Hant_TW = `${form.content.zh_Hant_TW}<br />${$img.outerHTML}<br />`
 }
 
