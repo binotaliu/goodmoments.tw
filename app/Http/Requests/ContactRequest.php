@@ -21,4 +21,15 @@ final class ContactRequest extends FormRequest
             'content' => ['required', 'string', 'max:4096'],
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => '大名',
+            'contact_method' => '連絡方式',
+            'email' => '電子信箱',
+            'subject' => '主旨',
+            'content' => '內文',
+        ];
+    }
 }
