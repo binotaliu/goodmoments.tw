@@ -30,5 +30,4 @@ final class Contact extends Model
     {
         return $query->select('id', 'status', 'name', 'subject', 'created_at');
     }
-
 }

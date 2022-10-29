@@ -7,7 +7,6 @@ use App\Http\Requests\LifeImageStoreRequest;
 use App\Http\Requests\LifePageUpdateRequest;
 use App\Models\Sysval;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;

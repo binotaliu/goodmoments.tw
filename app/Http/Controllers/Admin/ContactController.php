@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 
-use function Pest\Laravel\wasDispatched;
-
 final class ContactController
 {
     public function index(Request $request): InertiaResponse

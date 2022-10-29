@@ -87,8 +87,7 @@ final class DatabaseSeeder extends Seeder
         $contacts
             ->random(round($contacts->count() / 3 * 2))
             ->each(
-                fn (Contact $c) =>
-                    ContactComment
+                fn (Contact $c) => ContactComment
                         ::factory()
                         ->count(random_int(1, 6))
                         ->for($c)
@@ -98,7 +97,6 @@ final class DatabaseSeeder extends Seeder
             ->each(fn (Contact $c) => $c->update(['status' => ContactStatus::processing]))
             ->random(round($contacts->count() / 5))
             ->each(fn (Contact $c) => $c->update(['status' => ContactStatus::resolved]));
-
 
         $this->call(SysvalSeeder::class);
     }

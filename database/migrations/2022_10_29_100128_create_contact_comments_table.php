@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('contact_comments', static function (Blueprint $table) {
+        Schema::create('contact_comments', static function (Blueprint $table): void {
             $table->id();
 
             $table->unsignedBigInteger('contact_id');

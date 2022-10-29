@@ -95,7 +95,7 @@ import { clone } from '@/js/utils'
 
 import { UserPlusIcon, PlusIcon, MinusIcon, CheckIcon } from '@heroicons/vue/24/outline'
 import { useForm } from '@inertiajs/inertia-vue3'
-import { onMounted, watch } from 'vue'
+import { onMounted } from 'vue'
 
 import AboutMember from './internals/AboutMember.vue'
 

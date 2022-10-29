@@ -1,17 +1,14 @@
 <?php
 
 use App\Models\Contact;
-
 use App\Models\User;
-
 use Inertia\Testing\AssertableInertia;
-
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-it('stores contact form to database', function () {
+it('stores contact form to database', function (): void {
     post(route('contact.store'), [
         'name' => $name = 'John Doe' . random_int(0, 100000),
         'contact_method' => 'email',
@@ -32,7 +29,7 @@ it('stores contact form to database', function () {
     ]);
 });
 
-it('displays received contact forms', function () {
+it('displays received contact forms', function (): void {
     $user = User::factory()->active()->create();
 
     Contact
@@ -50,7 +47,7 @@ it('displays received contact forms', function () {
         );
 });
 
-it('displays a contact', function () {
+it('displays a contact', function (): void {
     $user = User::factory()->active()->create();
 
     $contact = Contact::factory()->create();
