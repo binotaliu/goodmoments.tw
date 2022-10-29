@@ -102,6 +102,19 @@
         </GMNavSection>
         <GMNavSection>
           <GMNavItem>
+            <InboxIcon class="h-4 w-4" />
+            聯絡
+
+            <template #contents>
+              <GMNavItem :href="$route('admin.contacts.index')">
+                <InboxArrowDownIcon class="h-4 w-4" />
+                待處理聯絡
+              </GMNavItem>
+            </template>
+          </GMNavItem>
+        </GMNavSection>
+        <GMNavSection>
+          <GMNavItem>
             <DocumentDuplicateIcon class="h-4 w-4" />
             系統頁面
             <template #contents>
@@ -134,7 +147,7 @@
 </template>
 
 <script setup>
-import { DocumentDuplicateIcon, RectangleStackIcon, HomeIcon, Bars3Icon, PencilIcon, PhotoIcon, ShoppingBagIcon, TagIcon, UsersIcon, Bars4Icon, MapIcon, HeartIcon } from '@heroicons/vue/24/outline'
+import { DocumentDuplicateIcon, RectangleStackIcon, HomeIcon, Bars3Icon, PencilIcon, PhotoIcon, ShoppingBagIcon, TagIcon, UsersIcon, Bars4Icon, MapIcon, HeartIcon, InboxIcon, InboxArrowDownIcon } from '@heroicons/vue/24/outline'
 import { Inertia } from '@inertiajs/inertia'
 import { ref } from 'vue'
 

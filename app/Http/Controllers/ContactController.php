@@ -7,6 +7,8 @@ namespace App\Http\Controllers;
 use App\Actions\CreateContactFromRequest;
 use App\Http\Requests\ContactRequest;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
 
 final class ContactController
 {
@@ -20,12 +22,12 @@ final class ContactController
         return view('contact');
     }
 
-    public function store(ContactRequest $request): View
+    public function store(ContactRequest $request): RedirectResponse
     {
         ($this->createContactFromRequest)($request);
 
-        return view('contact', [
-            'success' => true,
-        ]);
+        return Redirect
+            ::route('contact.form')
+            ->with('status', 'success');
     }
 }

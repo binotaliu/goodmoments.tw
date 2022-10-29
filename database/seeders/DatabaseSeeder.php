@@ -7,6 +7,7 @@ namespace Database\Seeders;
 use App\Models\Article;
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Member;
 use App\Models\Product;
 use App\Models\User;
@@ -74,6 +75,11 @@ final class DatabaseSeeder extends Seeder
                 ['row' => 2, 'priority' => 3],
                 ['row' => 2, 'priority' => 4],
             ))
+            ->create();
+
+        Contact
+            ::factory()
+            ->count(random_int(32, 128))
             ->create();
 
         $this->call(SysvalSeeder::class);

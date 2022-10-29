@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AttachmentController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SetupPasswordController;
@@ -49,6 +50,9 @@ Route::middleware('auth')->group(function (): void {
 
     Route::resource('articles', ArticleController::class)
         ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
+
+    Route::resource('contacts', ContactController::class)
+        ->only(['index', 'show']);
 
     Route::get('pages/about', [SystemPage\AboutController::class, 'edit'])
         ->name('pages.about.edit');
