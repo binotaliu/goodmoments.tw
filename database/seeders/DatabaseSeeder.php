@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Enums\ContactStatus;
 use App\Models\Article;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\ContactComment;
 use App\Models\Member;
 use App\Models\Product;
 use App\Models\User;
@@ -32,7 +34,7 @@ final class DatabaseSeeder extends Seeder
             'is_active' => true,
         ]);
 
-        User
+        $users = User
             ::factory()
             ->count(25)
             ->create();
@@ -77,10 +79,26 @@ final class DatabaseSeeder extends Seeder
             ))
             ->create();
 
-        Contact
+        $contacts = Contact
             ::factory()
             ->count(random_int(32, 128))
             ->create();
+
+        $contacts
+            ->random(round($contacts->count() / 3 * 2))
+            ->each(
+                fn (Contact $c) =>
+                    ContactComment
+                        ::factory()
+                        ->count(random_int(1, 6))
+                        ->for($c)
+                        ->sequence(fn () => ['user_id' => $users->random()->id])
+                        ->create(),
+            )
+            ->each(fn (Contact $c) => $c->update(['status' => ContactStatus::processing]))
+            ->random(round($contacts->count() / 5))
+            ->each(fn (Contact $c) => $c->update(['status' => ContactStatus::resolved]));
+
 
         $this->call(SysvalSeeder::class);
     }

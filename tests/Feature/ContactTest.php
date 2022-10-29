@@ -62,3 +62,22 @@ it('displays a contact', function () {
             ->where('contact.id', $contact->id)
         );
 });
+
+it('creates a comment', function (): void {
+    $user = User::factory()->active()->create();
+
+    $contact = Contact::factory()->create();
+
+    actingAs($user);
+    post(route('admin.contacts.comments.store', $contact), [
+        'content' => $content = 'Test comment' . random_int(0, 100000),
+    ])
+        ->assertRedirect()
+        ->assertSessionHas('message', '已新增留言');
+
+    assertDatabaseHas('contact_comments', [
+        'contact_id' => $contact->id,
+        'user_id' => $user->id,
+        'content' => $content,
+    ]);
+});

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AttachmentController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactCommentController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
@@ -53,6 +54,9 @@ Route::middleware('auth')->group(function (): void {
 
     Route::resource('contacts', ContactController::class)
         ->only(['index', 'show']);
+
+    Route::resource('contacts.comments', ContactCommentController::class)
+        ->only(['store']);
 
     Route::get('pages/about', [SystemPage\AboutController::class, 'edit'])
         ->name('pages.about.edit');

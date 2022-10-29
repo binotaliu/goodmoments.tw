@@ -106,9 +106,21 @@
             聯絡
 
             <template #contents>
-              <GMNavItem :href="$route('admin.contacts.index')">
+              <GMNavItem :href="$route('admin.contacts.index', { status: 'created' })">
                 <InboxArrowDownIcon class="h-4 w-4" />
                 待處理聯絡
+              </GMNavItem>
+              <GMNavItem :href="$route('admin.contacts.index', { status: 'processing' })">
+                <EnvelopeIcon class="h-4 w-4" />
+                處理中聯絡
+              </GMNavItem>
+              <GMNavItem :href="$route('admin.contacts.index', { status: 'resolved' })">
+                <EnvelopeOpenIcon class="h-4 w-4" />
+                完成聯絡
+              </GMNavItem>
+              <GMNavItem :href="$route('admin.contacts.index')">
+                <InboxStackIcon class="h-4 w-4" />
+                所有聯絡
               </GMNavItem>
             </template>
           </GMNavItem>
@@ -147,7 +159,7 @@
 </template>
 
 <script setup>
-import { DocumentDuplicateIcon, RectangleStackIcon, HomeIcon, Bars3Icon, PencilIcon, PhotoIcon, ShoppingBagIcon, TagIcon, UsersIcon, Bars4Icon, MapIcon, HeartIcon, InboxIcon, InboxArrowDownIcon } from '@heroicons/vue/24/outline'
+import { DocumentDuplicateIcon, RectangleStackIcon, HomeIcon, Bars3Icon, PencilIcon, PhotoIcon, ShoppingBagIcon, TagIcon, UsersIcon, Bars4Icon, MapIcon, HeartIcon, InboxIcon, InboxArrowDownIcon, InboxStackIcon, EnvelopeIcon, EnvelopeOpenIcon } from '@heroicons/vue/24/outline'
 import { Inertia } from '@inertiajs/inertia'
 import { ref } from 'vue'
 
