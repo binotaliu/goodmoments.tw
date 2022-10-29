@@ -8,7 +8,9 @@
         :class="linkClasses"
         @click="showChildren = !showChildren"
       >
-        <slot />
+        <div class="inline-flex items-center gap-2">
+          <slot />
+        </div>
 
         <ChevronUpIcon
           v-if="showChildren"
@@ -32,7 +34,9 @@
       v-bind="$attrs"
       :class="linkClasses"
     >
-      <slot />
+      <div class="inline-flex items-center gap-2">
+        <slot />
+      </div>
     </InertiaLink>
   </li>
 </template>

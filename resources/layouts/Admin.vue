@@ -55,99 +55,72 @@
         </div>
       </div>
 
-      <nav
-        class="px-4 md:block"
-        :class="[ showMenu ? 'block' : 'hidden' ]"
-      >
-        <ul class="flex w-full flex-col items-stretch gap-2">
+      <GMNavigation :show="showMenu">
+        <GMNavSection>
           <GMNavItem :href="$route('admin.dashboard')">
-            <div class="inline-flex items-center gap-2">
-              <HomeIcon class="h-4 w-4" />
-              首頁
-            </div>
+            <HomeIcon class="h-4 w-4" />
+            首頁
           </GMNavItem>
           <GMNavItem>
-            <div class="inline-flex items-center gap-2">
-              <UsersIcon class="h-4 w-4" />
-              使用者
-            </div>
+            <UsersIcon class="h-4 w-4" />
+            使用者
             <template #contents>
               <GMNavItem :href="$route('admin.users.index')">
-                <div class="inline-flex items-center gap-2">
-                  <Bars4Icon class="h-4 w-4" />
-                  使用者列表
-                </div>
+                <Bars4Icon class="h-4 w-4" />
+                使用者列表
               </GMNavItem>
             </template>
           </GMNavItem>
-        </ul>
-        <ul class="flex w-full flex-col items-stretch gap-2">
+        </GMNavSection>
+        <GMNavSection>
           <GMNavItem>
-            <div class="inline-flex items-center gap-2">
-              <ShoppingBagIcon class="h-4 w-4" />
-              商品
-            </div>
+            <ShoppingBagIcon class="h-4 w-4" />
+            商品
             <template #contents>
               <GMNavItem :href="$route('admin.categories.index')">
-                <div class="inline-flex items-center gap-2">
-                  <TagIcon class="h-4 w-4" />
-                  分類列表
-                </div>
+                <TagIcon class="h-4 w-4" />
+                分類列表
               </GMNavItem>
             </template>
           </GMNavItem>
-        </ul>
-        <ul class="flex w-full flex-col items-stretch gap-2">
+        </GMNavSection>
+        <GMNavSection>
           <GMNavItem>
-            <div class="inline-flex items-center gap-2">
-              <PhotoIcon class="h-4 w-4" />
-              宣傳
-            </div>
+            <PhotoIcon class="h-4 w-4" />
+            宣傳
             <template #contents>
               <GMNavItem :href="$route('admin.banners.index')">
-                <div class="inline-flex items-center gap-2">
-                  <RectangleStackIcon class="h-4 w-4" />
-                  輪播圖片
-                </div>
+                <RectangleStackIcon class="h-4 w-4" />
+                輪播圖片
               </GMNavItem>
               <GMNavItem :href="$route('admin.articles.index')">
-                <div class="inline-flex items-center gap-2">
-                  <PencilIcon class="h-4 w-4" />
-                  文章
-                </div>
+                <PencilIcon class="h-4 w-4" />
+                文章
               </GMNavItem>
             </template>
           </GMNavItem>
-        </ul>
-        <ul class="flex w-full flex-col items-stretch gap-2">
+        </GMNavSection>
+        <GMNavSection>
           <GMNavItem>
-            <div class="inline-flex items-center gap-2">
-              <DocumentDuplicateIcon class="h-4 w-4" />
-              系統頁面
-            </div>
+            <DocumentDuplicateIcon class="h-4 w-4" />
+            系統頁面
             <template #contents>
               <GMNavItem :href="$route('admin.pages.about.edit')">
-                <div class="inline-flex items-center gap-2">
-                  <UsersIcon class="h-4 w-4" />
-                  關於我們
-                </div>
+                <UsersIcon class="h-4 w-4" />
+                關於我們
               </GMNavItem>
               <GMNavItem :href="$route('admin.pages.life.edit')">
-                <div class="inline-flex items-center gap-2">
-                  <HeartIcon class="h-4 w-4 shrink-0" />
-                  食衣住行育樂
-                </div>
+                <HeartIcon class="h-4 w-4 shrink-0" />
+                食衣住行育樂
               </GMNavItem>
               <GMNavItem :href="$route('admin.pages.maps.edit')">
-                <div class="inline-flex items-center gap-2">
-                  <MapIcon class="h-4 w-4" />
-                  交通資訊
-                </div>
+                <MapIcon class="h-4 w-4" />
+                交通資訊
               </GMNavItem>
             </template>
           </GMNavItem>
-        </ul>
-      </nav>
+        </GMNavSection>
+      </GMNavigation>
     </header>
 
     <section class="flex w-full flex-col items-start justify-center px-6 md:w-4/5 md:px-0">

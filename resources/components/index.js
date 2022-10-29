@@ -12,7 +12,9 @@ import LoadingIcon from './LoadingIcon.vue'
 import LoadingText from './LoadingText.vue'
 import Logo from './Logo.vue'
 import Modal from './Modal.vue'
+import Navigation from './Navigation.vue'
 import NavItem from './NavItem.vue'
+import NavSection from './NavSection.vue'
 import Paginator from './Paginator.vue'
 import RemoveModal from './RemoveModal.vue'
 import RichEditor from './RichEditor.vue'
@@ -35,7 +37,9 @@ export default {
     Vue.component('GMLoadingText', LoadingText)
     Vue.component('GMLogo', Logo)
     Vue.component('GMModal', Modal)
+    Vue.component('GMNavigation', Navigation)
     Vue.component('GMNavItem', NavItem)
+    Vue.component('GMNavSection', NavSection)
     Vue.component('GMPaginator', Paginator)
     Vue.component('GMRemoveModal', RemoveModal)
     Vue.component('GMRichEditor', RichEditor)
